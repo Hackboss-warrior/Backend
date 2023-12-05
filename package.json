@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Esto pertenece a la parte I lado backend del proyecto final",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xavi, Omar, Carlos, Aron",
+  "license": "ISC"
+}
