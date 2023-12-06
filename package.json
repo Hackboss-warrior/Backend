@@ -6,7 +6,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon",
-    "create": "node src/db/createdb.js",
+    "createDb": "node src/db/createdb.js",
+    "UseDb":"node src/db/UseDb.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Xavi, Omar, Carlos, Aron",
