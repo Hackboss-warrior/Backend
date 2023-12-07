@@ -6,7 +6,7 @@ const useDb = async ()=>{
     try {
         const pool = await getPool();
         await pool.query(`USE ${DB_NAME}`)
-        console.log(`base de datos en uso`);
+        console.log(`base de datos ${DB_NAME} en uso`);
     } catch (error) {
         console.error(`☠ La base de datos no se ha ejecutado ☠ ${error}`)
     }
