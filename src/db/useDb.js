@@ -10,4 +10,6 @@ const useDb = async ()=>{
     }
 }
 
-useDb()
+
+
+export default useDb;

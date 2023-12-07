@@ -6,12 +6,17 @@ const createTableUsers = async () => {
 
         // Ejecuta la consulta SQL para crear la tabla "users".
         await pool.query(`
-            CREATE TABLE IF NOT EXISTS users (
-                id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                firstName VARCHAR(255),
-                lastName VARCHAR(255)
-            )
-        `);
+        CREATE TABLE users (
+           id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+           name VARCHAR(50) NOT NULL,
+           firstName VARCHAR(50),
+           nickName VARCHAR(100) NOT NULL,
+           email VARCHAR(100) NOT NULL,
+           passwordHash VARCHAR(255) NOT NULL,
+           birthDay DATE NOT NULL,
+           createdAt DATETIME NOT NULL  DEFAULT DATETIME_TIMESAMP,
+           modifiedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        );`);
 
         console.log('Tabla de usuarios creada con éxito.');
     } catch (err) {
@@ -21,4 +26,4 @@ const createTableUsers = async () => {
 };
 
 // Llama a la función "createTable" para crear la tabla de usuarios.
-createTable();
+createTableUsers();

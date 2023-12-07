@@ -1,5 +1,7 @@
 // Creamos el script de inicialización de la base de datos, con las tablas.
-import getPool from './pool.js';
+
+/*
+import getPool from '../pool.js';
 
  async function createTables () {
     let pool;
@@ -39,7 +41,7 @@ import getPool from './pool.js';
         `);
 
         await pool.query(`
-            CREATE TABLE Likes (
+            CREATE TABLE likes (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 post_Id INT,
                 user_Id INT,
@@ -90,11 +92,12 @@ import getPool from './pool.js';
         console.error(console.log(`☠ Ha sucedido un imprevisto con la creación de las tablas ☠${error}`))
     } finally{
         if(pool) {
-            pool.release() /*--> pool.release() Para forzar la desconexión al finalizar el proceso de creación en la base de datos
-            process.exit()*/
+            pool.release() --> pool.release() Para forzar la desconexión al finalizar el proceso de creación en la base de datos
+            process.exit()
         }
     }
 }
 
 createTables()
 
+*/
