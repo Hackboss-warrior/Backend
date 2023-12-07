@@ -1,6 +1,7 @@
 // Generamos un script con el que podemos eliminar la base de datos y resetearla.
 
 import getPool from "./pool.js";
+import 'dotenv/config'
 
 let pool = await getPool();
 
@@ -12,7 +13,6 @@ const dropDb = async () => {
   } catch (error) {
     console.error(error);
   } finally {
-    pool.release();
     process.exit();
   }
 };

@@ -1,16 +1,16 @@
 import getPool from '../pool.js';
-
+import useDb from '../useDb.js';
 const createTableFavorites = async () => {
     try {
         const pool = await getPool();
-
+        await
         // Ejecuta la consulta SQL para crear la tabla "favorites".
         await pool.query(`
         CREATE TABLE favorites (
             id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             post_i INT NOT NULL,
             user_id INT NOT NULL,
-            createdAt DATETIME NOT NULL  DEFAULT DATETIME_TIMESAMP,
+            createdAt DATETIME NOT NULL  DEFAULT DATETIME_TIMESTAMP,
             foreing key (post_Id) reference posts(id),
             foreing key (user_Id) reference users(id)
              );`

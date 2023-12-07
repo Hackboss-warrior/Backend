@@ -11,7 +11,7 @@ const createTableLikes = async () => {
             post_Id INT,
             user_Id INT,
             like boolean NOT NULL DEFAULT FALSE,
-            createdAt DATETIME NOT NULL  DEFAULT DATETIME_TIMESAMP,
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
             foreing key (post_Id) reference posts(id),
             foreing key (user_Id) reference users(id)
          );`

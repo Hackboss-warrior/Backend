@@ -5,9 +5,11 @@
   "description": "Esto pertenece a la parte I lado backend del proyecto final",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon app.js",
+    "initDb":"node src/db/createDb.js && node src/db/tables/createTables.js",
+    "dropDb":"node src/db/dropDb.js",
     "createDb": "node src/db/createdb.js",
-    "UseDb":"node src/db/UseDb.js",
+    "createTotalTables":"node src/db/tables/createTables.js  ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Xavi, Omar, Carlos, Aron",

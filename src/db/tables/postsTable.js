@@ -14,8 +14,8 @@ const createTablePosts = async () => {
             body LONGTEXT,
             tags JSON,
             user_Id INT NOT NULL,
-            createdAt DATETIME NOT NULL  DEFAULT DATETIME_TIMESAMP,
-            modifiedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+            modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
             foreing key (user_Id) reference users(id)
             );
     `);

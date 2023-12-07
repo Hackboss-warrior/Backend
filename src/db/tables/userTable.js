@@ -1,9 +1,9 @@
 import getPool from '../pool.js';
-
+import useDb from '../useDb.js';
 const createTableUsers = async () => {
     try {
         const pool = await getPool();
-
+        await useDb()
         // Ejecuta la consulta SQL para crear la tabla "users".
         await pool.query(`
         CREATE TABLE users (
@@ -14,8 +14,8 @@ const createTableUsers = async () => {
            email VARCHAR(100) NOT NULL,
            passwordHash VARCHAR(255) NOT NULL,
            birthDay DATE NOT NULL,
-           createdAt DATETIME NOT NULL  DEFAULT DATETIME_TIMESAMP,
-           modifiedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+           createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+           modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
         );`);
 
         console.log('Tabla de usuarios creada con éxito.');
