@@ -2,6 +2,6 @@
 import selectUserByEmail from "./SelectEmailUsers.js";
 import selectUserByNickName from "./SelectNickNameUsers.js";
 import insertUser from "./insertUser.js";
+import selectUser from "./selectUser.js";
 
-export {selectUserByEmail, selectUserByNickName, insertUser}
-
+export { selectUserByEmail, selectUserByNickName, insertUser, selectUser };
