@@ -1,4 +1,4 @@
-[![nodejs](https://img.shields.io/badge/nodejs-V20.10.0-blue)](https://nodejs.org/en)
+[![nodejs](https://img.shields.io/badge/Node.js-V20.10.0-green)](https://nodejs.org/en)
 
 # Backend
 
