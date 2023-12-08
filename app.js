@@ -2,11 +2,13 @@
 import fs from "fs";
 import express from "express";
 import "dotenv/config";
-import getPool from "./src/db/pool.js";
 import useDb from "./src/db/useDb.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+// Importamos las rutas
+
+import userRoutes from "./src/routes/index.js";
 // Importamos los modelos de usuario
 import {
   insertUser,
@@ -14,20 +16,28 @@ import {
   selectUserByEmail,
   selectUserByNickName,
 } from "./src/models/users/index.js";
-//Variables para el control del puerto
 
-//Generamos las variables de entorno
-const app = express();
+// Importamos los controladores de usuario
+import { login, register } from "./src/controllers/users/index.js";
+//Recuperamos las variables de entorno
 let { PORT, TOKEN_SECRET, DURATION, ATTEMPTS } = process.env;
 
-const pool = await getPool();
+// Definimos la variable app para utilizar los métodos de express a través de ella
+const app = express();
 
+// Generamos los middlewares
 app.use(express.json());
 
 // Apuntamos a la base de datos que queremos utilizar.
 useDb();
 
-// Endopoint registro de usuario
+// Ruta con todos los endpoints de usuario modularizados
+app.use(userRoutes);
+
+//app.post("/register", register);
+
+// Endopoint registro de usuario (sin modularizar)
+/*
 app.post("/register", async (req, res) => {
   try {
     const { name, firstName, nickName, email, password, DOB } = req.body;
@@ -56,23 +66,27 @@ app.post("/register", async (req, res) => {
     res.sendStatus(500).json({ message: "Error interno del servidor" });
   }
 });
+*/
 
-// Endpoint de usuario para loguearse
+// Endpoint de usuario para loguearse sin modularizar
+/*
 app.post("/login", async (req, res) => {
   try {
     let { email, nickName, password } = req.body;
 
     const user = await selectUser(email, nickName, password);
 
-    user.forEach((hola) => {
+    user.forEach((data) => {
       if (
-        (hola.email === email || hola.nickName === nickName) &&
-        bcrypt.compareSync(password, hola.passwordHash)
+        (data.email === email || data.nickName === nickName) &&
+        bcrypt.compareSync(password, data.passwordHash)
       ) {
+        const jwtPayLoad = { id: data.id };
+
         let token = jwt.sign(
           {
-            id: hola.id,
-            nickName: hola.nickName,
+            jwtPayLoad,
+            nickName: data.nickName,
           },
           TOKEN_SECRET,
           { expiresIn: "5d" }
@@ -92,6 +106,7 @@ app.post("/login", async (req, res) => {
     res.sendStatus(500).json({ message: "Error interno del servidor" });
   }
 });
+*/
 
 // Activación del puerto con express
 

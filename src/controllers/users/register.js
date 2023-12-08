@@ -1,21 +1,38 @@
-import express from 'express';
-import bcrypt from 'bcrypt';
-import { selectUserByEmail, selectUserByNickName } from '../../models/users.js';
+import bcrypt from "bcrypt";
+import {
+  selectUserByEmail,
+  selectUserByNickName,
+  insertUser,
+} from "../../models/users/index.js";
 
-const app = express()
-app.use(express.json())
+const register = async (req, res) => {
+  try {
+    const { name, firstName, nickName, email, password, DOB } = req.body;
+    const userWithSameEmail = await selectUserByEmail(email);
+    const userWithSameNickName = await selectUserByNickName(nickName);
 
-app.post('/register', async (req, res) => {
-    try {
-        const{name, firstName, nickName, email, password, DOB } = req.body()
-        const userWithSameEmail = await selectUserByEmail(email)
-        const userWithSameNickName = await selectUserBynickName(nickName)
-        if (userWithSameEmail || userWithSameNickName){
-            console.log("El nickname o el email ya estan registrados");
-        }
-        res.status(201).send({mensaje: "Como vacilar a Omar"})
-    } catch (error) {
-        console.log("Se ha producido un error en el registro de usuario")
+    if (userWithSameEmail || userWithSameNickName) {
+      console.log("El nickname o el email ya estan registrados");
+      return;
     }
-})
-  
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    const insertId = await insertUser({
+      name,
+      firstName,
+      nickName,
+      email,
+      hashedPassword,
+      DOB,
+    });
+    res.status(201).send({
+      message: "Te has registrado mákina ✔️",
+      data: { id: insertId, name, firstName, nickName, email, DOB },
+    });
+  } catch (error) {
+    console.log("Se ha producido un error:", error);
+    res.sendStatus(500).json({ message: "Error interno del servidor" });
+  }
+};
+
+export default register;
