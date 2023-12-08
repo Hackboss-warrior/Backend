@@ -6,6 +6,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
+    "start": "node app.js",
     "initDb": "node src/db/createDb.js && node src/db/tables/createTables.js",
     "dropDb": "node src/db/dropDb.js",
     "createDb": "node src/db/createdb.js",
