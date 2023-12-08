@@ -7,9 +7,9 @@
 
 # Instrucciones
 > [!TIP]
-> 1º Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas
-> [!TIP]
-> 2º En caso de no tener la base de datos creada ejecutar el comando npm run initDb
+> 1º Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas.
+
+> 2º En caso de no tener la base de datos creada ejecutar el comando npm run initDb.
 
 > [!IMPORTANT]  
 > Para garantizar seguridad en tu página web no compartas ni enseñes el Token puesto en .env.
