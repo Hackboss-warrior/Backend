@@ -3,7 +3,16 @@
 [![dotenv](https://img.shields.io/badge/dotenv-V16.3.1-red)](https://www.npmjs.com/package/dotenv)
 [![express](https://img.shields.io/badge/express-V4.18.2-olive)](https://www.npmjs.com/package/express)
 [![mysql2](https://img.shields.io/badge/mysql2-V3.6.5-aqua)](https://www.npmjs.com/package/mysql2)
-[![jsonwebtoken](https://img.shields.io/badge/jsonwebtoken-V9.0.2-gray)](https://www.npmjs.com/package/jsonwebtoken)
+[![jsonwebtoken](https://img.shields.io/badge/jsonwebtoken-V9.0.2-silver)](https://www.npmjs.com/package/jsonwebtoken)
+
+# Instrucciones
+> [!TIP]
+> 1º Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas
+> 2º En caso de no tener la base de datos creada ejecutar el comando npm run initDb
+
+> [!IMPORTANT]  
+> Para garantizar seguridad en tu página web no compartas ni enseñes el Token puesto en .env.
+---
 
 # Backend
 
