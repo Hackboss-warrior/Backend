@@ -10,7 +10,7 @@ import jwt from "jsonwebtoken";
 //Variables para el control del puerto
 let times = 5;
 let duration = 2000;
-let attempts = 5;
+let attempts = 4;
 let showErrMsg = true;
 
 //Generamos las variables de entorno
