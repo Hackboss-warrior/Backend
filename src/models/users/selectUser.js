@@ -9,14 +9,4 @@ const selectUser = async (email, nickName, hashedPassword) => {
   return users;
 };
 
-/* const selectUser = async ({ email, nickname, hashedPassword }) => {
-  const [{ user }] = await pool.query(
-    (`SELECT email FROM users WHERE email = ?`, [email])
-  );
-
-  console.log(user);
-  return user;
-};
-*/
-
 export default selectUser;
