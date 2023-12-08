@@ -102,9 +102,7 @@ app.post("/login", async (req, res) => {
 
 // función controladora de la escucha del puerto, en caso de que este ocupada probará 4 veces y si no hay resultado pasará a probar escuchar en el puerto 5000
 function startServer() {
-    const server = app.listen(PORT, () => {
-         console.log(`Servidor escuchando en el puerto ${PORT}...`);
-    });
+    const server = app.listen(PORT);
 
     server.on('listening', () => {
         console.log(`Servidor corriendo en el puerto ${PORT}`);
