@@ -6,10 +6,11 @@
 [![jsonwebtoken](https://img.shields.io/badge/jsonwebtoken-V9.0.2-silver)](https://www.npmjs.com/package/jsonwebtoken)
 
 # Instrucciones
-> [!TIP]
-> 1º Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas.
+> **Primer paso**
+> Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas.
 
-> 2º En caso de no tener la base de datos creada ejecutar el comando npm run initDb.
+> **Segundo paso (opcional)**
+> En caso de no tener la base de datos creada ejecutar el comando npm run initDb.
 
 > [!IMPORTANT]  
 > Para garantizar seguridad en tu página web no compartas ni enseñes el Token puesto en .env.
