@@ -9,6 +9,13 @@ const login = async (req, res) => {
 
     const user = await selectUser(email, nickName, password);
 
+    if (!user) {
+      generateError(
+        "El email o la contraseña son incorrectos, por favor, revise los datos introducidos",
+        400
+      );
+    }
+
     user.forEach((data) => {
       if (
         (data.email === email || data.nickName === nickName) &&

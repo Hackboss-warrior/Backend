@@ -7,8 +7,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 // Importamos las rutas
-
 import userRoutes from "./src/routes/index.js";
+
 // Importamos los modelos de usuario
 import {
   insertUser,
@@ -19,6 +19,10 @@ import {
 
 // Importamos los controladores de usuario
 import { login, register } from "./src/controllers/users/index.js";
+
+// importamos los middlewares
+import { notFound, handleError } from "./src/middlewares/index.js";
+
 //Recuperamos las variables de entorno
 let { PORT, TOKEN_SECRET, DURATION, ATTEMPTS } = process.env;
 
@@ -107,6 +111,10 @@ app.post("/login", async (req, res) => {
   }
 });
 */
+
+// Implementamos los middlewares de gestión de errores y de ruta no encontrada
+app.use(notFound);
+app.use(handleError);
 
 // Activación del puerto con express
 
