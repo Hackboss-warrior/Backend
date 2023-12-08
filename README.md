@@ -9,7 +9,7 @@
 > **Note**
 > This is a note
 
-> **Warning**
+> [**Warning**]
 > This is a warning
 
 > [!IMPORTANT]  
