@@ -3,7 +3,7 @@ let pool = await getPool();
 
 const selectUser = async (email, nickName, hashedPassword) => {
   const [users] = await pool.query(
-    "SELECT email, nickName, passwordHash FROM users"
+    "SELECT id,email, nickName, passwordHash FROM users"
   );
 
   return users;

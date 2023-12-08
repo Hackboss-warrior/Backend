@@ -4,6 +4,7 @@ import {
   selectUserByNickName,
   insertUser,
 } from "../../models/users/index.js";
+import generateError from "../../utils/generateError.js";
 
 const register = async (req, res) => {
   try {
@@ -11,8 +12,12 @@ const register = async (req, res) => {
     const userWithSameEmail = await selectUserByEmail(email);
     const userWithSameNickName = await selectUserByNickName(nickName);
 
+    if (!name || !nickName || !email || !password || !DOB) {
+      res.status(400).send("Completa todos los campos");
+      return;
+    }
     if (userWithSameEmail || userWithSameNickName) {
-      console.log("El nickname o el email ya estan registrados");
+      res.status(400).send("El nickname o el email ya estan registrados");
       return;
     }
     const hashedPassword = bcrypt.hashSync(password, 10);

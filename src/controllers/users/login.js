@@ -16,12 +16,16 @@ const login = async (req, res) => {
       );
     }
 
+    let globalToken;
+    let userCheck = false;
+    let jwtPayLoad;
+
     user.forEach((data) => {
       if (
         (data.email === email || data.nickName === nickName) &&
         bcrypt.compareSync(password, data.passwordHash)
       ) {
-        const jwtPayLoad = { id: data.id };
+        jwtPayLoad = { id: data.id };
 
         let token = jwt.sign(
           {
@@ -31,15 +35,17 @@ const login = async (req, res) => {
           { expiresIn: "5d" }
         );
 
-        res.status(200).json({
-          message: "Bienvenido al sitio web",
-          token,
-        });
-        exit;
+        globalToken = token;
+        userCheck = true;
+        return;
       }
     });
-    console.log("Credenciales inválidas");
-    res.status(401).json({ message: "Credenciales inválidas" });
+
+    if (userCheck === true) {
+      res.status(200).json({ id: jwtPayLoad.id, token: globalToken });
+    } else {
+      res.status(401).json({ message: "Credenciales inválidas" });
+    }
   } catch (error) {
     console.log("Se ha producido un error:", error);
     res.sendStatus(500).json({ message: "Error interno del servidor" });
