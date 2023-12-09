@@ -1,6 +1,7 @@
 // Hacemos las importaciones
 import express from "express";
 import "dotenv/config";
+import cors from 'cors'
 import useDb from "./src/db/useDb.js";
 
 // Importamos las rutas
@@ -8,6 +9,7 @@ import userRoutes from "./src/routes/index.js";
 
 // importamos los middlewares
 import { notFound, handleError } from "./src/middlewares/index.js";
+import morgan from "morgan";
 
 //Recuperamos las variables de entorno
 let { PORT, DURATION, ATTEMPTS } = process.env;
@@ -15,8 +17,11 @@ let { PORT, DURATION, ATTEMPTS } = process.env;
 // Definimos la variable app para utilizar los métodos de express a través de ella
 const app = express();
 
+
 // Generamos los middlewares
+app.use(cors())
 app.use(express.json());
+app.use(morgan())
 
 // Apuntamos a la base de datos que queremos utilizar.
 useDb();
