@@ -22,9 +22,6 @@ async function createTables() {
             );`
         );
 
-
-
-
         await pool.query(`
             CREATE TABLE IF NOT EXISTS posts (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -38,8 +35,8 @@ async function createTables() {
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
                
                 FOREIGN KEY(userId) REFERENCES users(id)
-                );
-        `);
+                );`
+        );
 
         await pool.query(`
             CREATE TABLE IF NOT EXISTS interacts (
@@ -91,8 +88,9 @@ async function createTables() {
         //      );`
         // );
 
+    console.log(`😎 las tablas fuero creadas con exito`);
+   
 
-console.log(`😎 las tablas fuero creadas con exito`);
     } catch (error) {
         console.error(console.log(`☠ Ha sucedido un imprevisto con la creación de las tablas ☠ ${error}`))
     } finally {
