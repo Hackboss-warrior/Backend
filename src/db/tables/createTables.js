@@ -27,13 +27,12 @@ async function createTables() {
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 title VARCHAR(50) NOT NULL,
                 files LONGTEXT,
-                subject VARCHAR(100),
+                topic VARCHAR(100),
                 body LONGTEXT NOT NULL,
                 tags JSON,
-                userId INT NOT NULL,
+                userId INT ,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-               
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
                 FOREIGN KEY(userId) REFERENCES users(id)
                 );`);
 
