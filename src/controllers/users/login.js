@@ -1,9 +1,12 @@
 import { selectUser } from "../../models/users/index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import "dotenv/config";
 
-const login = async (req, res) => {
+import generateError from "../../utils/generateError.js";
+
+let globalToken;
+let jwtPayLoad;
+const login = async (req, res, next) => {
   try {
     const { email, nickName, password } = req.body;
 
@@ -16,9 +19,7 @@ const login = async (req, res) => {
       );
     }
 
-    let globalToken;
     let userCheck = false;
-    let jwtPayLoad;
 
     user.forEach((data) => {
       if (
@@ -44,11 +45,10 @@ const login = async (req, res) => {
     if (userCheck === true) {
       res.status(200).json({ id: jwtPayLoad.id, token: globalToken });
     } else {
-      res.status(401).json({ message: "Credenciales inválidas" });
+      generateError("Credenciales inválidas", 401);
     }
   } catch (error) {
-    console.log("Se ha producido un error:", error);
-    res.sendStatus(500).json({ message: "Error interno del servidor" });
+    next(error);
   }
 };
 
