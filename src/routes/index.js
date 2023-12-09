@@ -6,4 +6,5 @@ import postRoutes from "./noticeRoutes.js";
 
 const router = express.Router()
 router.use(postRoutes);
+
 export default router

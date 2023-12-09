@@ -1,20 +1,20 @@
+import {insertPost,selectByPostId} from "../../models/news/index.js";
 
-import insertPost from "../../models/news/insertPost.js";
-import getPool from "../../db/pool.js";
-let pool = await getPool()
 const createPost = async (req, res) => {
     try {
-        const{title,files,subject,body,tags,userId} = req.body;
-         res.send(console.log({title,files,subject,body,tags,userId}))
-        
+        const{title,files,topic,body,tags,userId} = req.body;
+  
+        const x = await insertPost({title,files,topic,body,tags,userId});
+         
+        res.send(title)
+      
        
-       res.send(console.log(`😁llegamos hasta aqui y probablemente de ha creado el post${req.body}`));
+       console.log(`😁llegamos hasta aqui y probablemente de ha creado el post`);
 
     } catch (error) {
-        console.error(`☠ Hubo un problema con la publicación de su Noticia ☠ , error: ${error}`);
+        console.error(`☠ Hubo un problema con la publicación de su Noticia ☠ , error: ${error.message}`);
     }
 }
-
 
 
 

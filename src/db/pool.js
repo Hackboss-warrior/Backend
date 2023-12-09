@@ -1,6 +1,5 @@
-import mysql from 'mysql2/promise'
-import 'dotenv/config'
-const  { DB_HOST, DB_USER, DB_PORT, DB_PASS } = process.env
+import mysql from 'mysql2/promise';
+const  { DB_HOST, DB_USER, DB_PORT, DB_PASS } = process.env;
 
 // Declara una variable para almacenar el pool de conexiones.
 let pool;
