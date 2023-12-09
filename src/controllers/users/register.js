@@ -6,18 +6,18 @@ import {
 } from "../../models/users/index.js";
 import generateError from "../../utils/generateError.js";
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     const { name, firstName, nickName, email, password, DOB } = req.body;
     const userWithSameEmail = await selectUserByEmail(email);
     const userWithSameNickName = await selectUserByNickName(nickName);
 
     if (!name || !nickName || !email || !password || !DOB) {
-      res.status(400).send("Completa todos los campos");
+      generateError("Completa todos los campos", 401);
       return;
     }
     if (userWithSameEmail || userWithSameNickName) {
-      res.status(400).send("El nickname o el email ya estan registrados");
+      generateError("El nickname o el email ya estan registrados", 400);
       return;
     }
     const hashedPassword = bcrypt.hashSync(password, 10);
@@ -35,8 +35,7 @@ const register = async (req, res) => {
       data: { id: insertId, name, firstName, nickName, email, DOB },
     });
   } catch (error) {
-    console.log("Se ha producido un error:", error);
-    res.sendStatus(500).json({ message: "Error interno del servidor" });
+    next(error);
   }
 };
 

@@ -1,8 +1,5 @@
 import jwt from "jsonwebtoken";
 import generateError from "../utils/generateError.js";
-import "dotenv/config";
-
-const TOKEN_SECRET = process.env;
 
 const validateAuth = (req, res, next) => {
   try {
@@ -21,7 +18,7 @@ const validateAuth = (req, res, next) => {
     let tokenPayLoad;
 
     try {
-      tokenPayLoad = jwt.verify(token, TOKEN_SECRET);
+      tokenPayLoad = jwt.verify(token, process.env.TOKEN_SECRET);
     } catch (error) {
       generateError("El token es inválido", 400);
     }

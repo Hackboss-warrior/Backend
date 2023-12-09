@@ -3,16 +3,13 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import useDb from "./src/db/useDb.js";
+import morgan from "morgan";
 
 // Importamos las rutas
 import router from "./src/routes/index.js";
 
 // importamos los middlewares
 import { notFound, handleError } from "./src/middlewares/index.js";
-import morgan from "morgan";
-
-//Recuperamos las variables de entorno
-let { PORT, DURATION, ATTEMPTS } = process.env;
 
 // Definimos la variable app para utilizar los métodos de express a través de ella
 const app = express();
@@ -32,37 +29,35 @@ app.use(router);
 app.use(notFound);
 app.use(handleError);
 
-// Activación del puerto con express
-// app.listen(PORT, () => {
-//     console.log(`Servidor corriendo en el puerto ${PORT}`);
-// });
-
 // función controladora de la escucha del puerto, en caso de que este ocupada probará 4 veces y si no hay resultado pasará a probar escuchar en el puerto 5000
+
+// Variable que almacena el número de intentos para conectar al puerto
+let ATTEMPTS = process.env.ATTEMPTS;
 function startServer() {
-  const server = app.listen(PORT);
+  const server = app.listen(process.env.PORT);
 
   server.on("listening", () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+    console.log(`Servidor corriendo en el puerto ${process.env.PORT}`);
   });
 
   server.on("error", async (error) => {
     if (error.code === "EADDRINUSE") {
-      console.log(`El puerto ${PORT} ya está en uso`);
+      console.log(`El puerto ${process.env.PORT} ya está en uso`);
       server.close();
 
       if (ATTEMPTS > 0) {
         ATTEMPTS -= 1;
         console.log(
-          `Intentando reiniciar el servidor en el puerto ${PORT}. Intentos restantes: ${ATTEMPTS}`
+          `Intentando reiniciar el servidor en el puerto ${process.env.PORT}. Intentos restantes: ${ATTEMPTS}`
         );
 
         if (ATTEMPTS === 0) {
-          PORT = 5000;
+          process.env.PORT = 5000;
         }
 
         setTimeout(() => {
           startServer();
-        }, DURATION);
+        }, process.env.DURATION);
       } else {
         console.log(
           "No quedan más intentos. Servidor apagándose. Por favor verifique que el puerto no esté ocupado por otra aplicación antes de ejecutar"
