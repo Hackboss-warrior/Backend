@@ -20,7 +20,7 @@ const app = express();
 // Generamos los middlewares
 app.use(cors());
 app.use(express.json());
-app.use(morgan());
+app.use(morgan("dev"));
 
 // Apuntamos a la base de datos que queremos utilizar.
 useDb();
