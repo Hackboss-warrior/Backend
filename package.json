@@ -6,21 +6,27 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "initDb":"node src/db/createDb.js && node src/db/tables/createTables.js",
-    "dropDb":"node src/db/dropDb.js",
+    "start": "node app.js",
+    "initDb": "node src/db/createDb.js && node src/db/tables/createTables.js",
+    "dropDb": "node src/db/dropDb.js",
     "createDb": "node src/db/createdb.js",
-    "createTotalTables":"node src/db/tables/createTables.js  ",
+    "createTotalTables": "node src/db/tables/createTables.js  ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Xavi, Omar, Carlos, Aron",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
     "mysql2": "^3.6.5"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "eslint": "^8.55.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.0"
   }
 }

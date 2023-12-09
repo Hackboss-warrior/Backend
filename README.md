@@ -1,3 +1,29 @@
+[![nodejs](https://img.shields.io/badge/Node.js-V20.10.0-green)](https://nodejs.org/en)
+[![bcrypt](https://img.shields.io/badge/bcrypt-V5.1.1-blue)](https://www.npmjs.com/package/bcrypt)
+[![dotenv](https://img.shields.io/badge/dotenv-V16.3.1-red)](https://www.npmjs.com/package/dotenv)
+[![express](https://img.shields.io/badge/express-V4.18.2-olive)](https://www.npmjs.com/package/express)
+[![mysql2](https://img.shields.io/badge/mysql2-V3.6.5-aqua)](https://www.npmjs.com/package/mysql2)
+[![jsonwebtoken](https://img.shields.io/badge/jsonwebtoken-V9.0.2-silver)](https://www.npmjs.com/package/jsonwebtoken)
+[![morgan](https://img.shields.io/badge/mysql2-V1.10.0-aqua)](https://www.npmjs.com/package/morgan)
+[![cors](https://img.shields.io/badge/jsonwebtoken-V2.8.5-olive)](https://www.npmjs.com/package/cors)
+
+# Instrucciones
+> [!NOTE]
+> Deberás tener instalado Node.js para arrancar el servidor.
+
+> [!TIP]
+> Se recomienda tener libre el puerto 3001 o 5000 para la ejecución del servidor.
+
+1. **Primer paso**
+     - Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas.
+2. **Segundo paso** (opcional)
+    - En caso de no tener la base de datos creada ejecutar el comando npm run initDb.
+3. **Tercer paso** 
+    - Ejecutar npm start para arrancar el proceso.
+> [!IMPORTANT]  
+> Para garantizar seguridad en tu página web no compartas ni enseñes el Token puesto en .env.
+---
+
 # Backend
 
 Esta es la parte I del proyecto backend

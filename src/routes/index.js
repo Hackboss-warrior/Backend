@@ -10,4 +10,6 @@ const router = express.Router()
 
 router.use(postRoutes);
 
-export default router
+router.use(userRoutes);
+
+export default router;
