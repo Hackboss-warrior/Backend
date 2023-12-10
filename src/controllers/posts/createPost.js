@@ -1,18 +1,25 @@
-import {insertPost,selectByPostId} from "../../models/news/index.js";
-
-const createPost = async (req, res) => {
+import { insertPost } from "../../models/news/index.js";
+import generateError from "../../utils/generateError.js";
+const createPost = async (req, res, next) => {
     try {
-        const{title,files,topic,body,tags,userId} = req.body;
-  
-        const x = await insertPost({title,files,topic,body,tags,userId});
-         
+        const AuthUserId = req.auth.id;
+        if (!AuthUserId) {
+            generateError("Debe loguearse antes de realizar cambios", 401);
+        }
+        const { title, files, topic, body, tags } = req.body;
+//JOI
+
+
+
+
+        await insertPost({ title, files, topic, body, tags, AuthUserId });
+
         res.send(title)
-      
-       
-       console.log(`😁llegamos hasta aqui y probablemente de ha creado el post`);
+
 
     } catch (error) {
-        console.error(`☠ Hubo un problema con la publicación de su Noticia ☠ , error: ${error.message}`);
+        next(error)
+        console.error('error en el generador de errores'+ error.message);
     }
 }
 
