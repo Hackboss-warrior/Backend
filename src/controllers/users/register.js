@@ -5,6 +5,7 @@ import {
   insertUser,
 } from "../../models/users/index.js";
 import generateError from "../../utils/generateError.js";
+import sendMail from "../../utils/sendMail.js";
 
 const register = async (req, res, next) => {
   try {
@@ -30,6 +31,13 @@ const register = async (req, res, next) => {
       hashedPassword,
       DOB,
     });
+
+    const emailSubject = "Gracias por registrarte en fakNews";
+    const bodyMail = `Hola ${nickName}.
+    Bienvenido/a a fakNews`;
+
+    await sendMail(email, emailSubject, bodyMail);
+
     res.status(201).send({
       message: "Te has registrado mákina ✔️",
       data: { id: insertId, name, firstName, nickName, email, DOB },
