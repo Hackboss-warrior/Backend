@@ -1,14 +1,14 @@
 import Joi from "joi";
 import generateError from "./generateError.js";
 
-const dataValidation = async ({
+const dataValidation = async (
   name,
   firstName,
   nickName,
   email,
   password,
-  DOB,
-}) => {
+  DOB
+) => {
   const schema = Joi.object().keys({
     name: Joi.string().required(),
     firstName: Joi.string(),
