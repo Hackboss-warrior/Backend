@@ -30,7 +30,7 @@ async function createTables() {
                 topic VARCHAR(100),
                 body LONGTEXT NOT NULL,
                 tags JSON,
-                userId INT ,
+                userId INT NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
                 FOREIGN KEY(userId) REFERENCES users(id)
@@ -41,7 +41,7 @@ async function createTables() {
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 postId INT,
                 userId INT,
-                interaction VARCHAR(50) NOT NULL,
+                interaction INT(2) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
                 FOREIGN KEY(postId) REFERENCES posts(id),
