@@ -3,9 +3,7 @@ import generateError from "../../utils/generateError.js";
 const createPost = async (req, res, next) => {
     try {
         const AuthUserId = req.auth.id;
-        if (!AuthUserId) {
-            generateError("Debe loguearse antes de realizar cambios", 401);
-        }
+
         const { title, files, topic, body, tags } = req.body;
 //JOI
 

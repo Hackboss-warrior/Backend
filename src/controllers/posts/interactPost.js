@@ -2,33 +2,31 @@ import { IFukingLiked, IFukingHated } from '../../models/news/interactPost.js'
 import generateError from '../../utils/generateError.js';
 const intercatPost = async (req, res, next) => {
 
- try {
+    try {
 
-    const AuthUserId = req.auth.id;
-        if (!AuthUserId) {
-            generateError("Debe loguearse antes de realizar cambios", 401);
-        }
+        const AuthUserId = req.auth.id;
 
-        //Joi
-   
-
-
-        
         const { like, postId } = req.body
+        //Joi
+
+
+
+
+
         console.log({ like, postId });
         if (!like) {
-            console.error('vacio');
+            generateError("No se ha podido realizar la operación", 400);
         }
         let binaryLikes;
         if (like === true) {
             binaryLikes = 1
-            await IFukingLiked(binaryLikes, postId,AuthUserId);
+            await IFukingLiked(binaryLikes, postId, AuthUserId);
             res.status(200).send('👍')
 
         }
         if (like === false) {
             binaryLikes = 0
-            await IFukingHated(binaryLikes, postId,AuthUserId);
+            await IFukingHated(binaryLikes, postId, AuthUserId);
             res.status(200).send('👎')
         }
 

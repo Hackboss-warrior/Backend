@@ -4,8 +4,7 @@ import generateError from "../../utils/generateError.js";
 const deletePost = async (req, res, next) => {
     try {
         const AuthUserId = req.auth.id;
-        if (!AuthUserId) {
-            generateError("Debe loguearse antes de realizar cambios", 401);
+      
         }
         //Joi
 
