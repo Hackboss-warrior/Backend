@@ -9,4 +9,12 @@ const selectUser = async (email, nickName, hashedPassword) => {
   return users;
 };
 
-export default selectUser;
+const selectUserAll = async (id) => {
+  const [users] = await pool.query(
+    "SELECT name, firstName, nickName, email, DOB FROM users WHERE id=?", [id]
+  );
+
+  return users;
+};
+
+export {selectUser, selectUserAll};

@@ -2,4 +2,5 @@
 
 import login from "./login.js";
 import register from "./register.js";
-export { login, register };
+import patchUser from "./patchUser.js";
+export { login, register, patchUser };

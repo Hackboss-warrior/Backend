@@ -2,6 +2,7 @@
 import createPost from "./createPost.js"
 import lsPostById from "./getPost.js";
 import deletePost from "./deletePost.js";
-import intercatPost from "./interactPost.js";
+import interactPost from "./interactPost.js";
 import getAllPosts from "./getAllPosts.js";
-export { createPost,lsPostById,deletePost,intercatPost, getAllPosts };
+import patchPost from "./patchPost.js";
+export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost };
