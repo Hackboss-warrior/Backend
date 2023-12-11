@@ -1,4 +1,7 @@
+// Importamos las dependencias externas
 import bcrypt from "bcrypt";
+
+// Importamos las dependencias propias
 import {
   selectUserByEmail,
   selectUserByNickName,
@@ -6,6 +9,7 @@ import {
 } from "../../models/users/index.js";
 import generateError from "../../utils/generateError.js";
 import sendMail from "../../utils/sendMail.js";
+import dataValidation from "../../utils/dataValidation.js";
 
 const register = async (req, res, next) => {
   try {
@@ -21,6 +25,9 @@ const register = async (req, res, next) => {
       generateError("El nickname o el email ya estan registrados", 400);
       return;
     }
+
+    await dataValidation({ name, firstName, nickName, email, password, DOB });
+
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const insertId = await insertUser({
