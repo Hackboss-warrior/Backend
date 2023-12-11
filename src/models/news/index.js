@@ -2,5 +2,9 @@
 import insertPost from "./insertPost.js";
 import selectByPostId from "./selectPostById.js";
 import deletePostById from "./deletePost.js"
+import selectIdPostByIdUser from "./selectIdPostByIdUser.js"
+import selectPosts from "./selectPosts.js"
+import selectInteracts from "./selectInteracts.js"
+import {IFukingLiked, modifyInteraction, dropInteraction} from "./interactPost.js"
 
-export {insertPost, selectByPostId, deletePostById} ;
+export {insertPost, selectByPostId, deletePostById, selectIdPostByIdUser, selectPosts, selectInteracts, IFukingLiked, modifyInteraction, dropInteraction} ;

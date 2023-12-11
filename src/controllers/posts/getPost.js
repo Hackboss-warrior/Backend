@@ -6,21 +6,16 @@ const lsPostById = async (req, res, next) => {
   try {
 
     const id = req.params.id;
-    //Joi
-
-
-
-
 
     const post = await selectByPostId(id);
-
+    if (!post){
+      generateError("El post solicitado no existe, por favor compruebe su solicitud", 400)
+    }
+    
     res.send(post)
 
   } catch (error) {
-    //lanzamos el error al middleware de errores
     next(error)
-    //si por algun casual el middleware no saltase, aparecería este error
-    console.error('error en el generador de errores'+error.message);
   }
 };
 

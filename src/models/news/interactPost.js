@@ -14,13 +14,13 @@ const IFukingLiked = async ( binaryLikes, postId,AuthUserId ) => {
     }
 };
 
-
-
-const IFukingHated = async ( binaryLikes, postId,AuthUserId ) => {
+const modifyInteraction = async ( binaryLikes, postId,AuthUserId ) => {
     try { 
         
-        
-        await pool.query(`insert into interacts(interaction,postId,userId) values(?,?,?)`, [binaryLikes, postId,AuthUserId]);
+        await pool.query(
+            'UPDATE interacts SET interaction = ? WHERE postId = ? AND userId = ?',
+            [binaryLikes, postId, AuthUserId]
+          );
        
         return console.log(`yes, thas fuking terrible  👻`);
     }catch (error) {
@@ -28,7 +28,18 @@ const IFukingHated = async ( binaryLikes, postId,AuthUserId ) => {
     }
 };
 
+const dropInteraction = async ( binaryLikes, postId,AuthUserId ) => {
+    try { 
+        
+        await pool.query(
+            'DELETE FROM interacts WHERE postId = ? AND userId = ? AND interaction = ?',
+            [postId, AuthUserId, binaryLikes]
+          );
+       
+        return console.log(`yes, thas fuking terrible  👻`);
+    }catch (error) {
+        console.error(error);
+    }
+};
 
-
-
-export { IFukingLiked, IFukingHated };
+export { IFukingLiked, modifyInteraction, dropInteraction };

@@ -3,4 +3,5 @@ import createPost from "./createPost.js"
 import lsPostById from "./getPost.js";
 import deletePost from "./deletePost.js";
 import intercatPost from "./interactPost.js";
-export { createPost,lsPostById,deletePost,intercatPost };
+import getAllPosts from "./getAllPosts.js";
+export { createPost,lsPostById,deletePost,intercatPost, getAllPosts };
