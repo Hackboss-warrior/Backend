@@ -11,7 +11,27 @@
 
 # fakeNews Backend
 
-Esta es la parte I del proyecto de fakeNews, por favor sigas las instrucciones de acontinuación para poder arrancar el proyecto sin problema. ***Se recomienda leer el resto del documento para ver el funcionamiento del proyecto***
+**Parte I: Desarrollo de la API Backend**
+
+Este documento constituye la primera etapa del proyecto FakeNews, focalizada en el desarrollo de la API backend. La API backend es un componente fundamental de esta aplicación, encargada de gestionar la lógica de funcionamiento, el almacenamiento de datos y la interacción con el frontend.
+
+El propósito principal de esta fase es establecer una sólida base técnica que permita la autenticación, la gestión de usuarios, el almacenamiento de información verídica y la detección de noticias falsas mediante algoritmos y técnicas de procesamiento de lenguaje natural.
+
+La API backend actuará como el núcleo de la aplicación, brindando soporte para la verificación y validación de la autenticidad de las noticias proporcionadas por los usuarios. Además, se implementarán medidas de seguridad robustas para garantizar la integridad de los datos y prevenir posibles vulnerabilidades.
+
+En esta fase inicial, nos enfocaremos en:
+
+Diseño de la Arquitectura: Definición de la estructura técnica de la API, incluyendo las tecnologías, protocolos y patrones a utilizar.
+
+Desarrollo de Endpoints: Creación de puntos finales (endpoints) para la comunicación entre el frontend y el backend, facilitando la interacción de los usuarios con la aplicación.
+
+Implementación de Funcionalidades Básicas: Configuración de la autenticación de usuarios, la gestión de sesiones y la interacción con la base de datos.
+
+Este primer paso es fundamental para sentar las bases sólidas sobre las cuales se construirá la funcionalidad completa de detección de noticias falsas en etapas posteriores del desarrollo.
+
+La API backend se concibe como el motor principal que impulsará la aplicación FakeNews, permitiendo la validación y verificación de información para promover la autenticidad y veracidad en el ámbito de la información digital.
+
+***Se invita a revisar el resto del documento para obtener una visión más detallada sobre el funcionamiento y los componentes adicionales de este proyecto.***
 
 
 # Instrucciones
