@@ -6,6 +6,8 @@
 [![jsonwebtoken](https://img.shields.io/badge/jsonwebtoken-V9.0.2-silver)](https://www.npmjs.com/package/jsonwebtoken)
 [![morgan](https://img.shields.io/badge/mysql2-V1.10.0-aqua)](https://www.npmjs.com/package/morgan)
 [![cors](https://img.shields.io/badge/jsonwebtoken-V2.8.5-olive)](https://www.npmjs.com/package/cors)
+[![nodemailer](https://img.shields.io/badge/nodemailer-V6.9.7-red)](https://www.npmjs.com/package/nodemailer)
+[![joi](https://img.shields.io/badge/joi-V17.11.0-aqua)](https://www.npmjs.com/package/joi)
 
 # Instrucciones
 > [!NOTE]
@@ -28,10 +30,25 @@
 
 Esta es la parte I del proyecto backend
 
-# Backend
+# Peticiones
 
-Esta es la parte I del proyecto backend
+  - POST http://localhost:5000/login => Iniciar sesión
+  - POST http://localhost:5000/register => Registrar usuarios
+  - POST http://localhost:5000/posts
+  - POST http://localhost:5000/liked
+  - POST http://localhost:5000/user
+  - DELETE http://localhost:5000/delete/id => Noticia a borrar
 
+## Datos requeridos para cada peticion
+
+- http://localhost:5000/login => {"email": "algo@example.com", "nickName": "Juan", "password": "1234"}
+- http://localhost:5000/register => {"name": "Pepito", "firstName": "Perez", "nickName": "Juan", "email": "algo@example.com", "password": "1234", "DOB": "1920-12-01"}
+
+>[!NOTE]
+>No es obligatorio en la peticion de login introducir email y nickname cualquiera de los dos es válido para logearse.
+>No es obligatorio en la peticion de register los campos de firtName
+
+# Resto
 3 partes:
 
 - Usuario anónimo. --> Ofrecer la posibilidad de login/register.
