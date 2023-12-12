@@ -23,18 +23,18 @@ async function createTables() {
             );`);
 
     await pool.query(`
-            CREATE TABLE IF NOT EXISTS posts (
-                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                title VARCHAR(50) NOT NULL,
-                files LONGTEXT,
-                topic VARCHAR(100),
-                body LONGTEXT NOT NULL,
-                tags LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '{"Política":false,    "Economía":false,    "Tecnología":false,    "Ciencia":false,    "Salud":false,    "Cultura":false,    "Deportes":false,    "Entretenimiento":false};',
-                userId INT NOT NULL,
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
-                FOREIGN KEY(userId) REFERENCES users(id)
-                );`);
+      CREATE TABLE IF NOT EXISTS posts (
+        id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        title VARCHAR(50) NOT NULL,
+        files LONGTEXT,
+        topic VARCHAR(100),
+        body LONGTEXT NOT NULL,
+        tags LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '{"Política":false, "Economía":false, "Tecnología":false, "Ciencia":false, "Salud":false, "Cultura":false, "Deportes":false, "Entretenimiento":false}',
+        userId INT NOT NULL,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
+        FOREIGN KEY(userId) REFERENCES users(id)
+    );`);
 
     await pool.query(`
             CREATE TABLE IF NOT EXISTS interacts (
