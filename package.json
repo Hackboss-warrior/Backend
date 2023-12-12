@@ -7,10 +7,10 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "initDb": "node src/db/createDb.js && node src/db/tables/createTables.js",
+    "initDb": "node src/db/createDb.js && node src/db/createTables.js",
     "dropDb": "node src/db/dropDb.js",
     "createDb": "node src/db/createdb.js",
-    "createTotalTables": "node src/db/tables/createTables.js  ",
+    "createTables": "node src/db/createTables.js  ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Xavi, Omar, Carlos, Aron",
