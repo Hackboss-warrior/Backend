@@ -6,10 +6,9 @@ import generateError from "../../utils/generateError.js";
 
 async function createTables() {
   let pool;
-  try {
-    pool = await getPool();
+  pool = await getPool();
     await useDb();
-    await pool.query(`
+  await pool.query(`
             CREATE TABLE IF NOT EXISTS users (
                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                name VARCHAR(50) NOT NULL,
@@ -59,6 +58,12 @@ async function createTables() {
                 FOREIGN KEY(userId) REFERENCES users(id)
              );`);
     console.log(`😎 las tablas fueron creadas con exito`);
+}
+
+async function initializeDatabase() {
+  try {
+    await createTables();
+    console.log('😎 Todas las tablas fueron creadas con éxito');
   } catch (error) {
     generateError(
       `☠ Ha sucedido un imprevisto con la creación de las tablas ☠ ${error}`,
@@ -66,7 +71,10 @@ async function createTables() {
     );
   } finally {
     process.exit();
+    // Coloca aquí cualquier otra lógica de finalización o liberación de recursos
   }
 }
+
+initializeDatabase();
 
 createTables();
