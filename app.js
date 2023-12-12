@@ -22,12 +22,6 @@ app.use(morgan("dev"));
 // Apuntamos a la base de datos que queremos utilizar.
 useDb();
 
-if (process.argv.length > 2) {
-  console.log('Hola mundo');
-} else {
-  console.log('No se pasó ningún argumento.');
-}
-
 // Ruta con todos los endpoints de usuario modularizados
 app.use(router);
 
