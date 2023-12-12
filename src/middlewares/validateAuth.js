@@ -6,25 +6,24 @@ const validateAuth = (req, res, next) => {
     const { authorization } = req.headers;
 
     if (!authorization) {
-      generateError("El header 'authorization' es requerido", 401);
+      return generateError("El header 'authorization' es requerido", 401);
     }
 
     const [tokenType, token] = authorization.split(" ");
 
     if (tokenType !== "Bearer") {
-      generateError("El token debe ser de tipo 'Bearer'", 400);
+      return generateError("El token debe ser de tipo 'Bearer'", 400);
     }
-
-    let tokenPayLoad;
 
     try {
-      tokenPayLoad = jwt.verify(token, process.env.TOKEN_SECRET);
+      const tokenPayLoad = jwt.verify(token, process.env.TOKEN_SECRET);
+      req.auth = tokenPayLoad;
+      next();
     } catch (error) {
-      generateError("El token es inválido", 400);
+      return generateError("El token es inválido", 400);
     }
 
-    req.auth = tokenPayLoad;
-    next();
+    
   } catch (error) {
     next(error);
   }
