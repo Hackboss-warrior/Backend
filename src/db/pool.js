@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 import generateError from "../utils/generateError.js";
+import "dotenv/config";
 
 // Declara una variable para almacenar el pool de conexiones.
 let pool;

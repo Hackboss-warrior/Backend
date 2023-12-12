@@ -1,9 +1,11 @@
 import getPool from "./pool.js";
 import useDb from "./useDb.js";
 import generateError from "../utils/generateError.js";
+import "dotenv/config";
 
 const createDB = async () => {
   try {
+    
     const pool = await getPool();
     await pool.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`);
     console.log(`base de datos ${process.env.DB_NAME} creada con exito`);

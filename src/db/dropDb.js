@@ -2,6 +2,7 @@
 
 import generateError from "../utils/generateError.js";
 import getPool from "./pool.js";
+import "dotenv/config";
 
 let pool = await getPool();
 
