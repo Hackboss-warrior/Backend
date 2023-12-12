@@ -6,6 +6,7 @@ import {
 } from "../../models/users/index.js";
 import generateError from "../../utils/generateError.js";
 import sendMail from "../../utils/sendMail.js";
+import { registerValidation } from "../../utils/joi.js";
 
 const register = async (req, res, next) => {
   try {
@@ -22,6 +23,8 @@ const register = async (req, res, next) => {
       generateError("El nickname o el email ya estan registrados", 400);
       return;
     }
+
+    registerValidation(req.body);
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
