@@ -4,7 +4,7 @@ import "dotenv/config";
 import cors from "cors";
 import useDb from "./src/db/useDb.js";
 import morgan from "morgan";
-
+import fileUpload from "express-fileupload";
 // Importamos las rutas
 import router from "./src/routes/index.js";
 
@@ -18,6 +18,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
 // Apuntamos a la base de datos que queremos utilizar.
 useDb();
@@ -74,9 +81,8 @@ startServer();
 
 // const imagePath = './image/test.jpg';
 
-// const imageBuffer = fs.readFileSync(imagePath);
-
-// const base64Image = imageBuffer.toString('base64');
+// const imageBuffer = fs.readFileSync(files);
+// const base64Image = imageBuffer.toString("base64");
 
 // const decodedImageBuffer = Buffer.from(base64Image, 'base64');
 

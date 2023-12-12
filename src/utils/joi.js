@@ -33,16 +33,15 @@ const registerValidation = ({
 };
 
 //guardar nueva noticia
-const createPostValidation = ({ title, files, topic, body, tags }) => {
+const createPostValidation = ({ title, topic, body, tags }) => {
   const schema = Joi.object().keys({
     title: Joi.string().min(2).max(30).required(),
-    files: Joi.string(),
-    topic: Joi.string().min(20).max(100),
+    topic: Joi.string().min(2).max(100),
     body: Joi.string().max(600),
     tags: Joi.object(),
   });
 
-  const validation = schema.validate({ title, files, topic, body, tags });
+  const validation = schema.validate({ title, topic, body, tags });
 
   if (validation.error) {
     generateError(validation.error.message, 400);
