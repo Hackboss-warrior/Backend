@@ -46,9 +46,9 @@ La API backend se concibe como el motor principal que impulsará la aplicación 
     ~~~
     npm i
     ~~~
-2. **Segundo paso** (opcional)
-    - Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas..
-3. **Tercer paso** 
+2. **Segundo paso** 
+    - Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas.
+3. **Tercer paso** (opcional)
     - En caso de no tener la base de datos creada ejecutar el comando.
     ~~~
     npm run initDb
