@@ -64,8 +64,6 @@ async function createTables() {
       `☠ Ha sucedido un imprevisto con la creación de las tablas ☠ ${error}`,
       500
     );
-  } finally {
-    process.exit();
   }
 }
 
