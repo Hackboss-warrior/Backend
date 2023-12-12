@@ -7,5 +7,6 @@ import selectPosts from "./selectPosts.js"
 import selectInteracts from "./selectInteracts.js"
 import {likeInteract, modifyInteraction, dropInteraction} from "./interactPost.js"
 import updatePost from "./updatePost.js"
+import filterPostByTags from "./filterPostByTags.js"
 
-export {insertPost,selectPostByIdLimit, selectPostById, deletePostById, selectIdPostByIdUser, selectPosts, selectInteracts, likeInteract, modifyInteraction, dropInteraction, updatePost} ;
+export {insertPost,selectPostByIdLimit, selectPostById, deletePostById, selectIdPostByIdUser, selectPosts, selectInteracts, likeInteract, modifyInteraction, dropInteraction, updatePost, filterPostByTags} ;

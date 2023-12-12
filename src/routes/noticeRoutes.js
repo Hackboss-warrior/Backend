@@ -1,5 +1,5 @@
 import express from "express";
-import { createPost, lsPostById, deletePost, interactPost, getAllPosts, patchPost } from "../controllers/posts/index.js";
+import { createPost, lsPostById, deletePost, interactPost, getAllPosts, patchPost, filterPost } from "../controllers/posts/index.js";
 import validateAuth from "../middlewares/validateAuth.js";
 
 const router = express.Router();
@@ -10,5 +10,6 @@ router.get("/post/:id", lsPostById)
 router.get("/posts", getAllPosts)
 router.post("/liked", validateAuth, interactPost)
 router.patch("/post/:id", validateAuth, patchPost)
+router.post("/filter", filterPost)
 
 export default router;

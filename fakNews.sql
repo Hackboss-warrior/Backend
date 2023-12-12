@@ -73,8 +73,8 @@ CREATE TABLE IF NOT EXISTS `posts` (
 -- Volcando datos para la tabla notices.posts: ~2 rows (aproximadamente)
 DELETE FROM `posts`;
 INSERT INTO `posts` (`id`, `title`, `files`, `topic`, `body`, `tags`, `userId`, `createdAt`, `modifiedAt`) VALUES
-	(1, 'dada', 'dfysazuhcjiadhfwedadd', 'Omar la chupa', 'La chupa demasiado bien', '{"Deportes": true, "BDSM": true}', 1, '2023-12-11 12:34:39', '2023-12-11 13:15:47'),
-	(2, 'FEOS', 'dfysazuhcjiadhfwedadd', 'Omar la chupa dadadadadadadadadadadadd', 'La chupa demasiado bien', '{"Deportes":true,"BDSM":true}', 13, '2023-12-11 13:25:14', NULL);
+	(1, 'dada', 'dfysazuhcjiadhfwedadd', 'Omar la dad', 'La dadasdsad das dadien', '{"Política":false, "Economía":false, "Tecnología":false, "Ciencia":false, "Salud":false, "Cultura":false, "Deportes":false, "Entretenimiento":false}', 1, '2023-12-11 12:34:39', '2023-12-11 13:15:47'),
+	(2, 'Tete', 'dfysazuhcjiadhfwedadd', 'Omar la cdad dadadadadadadadadadadadd', 'Ladadad dadasd do bien', '{"Política":false, "Economía":false, "Tecnología":false, "Ciencia":false, "Salud":false, "Cultura":false, "Deportes":false, "Entretenimiento":false}', 13, '2023-12-11 13:25:14', NULL);
 
 -- Volcando estructura para tabla notices.users
 CREATE TABLE IF NOT EXISTS `users` (

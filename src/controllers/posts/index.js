@@ -5,4 +5,5 @@ import deletePost from "./deletePost.js";
 import interactPost from "./interactPost.js";
 import getAllPosts from "./getAllPosts.js";
 import patchPost from "./patchPost.js";
-export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost };
+import filterPost from "./filterPost.js"
+export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost };

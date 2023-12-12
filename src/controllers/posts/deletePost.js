@@ -21,7 +21,4 @@ const deletePost = async (req, res, next) => {
     }
 };
 
-
-// VER ESTO
-
 export default deletePost;
