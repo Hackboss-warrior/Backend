@@ -31,14 +31,7 @@ const registerValidation = ({
     generateError(validation.error.message, 400);
   }
 };
-//selecciona
-const selectByIdValidation = (id) => {
-  const schema = Joi.number().integer().positive();
-  const validation = schema.validate(id);
-  if (validation.error) {
-    generateError(validation.error.message, 400);
-  }
-};
+
 //guardar nueva noticia
 const createPostValidation = ({ title, files, topic, body, tags }) => {
   const schema = Joi.object().keys({
@@ -55,23 +48,5 @@ const createPostValidation = ({ title, files, topic, body, tags }) => {
     generateError(validation.error.message, 400);
   }
 };
-//crear una reacción
-const interactPostValidation = ({ like, postId, AuthUserId }) => {
-  const schema = Joi.object().keys({
-    like: Joi.boolean(),
-    postId: Joi.number().integer().positive(),
-    AuthUserId: Joi.number().integer().positive(),
-  });
-  const validation = schema.validate({ like, postId, AuthUserId });
 
-  if (validation.error) {
-    generateError(validation.error.message, 400);
-  }
-};
-
-export {
-  selectByIdValidation,
-  createPostValidation,
-  interactPostValidation,
-  registerValidation,
-};
+export { createPostValidation, registerValidation };

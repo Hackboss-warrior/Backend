@@ -14,11 +14,6 @@ const register = async (req, res, next) => {
     const userWithSameEmail = await selectUserByEmail(email);
     const userWithSameNickName = await selectUserByNickName(nickName);
 
-    if (![name, nickName, email, password, DOB].every(Boolean)) {
-      generateError("Completa todos los campos", 401);
-      return;
-    }
-
     if (userWithSameEmail || userWithSameNickName) {
       generateError("El nickname o el email ya estan registrados", 400);
       return;

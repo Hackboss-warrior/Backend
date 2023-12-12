@@ -1,45 +1,44 @@
 import getPool from "../../db/pool.js";
 let pool = await getPool();
+import generateError from "../../utils/generateError.js";
 
+const likeInteract = async (binaryLikes, postId, AuthUserId) => {
+  try {
+    await pool.query(
+      `insert into interacts(interaction,postId,userId) values(?,?,?)`,
+      [binaryLikes, postId, AuthUserId]
+    );
 
-const likeInteract = async ( binaryLikes, postId,AuthUserId ) => {
-    try { 
-        
-        await pool.query(`insert into interacts(interaction,postId,userId) values(?,?,?)`, [binaryLikes, postId,AuthUserId]);
-       
-        return console.log(`yes, thas fuking awesome  👻`);
-    }catch (error) {
-       
-        console.error(error);
-    }
+    return;
+  } catch (error) {
+    generateError(error, 400);
+  }
 };
 
-const modifyInteraction = async ( binaryLikes, postId,AuthUserId ) => {
-    try { 
-        
-        await pool.query(
-            'UPDATE interacts SET interaction = ? WHERE postId = ? AND userId = ?',
-            [binaryLikes, postId, AuthUserId]
-          );
-       
-        return console.log(`yes, thas fuking terrible  👻`);
-    }catch (error) {
-        console.error(error);
-    }
+const modifyInteraction = async (binaryLikes, postId, AuthUserId) => {
+  try {
+    await pool.query(
+      "UPDATE interacts SET interaction = ? WHERE postId = ? AND userId = ?",
+      [binaryLikes, postId, AuthUserId]
+    );
+
+    return;
+  } catch (error) {
+    generateError(error, 400);
+  }
 };
 
-const dropInteraction = async ( binaryLikes, postId,AuthUserId ) => {
-    try { 
-        
-        await pool.query(
-            'DELETE FROM interacts WHERE postId = ? AND userId = ? AND interaction = ?',
-            [postId, AuthUserId, binaryLikes]
-          );
-       
-        return console.log(`yes, thas fuking terrible  👻`);
-    }catch (error) {
-        console.error(error);
-    }
+const dropInteraction = async (binaryLikes, postId, AuthUserId) => {
+  try {
+    await pool.query(
+      "DELETE FROM interacts WHERE postId = ? AND userId = ? AND interaction = ?",
+      [postId, AuthUserId, binaryLikes]
+    );
+
+    return;
+  } catch (error) {
+    generateError(error, 400);
+  }
 };
 
 export { likeInteract, modifyInteraction, dropInteraction };
