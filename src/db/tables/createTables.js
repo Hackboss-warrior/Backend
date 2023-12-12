@@ -29,7 +29,7 @@ async function createTables() {
         files LONGTEXT,
         topic VARCHAR(100),
         body LONGTEXT NOT NULL,
-        tags LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '{"Política":false, "Economía":false, "Tecnología":false, "Ciencia":false, "Salud":false, "Cultura":false, "Deportes":false, "Entretenimiento":false}',
+        tags LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT ('{"Política":false, "Economía":false, "Tecnología":false, "Ciencia":false, "Salud":false, "Cultura":false, "Deportes":false, "Entretenimiento":false}'),
         userId INT NOT NULL,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
         modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
