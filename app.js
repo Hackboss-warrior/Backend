@@ -79,11 +79,3 @@ function startServer() {
 
 startServer();
 
-// const imagePath = './image/test.jpg';
-
-// const imageBuffer = fs.readFileSync(files);
-// const base64Image = imageBuffer.toString("base64");
-
-// const decodedImageBuffer = Buffer.from(base64Image, 'base64');
-
-// fs.writeFileSync('./test/video_decodificada.png', decodedImageBuffer);
