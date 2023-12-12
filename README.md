@@ -9,6 +9,11 @@
 [![nodemailer](https://img.shields.io/badge/nodemailer-V6.9.7-red)](https://www.npmjs.com/package/nodemailer)
 [![joi](https://img.shields.io/badge/joi-V17.11.0-aqua)](https://www.npmjs.com/package/joi)
 
+# fakeNews Backend
+
+Esta es la parte I del proyecto de fakeNews, por favor sigas las instrucciones de acontinuación para poder arrancar el proyecto sin problema. ***Se recomienda leer el resto del documento para ver el funcionamiento del proyecto***
+
+
 # Instrucciones
 > [!NOTE]
 > Deberás tener instalado Node.js para arrancar el servidor.
@@ -21,14 +26,10 @@
 2. **Segundo paso** (opcional)
     - En caso de no tener la base de datos creada ejecutar el comando npm run initDb.
 3. **Tercer paso** 
-    - Ejecutar npm start para arrancar el proceso.
+    - Ejecutar npm start para arrancar el servidor.
 > [!IMPORTANT]  
 > Para garantizar seguridad en tu página web no compartas ni enseñes el Token puesto en .env.
 ---
-
-# Backend
-
-Esta es la parte I del proyecto backend
 
 # Peticiones
 
@@ -46,7 +47,7 @@ Esta es la parte I del proyecto backend
 
 >[!NOTE]
 >No es obligatorio en la peticion de login introducir email y nickname cualquiera de los dos es válido para logearse.
->No es obligatorio en la peticion de register los campos de firtName
+>No es obligatorio en la peticion de register los campos de firstName
 
 # Resto
 3 partes:
