@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 
 import generateError from "../../utils/generateError.js";
 
-let globalToken;
-let jwtPayLoad;
 const login = async (req, res, next) => {
   try {
     const { email, nickName, password } = req.body;
@@ -19,34 +17,28 @@ const login = async (req, res, next) => {
       );
     }
 
-    let userCheck = false;
-
-    user.forEach((data) => {
-      if (
+    const foundUser = user.find(
+      (data) =>
         (data.email === email || data.nickName === nickName) &&
         bcrypt.compareSync(password, data.passwordHash)
-      ) {
-        jwtPayLoad = { id: data.id };
+    );
 
-        let token = jwt.sign(
-          {
-            jwtPayLoad,
-          },
-          process.env.TOKEN_SECRET,
-          { expiresIn: "5d" }
-        );
+    if (foundUser) {
+      let jwtPayLoad = { id: foundUser.id };
 
-        globalToken = token;
-        userCheck = true;
-        return;
-      }
-    });
+      const token = jwt.sign(
+        {
+          jwtPayLoad,
+        },
+        process.env.TOKEN_SECRET,
+        { expiresIn: "5d" }
+      );
 
-    if (userCheck === true) {
-      res.status(200).json({ id: jwtPayLoad.id, token: globalToken });
+      res.status(200).json({ id: jwtPayLoad.id, token: token });
     } else {
       generateError("Credenciales inválidas", 401);
     }
+
   } catch (error) {
     next(error);
   }
