@@ -58,31 +58,6 @@ async function createTables() {
                 FOREIGN KEY(postId) REFERENCES posts(id),
                 FOREIGN KEY(userId) REFERENCES users(id)
              );`);
-    // await pool.query(`CREATE TABLE IF NOT EXISTS comments (
-    //      id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    //      post_id INT NOT NULL,
-    //      user_id INT NOT NULL,
-    //      comment VARCHAR(255) NOT NULL,
-    //      hierarchy VARCHAR(255),
-    //      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    //      modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-    //      FOREIGN KEY(post_Id) REFERENCES posts(id),
-    //      FOREIGN KEY(user_Id) REFERENCES users(id)
-    //     );`
-    // );
-
-    // await pool.query(`CREATE TABLE IF NOT EXISTS interactComments (
-    //      id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    //      comment_id INT,
-    //      user_id INT,
-    //      interaction VARCHAR(255),
-    //      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    //      modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-    //      FOREIGN KEY(post_Id) REFERENCES posts(id),
-    //      FOREIGN KEY(user_Id) REFERENCES users(id)
-    //      );`
-    // );
-
     console.log(`😎 las tablas fueron creadas con exito`);
   } catch (error) {
     generateError(
