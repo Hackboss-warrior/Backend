@@ -4,6 +4,8 @@ import lsPostById from "./getPost.js";
 import deletePost from "./deletePost.js";
 import interactPost from "./interactPost.js";
 import getAllPosts from "./getAllPosts.js";
-import patchPost from "./patchPost.js";
+import patchPost from "./patchPost.js"
 import filterPost from "./filterPost.js"
-export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost };
+////////////////////////////////////////
+import  {selectFavorites,insertFavorite} from "./favorites.js";
+export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost,/**/selectFavorites,insertFavorite };

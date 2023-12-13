@@ -8,5 +8,7 @@ import selectInteracts from "./selectInteracts.js"
 import {likeInteract, modifyInteraction, dropInteraction} from "./interactPost.js"
 import updatePost from "./updatePost.js"
 import filterPostByTags from "./filterPostByTags.js"
+///////////////////////////////////////
+import { selectFavoriteByPost,saveFavorite,  dropfavorite,selectFavoritesPosts } from "./favorites.js";
 
-export {insertPost,selectPostByIdLimit, selectPostById, deletePostById, selectIdPostByIdUser, selectPosts, selectInteracts, likeInteract, modifyInteraction, dropInteraction, updatePost, filterPostByTags} ;
+export {insertPost,selectPostByIdLimit, selectPostById, deletePostById, selectIdPostByIdUser, selectPosts, selectInteracts, likeInteract, modifyInteraction, dropInteraction, updatePost, filterPostByTags, /**/selectFavoriteByPost,saveFavorite,  dropfavorite,selectFavoritesPosts/**/} ;
