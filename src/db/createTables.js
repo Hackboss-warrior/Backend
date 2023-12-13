@@ -58,6 +58,31 @@ async function createTables() {
                 FOREIGN KEY(postId) REFERENCES posts(id),
                 FOREIGN KEY(userId) REFERENCES users(id)
              );`);
+
+    await pool.query(`
+              CREATE TABLE IF NOT EXISTS comments (
+                  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                  postId INT NOT NULL,
+                  userId INT NOT NULL,
+                  comment VARCHAR(255) NOT NULL,
+                  hierarchy VARCHAR(255),
+                  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                  modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                  FOREIGN KEY(postId) REFERENCES posts(id),
+                  FOREIGN KEY(userId) REFERENCES users(id)
+               );`);
+
+    await pool.query(`
+              CREATE TABLE IF NOT EXISTS likeComments (
+                  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                  commentId INT,
+                  userId INT,
+                  interaction INT(2) NOT NULL,
+                  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                  modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                  FOREIGN KEY(commentId) REFERENCES comments(id),
+                  FOREIGN KEY(userId) REFERENCES users(id)
+               );`);
     console.log(`😎 las tablas fueron creadas con exito`);
     process.exit();
   } catch (error) {

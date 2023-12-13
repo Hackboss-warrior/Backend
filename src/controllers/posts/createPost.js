@@ -1,7 +1,7 @@
 import { insertPost } from "../../models/news/index.js";
 import { createPostValidation } from "../../utils/joi.js";
 import generateError from "../../utils/generateError.js";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import path from "path";
 import fs from "fs";
 
@@ -12,7 +12,8 @@ const createPost = async (req, res, next) => {
     const archivoSubido = req.files.image;
 
     const filePath = `./temp/${archivoSubido.name}`;
-    // Mover el archivo subido
+
+    //Mover el archivo subido
     archivoSubido.mv(filePath, async (err) => {
       if (err) {
         return next(generateError(err, 500, "Error al subir el archivo"));
@@ -27,17 +28,24 @@ const createPost = async (req, res, next) => {
 
         fs.writeFileSync(newFilePath, imageBuffer);
 
-        fs.unlinkSync(`./temp/${archivoSubido.name}`)
+        fs.unlinkSync(`./temp/${archivoSubido.name}`);
 
         // Validar datos de entrada
         createPostValidation({ title, topic, body, tags });
 
         // Insertar el post en la base de datos
-        await insertPost({ title, topic, uniqueFilename, body, tags, AuthUserId });
+        await insertPost({
+          title,
+          topic,
+          uniqueFilename,
+          body,
+          tags,
+          AuthUserId,
+        });
 
-        res.send(title); 
+        res.send(title);
       } catch (error) {
-        next(error); 
+        next(error);
       }
     });
   } catch (error) {
