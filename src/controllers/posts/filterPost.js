@@ -1,14 +1,11 @@
 import { filterPostByTags } from "../../models/news/index.js";
-import generateError from "../../utils/generateError.js";
 
 const filterPost = async (req, res, next) => {
     try {
         const { etiqueta } = req.body;
         const consulta = await filterPostByTags({ etiqueta })
 
-        console.log(consulta)
-
-        res.send(`Okey`)
+        res.send(consulta)
 
     } catch (error) { 
         next(error)
