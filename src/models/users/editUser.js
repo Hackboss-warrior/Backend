@@ -16,7 +16,6 @@ const editUser = async ({
     "UPDATE users SET name = ?, firstName = ?, BIO = ?, avatar =?, nickName = ?, email = ?, passwordHash = ?, DOB = ? WHERE id = ?",
     [name, firstName, BIO, avatar, nickName, email, password, DOB, AuthUserId]
   );
-  console.log(avatar);
   return insertId;
 };
 
