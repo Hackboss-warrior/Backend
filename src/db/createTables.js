@@ -14,6 +14,8 @@ async function createTables() {
                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                name VARCHAR(50) NOT NULL,
                firstName VARCHAR(50),
+               BIO VARCHAR(150),
+               avatar LONGTEXT,
                nickName VARCHAR(100) NOT NULL,
                email VARCHAR(100) NOT NULL,
                passwordHash VARCHAR(255) NOT NULL,

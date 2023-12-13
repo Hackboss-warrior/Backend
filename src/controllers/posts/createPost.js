@@ -24,7 +24,7 @@ const createPost = async (req, res, next) => {
         const fileExtension = path.extname(archivoSubido.name);
         const uniqueFilename = uuidv4() + fileExtension;
 
-        const newFilePath = `./uploads/${uniqueFilename}`;
+        const newFilePath = `./uploads/postImages/${uniqueFilename}`;
 
         fs.writeFileSync(newFilePath, imageBuffer);
 
