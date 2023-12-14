@@ -1,32 +1,26 @@
-import getPool from "../../db/pool.js";
-let pool = await getPool();
-import generateError from "../../utils/generateError.js";
+import { selectInteractsComment, likeInteractComment, dropInteractionComment, modifyInteractionComment } from '../../models/news/index.js'
 
-const likeComment = async (postId, AuthUserId, commentId) => {
+const interactComments = async (req, res, next) => {
+
     try {
-      await pool.query(
-        `insert into likeComments(postId, AuthUserId, commentId) values(?,?,?)`,
-        [postId, AuthUserId, commentId]
-      );
-  
-      return;
+        const AuthUserId = req.auth.jwtPayLoad.id;
+        let { like, commentId } = req.body
+        const selectComment = await selectInteractsComment(commentId, AuthUserId)  
+
+        if (selectComment === undefined){
+            await likeInteractComment(like, commentId, AuthUserId);
+            res.status(200).send('Has interactuado correctamente👍')
+        } else if (selectComment.commentId === commentId && selectComment.userId === AuthUserId && selectComment.interaction === like){
+            await dropInteractionComment(like, commentId, AuthUserId);
+            res.status(200).send('Has borrado correctamente la interación👍')
+        } else {
+            await modifyInteractionComment(like, commentId, AuthUserId);
+            res.status(200).send('Has modificado la interación correctamente')
+        }
+
     } catch (error) {
-      generateError(error, 400);
+        next(error)
     }
-  };
-  
-  const removeLike = async (postId, AuthUserId, commentId) => {
-    try {
-      await pool.query(
-        "DELETE FROM likeComments WHERE postId = ? AND userId = ? AND interaction = ?",
-        [postId, AuthUserId, commentId]
-      );
-  
-      return;
-    } catch (error) {
-      generateError(error, 400);
-    }
-  };
-  
-  export { likeComment, removeLike };
-  
+};
+
+export default interactComments;
