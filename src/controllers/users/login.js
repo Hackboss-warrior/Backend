@@ -8,7 +8,7 @@ const login = async (req, res, next) => {
   try {
     const { email, nickName, password } = req.body;
 
-    const user = await selectUser(email, nickName, password);
+    const user = await selectUser();
 
     if (!user) {
       generateError(
@@ -38,7 +38,6 @@ const login = async (req, res, next) => {
     } else {
       generateError("Credenciales inválidas", 401);
     }
-
   } catch (error) {
     next(error);
   }

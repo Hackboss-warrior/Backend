@@ -14,6 +14,8 @@ async function createTables() {
                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                name VARCHAR(50) NOT NULL,
                firstName VARCHAR(50),
+               BIO VARCHAR(150),
+               avatar LONGTEXT,
                nickName VARCHAR(100) NOT NULL,
                email VARCHAR(100) NOT NULL,
                passwordHash VARCHAR(255) NOT NULL,
@@ -58,29 +60,34 @@ async function createTables() {
                 FOREIGN KEY(postId) REFERENCES posts(id),
                 FOREIGN KEY(userId) REFERENCES users(id)
              );`);
+
+
     await pool.query(`
-            CREATE TABLE IF NOT EXISTS comments (
-                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                postId INT NOT NULL,
-                userId INT NOT NULL,
-                hierarchy VARCHAR(255),
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY(postId) REFERENCES posts(id),
-                FOREIGN KEY(userId) REFERENCES users(id)
-             );`);
+              CREATE TABLE IF NOT EXISTS comments (
+                  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                  postId INT NOT NULL,
+                  userId INT NOT NULL,
+                  comment VARCHAR(255) NOT NULL,
+                  hierarchy VARCHAR(255),
+                  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                  modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                  FOREIGN KEY(postId) REFERENCES posts(id),
+                  FOREIGN KEY(userId) REFERENCES users(id)
+               );`);
+
     await pool.query(`
-            CREATE TABLE IF NOT EXISTS likeComments (
-                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                commentId INT,
-                userId INT,
-                interaction INT(2) NOT NULL,
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY(commentId) REFERENCES comments(id),
-                FOREIGN KEY(userId) REFERENCES users(id)
-             );`);       
-    console.log(`😎 las tablas fueron creadas con exito`);
+              CREATE TABLE IF NOT EXISTS likeComments (
+                  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                  commentId INT,
+                  userId INT,
+                  interaction INT(2) NOT NULL,
+                  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                  modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                  FOREIGN KEY(commentId) REFERENCES comments(id),
+                  FOREIGN KEY(userId) REFERENCES users(id)
+               );`);
+
+    console.log(`Las tablas fueron creadas con exito`);
     process.exit();
   } catch (error) {
     generateError(

@@ -7,25 +7,53 @@ import {
 import generateError from "../../utils/generateError.js";
 import sendMail from "../../utils/sendMail.js";
 import { registerValidation } from "../../utils/joi.js";
+import { v4 as uuidv4 } from "uuid";
+import fs from "fs";
+import path from "path";
 
 const register = async (req, res, next) => {
   try {
-    const { name, firstName, nickName, email, password, DOB } = req.body;
+    const { name, firstName, BIO, nickName, email, password, DOB } = req.body;
     const userWithSameEmail = await selectUserByEmail(email);
     const userWithSameNickName = await selectUserByNickName(nickName);
 
     if (userWithSameEmail || userWithSameNickName) {
-      generateError("El nickname o el email ya estan registrados", 400);
+      generateError("El nickname o el email ya están registrados", 400);
       return;
     }
 
-    registerValidation(req.body);
+    registerValidation({name, firstName, BIO, nickName, email, password, DOB})
+
+
+
+    const processAvatar = async () => {
+      if (req.files && Object.keys(req.files).length !== 0) {
+        const archivoSubido = req.files.avatar;
+        
+        const filePath = `./temp/${archivoSubido.name}`;
+        const imageBuffer = fs.readFileSync(filePath);
+        const fileExtension = path.extname(archivoSubido.name);
+        const uniqueFilename = uuidv4() + fileExtension;
+        const newFilePath = `./uploads/${uniqueFilename}`;
+
+        fs.writeFileSync(newFilePath, imageBuffer);
+        fs.unlinkSync(filePath);
+
+        return uniqueFilename;
+      } else {
+        return null;
+      }
+    };
+
+    const avatarFilename = await processAvatar();
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const insertId = await insertUser({
       name,
       firstName,
+      BIO,
+      uniqueFilename: avatarFilename,
       nickName,
       email,
       hashedPassword,
@@ -33,13 +61,12 @@ const register = async (req, res, next) => {
     });
 
     const emailSubject = "Gracias por registrarte en fakNews";
-    const bodyMail = `Hola ${nickName}.
-    Bienvenido/a a fakNews`;
+    const bodyMail = `Hola ${nickName}. Bienvenido/a a fakNews`;
 
     await sendMail(email, emailSubject, bodyMail);
 
     res.status(201).send({
-      message: "Te has registrado mákina ✔️",
+      message: "Te has registrado máquina ✔️",
       data: { id: insertId, name, firstName, nickName, email, DOB },
     });
   } catch (error) {
@@ -48,3 +75,4 @@ const register = async (req, res, next) => {
 };
 
 export default register;
+
