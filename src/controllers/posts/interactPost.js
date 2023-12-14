@@ -6,9 +6,7 @@ const interactPost = async (req, res, next) => {
         const AuthUserId = req.auth.jwtPayLoad.id;
         let { like, postId } = req.body
         const selectPost = await selectInteracts(postId, AuthUserId)  
-        console.log(selectPost.postId)
-        console.log(postId)
-        console.log(selectPost.interaction === like)
+
         if (selectPost === undefined){
             await likeInteract(like, postId, AuthUserId);
             res.status(200).send('Has interactuado correctamente👍')
