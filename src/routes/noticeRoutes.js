@@ -13,7 +13,7 @@ import validateAuth from "../middlewares/validateAuth.js";
 
 const router = express.Router();
 
-router.delete("/delete/:id", validateAuth, deletePost);
+router.delete("/post/:id", validateAuth, deletePost);
 router.post("/posts", validateAuth, createPost);
 router.get("/post/:id", lsPostById);
 router.get("/posts", getAllPosts);

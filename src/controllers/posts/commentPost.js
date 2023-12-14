@@ -4,13 +4,13 @@ import generateError from "../../utils/generateError.js";
 const commentPost = async (req, res, next) => {
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
-    console.log(AuthUserId);
+
     const postId = req.params.id;
 
-    const { commentBody, hierarchy } = req.body;
+    const { comment, hierarchy } = req.body;
 
-    const comment = commentBody.comment;
-    console.log(comment);
+    // const comment = commentBody.comment;
+
     if (!comment) {
       generateError("El comentario no puede estar vacío", 400);
     }
