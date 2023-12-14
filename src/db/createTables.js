@@ -61,6 +61,7 @@ async function createTables() {
                 FOREIGN KEY(userId) REFERENCES users(id)
              );`);
 
+
     await pool.query(`
               CREATE TABLE IF NOT EXISTS comments (
                   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -85,6 +86,7 @@ async function createTables() {
                   FOREIGN KEY(commentId) REFERENCES comments(id),
                   FOREIGN KEY(userId) REFERENCES users(id)
                );`);
+
     console.log(`😎 las tablas fueron creadas con exito`);
     process.exit();
   } catch (error) {

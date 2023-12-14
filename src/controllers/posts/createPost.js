@@ -16,7 +16,7 @@ const createPost = async (req, res, next) => {
     //Mover el archivo subido
     archivoSubido.mv(filePath, async (err) => {
       if (err) {
-        return next(generateError(err, 500, "Error al subir el archivo"));
+        return next(err);
       }
 
       try {
@@ -28,22 +28,14 @@ const createPost = async (req, res, next) => {
 
         fs.writeFileSync(newFilePath, imageBuffer);
 
-        fs.unlinkSync(`./temp/${archivoSubido.name}`);
 
-        // Validar datos de entrada
+        fs.unlinkSync(`./temp/${archivoSubido.name}`)
+   
         createPostValidation({ title, topic, body, tags });
 
-        // Insertar el post en la base de datos
-        await insertPost({
-          title,
-          topic,
-          uniqueFilename,
-          body,
-          tags,
-          AuthUserId,
-        });
+        await insertPost({ title, topic, uniqueFilename, body, tags, AuthUserId });
 
-        res.send(title);
+        res.send(title); 
       } catch (error) {
         next(error);
       }
