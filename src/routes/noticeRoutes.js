@@ -1,6 +1,7 @@
 import express from "express";
 
-import { createPost, lsPostById, deletePost, interactPost, getAllPosts, patchPost, filterPost, selectFavorites, insertFavorite, commentPost } from "../controllers/posts/index.js";
+import { createPost, lsPostById, deletePost, interactPost, getAllPosts, patchPost, filterPost, selectFavorites, insertFavorite, commentPost, interactComments } from "../controllers/posts/index.js";
+
 
 import validateAuth from "../middlewares/validateAuth.js";
 
@@ -19,9 +20,4 @@ router.get("/favorites", validateAuth, selectFavorites)
 ////////////////////////////////////////
 router.post("/post/:id", validateAuth, commentPost);
 export default router;
-
-
-
-
-
-
+router.post("/likeComments", validateAuth, interactComments)
