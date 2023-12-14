@@ -15,7 +15,6 @@ const interactPost = async (req, res, next) => {
             await dropInteraction(like, postId, AuthUserId);
             res.status(200).send('Has borrado correctamente la interación👍')
         } else {
-            console.log("ok2")
             await modifyInteraction(like, postId, AuthUserId);
             res.status(200).send('Has modificado la interación correctamente')
         }
