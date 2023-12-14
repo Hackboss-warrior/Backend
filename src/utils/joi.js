@@ -6,6 +6,7 @@ import generateError from "./generateError.js";
 const registerValidation = ({
   name,
   firstName,
+  BIO,
   nickName,
   email,
   password,
@@ -14,6 +15,7 @@ const registerValidation = ({
   const schema = Joi.object().keys({
     name: Joi.string().required(),
     firstName: Joi.string(),
+    BIO: Joi.string().max(200),
     nickName: Joi.string().min(4).max(16).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(20).required(),
@@ -22,6 +24,7 @@ const registerValidation = ({
   const validation = schema.validate({
     name,
     firstName,
+    BIO,
     nickName,
     email,
     password,

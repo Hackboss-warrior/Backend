@@ -1,6 +1,7 @@
 import { insertPost } from "../../models/news/index.js";
 import { createPostValidation } from "../../utils/joi.js";
-import { v4 as uuidv4 } from 'uuid';
+import generateError from "../../utils/generateError.js";
+import { v4 as uuidv4 } from "uuid";
 import path from "path";
 import fs from "fs";
 
@@ -11,6 +12,8 @@ const createPost = async (req, res, next) => {
     const archivoSubido = req.files.image;
 
     const filePath = `./temp/${archivoSubido.name}`;
+
+    //Mover el archivo subido
     archivoSubido.mv(filePath, async (err) => {
       if (err) {
         return next(err);
@@ -21,9 +24,10 @@ const createPost = async (req, res, next) => {
         const fileExtension = path.extname(archivoSubido.name);
         const uniqueFilename = uuidv4() + fileExtension;
 
-        const newFilePath = `./uploads/${uniqueFilename}`;
+        const newFilePath = `./uploads/postImages/${uniqueFilename}`;
 
         fs.writeFileSync(newFilePath, imageBuffer);
+
 
         fs.unlinkSync(`./temp/${archivoSubido.name}`)
    
@@ -33,7 +37,7 @@ const createPost = async (req, res, next) => {
 
         res.send(title); 
       } catch (error) {
-        next(error); 
+        next(error);
       }
     });
   } catch (error) {
