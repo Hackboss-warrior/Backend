@@ -27,23 +27,39 @@ const register = async (req, res, next) => {
 
 
     const processAvatar = async () => {
-      if (req.files && Object.keys(req.files).length !== 0) {
+      if (req.files && req.files.avatar && Object.keys(req.files.avatar).length !== 0) {
         const archivoSubido = req.files.avatar;
-        
         const filePath = `./temp/${archivoSubido.name}`;
-        const imageBuffer = fs.readFileSync(filePath);
-        const fileExtension = path.extname(archivoSubido.name);
-        const uniqueFilename = uuidv4() + fileExtension;
-        const newFilePath = `./uploads/${uniqueFilename}`;
-
-        fs.writeFileSync(newFilePath, imageBuffer);
-        fs.unlinkSync(filePath);
-
-        return uniqueFilename;
+    
+        try {
+          await new Promise((resolve, reject) => {
+            archivoSubido.mv(filePath, (err) => {
+              if (err) {
+                reject(err);
+              } else {
+                resolve();
+              }
+            });
+          });
+    
+          const imageBuffer = fs.readFileSync(filePath);
+          const fileExtension = path.extname(archivoSubido.name);
+          const uniqueFilename = uuidv4() + fileExtension;
+          const newFilePath = `./uploads/${uniqueFilename}`;
+    
+          fs.writeFileSync(newFilePath, imageBuffer);
+          fs.unlinkSync(filePath);
+    
+          return uniqueFilename;
+        } catch (err) {
+          console.error("Error al mover el archivo:", err);
+          throw new Error("Error al procesar el avatar");
+        }
       } else {
-        return null;
+        return null; // Si no se proporciona un avatar, devuelve null
       }
     };
+    
 
     const avatarFilename = await processAvatar();
 
