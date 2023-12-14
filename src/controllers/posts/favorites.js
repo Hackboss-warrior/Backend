@@ -8,11 +8,9 @@ const insertFavorite = async (req, res, next) => {
         const selectPost = await selectFavoriteByPost(postId, AuthUserId)
 
         if (selectPost === undefined) {
-
             await saveFavorite(postId, AuthUserId);
             res.status(200).send('Has almacenado en favoritos 👍')
-        } else if (selectPost/*.postId === postId && selectPost.userId === AuthUserId*/) {
-            console.log('😋' + selectPost.postId, selectPost.userId);
+        } else {
             await dropfavorite(postId, AuthUserId);
             res.status(200).send('borrado de favoritos👍')
         }

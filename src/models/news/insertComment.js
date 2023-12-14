@@ -7,7 +7,6 @@ const insertComment = async ({ postId, AuthUserId, comment, hierarchy }) => {
      VALUES (?,?,?,?)`,
     [postId, AuthUserId, comment, hierarchy]
   );
-  console.log(postId, comment);
   return commentPosted;
 };
 

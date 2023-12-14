@@ -57,8 +57,6 @@ const patchUser = async (req, res, next) => {
       } else {
         avatar = user.avatar;
       }
-
-      console.log("Hola " + avatar);
       return avatar;
     };
 

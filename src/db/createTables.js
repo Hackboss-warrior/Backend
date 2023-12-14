@@ -87,7 +87,7 @@ async function createTables() {
                   FOREIGN KEY(userId) REFERENCES users(id)
                );`);
 
-    console.log(`😎 las tablas fueron creadas con exito`);
+    console.log(`Las tablas fueron creadas con exito`);
     process.exit();
   } catch (error) {
     generateError(

@@ -16,56 +16,57 @@ const register = async (req, res, next) => {
     const { name, firstName, BIO, nickName, email, password, DOB } = req.body;
     const userWithSameEmail = await selectUserByEmail(email);
     const userWithSameNickName = await selectUserByNickName(nickName);
+
     if (userWithSameEmail || userWithSameNickName) {
-      generateError("El nickname o el email ya estan registrados", 400);
+      generateError("El nickname o el email ya están registrados", 400);
       return;
     }
 
-    const archivoSubido = req.files.avatar;
-    const filePath = `./temp/${archivoSubido.name}`;
-    let insertId;
+    registerValidation({name, firstName, BIO, nickName, email, password, DOB})
 
-    //Mover el archivo subido
-    archivoSubido.mv(filePath, async (err) => {
-      if (err) {
-        return next(generateError(err, 500, "Error al subir el archivo"));
+
+
+    const processAvatar = async () => {
+      if (req.files && Object.keys(req.files).length !== 0) {
+        const archivoSubido = req.files.avatar;
+        
+        const filePath = `./temp/${archivoSubido.name}`;
+        const imageBuffer = fs.readFileSync(filePath);
+        const fileExtension = path.extname(archivoSubido.name);
+        const uniqueFilename = uuidv4() + fileExtension;
+        const newFilePath = `./uploads/${uniqueFilename}`;
+
+        fs.writeFileSync(newFilePath, imageBuffer);
+        fs.unlinkSync(filePath);
+
+        return uniqueFilename;
+      } else {
+        return null;
       }
+    };
 
-      const imageBuffer = fs.readFileSync(filePath);
-      const fileExtension = path.extname(archivoSubido.name);
-      const uniqueFilename = uuidv4() + fileExtension;
+    const avatarFilename = await processAvatar();
 
-      const newFilePath = `./uploads/avatar/${uniqueFilename}`;
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
-      fs.writeFileSync(newFilePath, imageBuffer);
-
-      fs.unlinkSync(`./temp/${archivoSubido.name}`);
-
-      registerValidation(req.body);
-
-      const hashedPassword = bcrypt.hashSync(password, 10);
-
-      insertId = await insertUser({
-        name,
-        firstName,
-        BIO,
-        uniqueFilename,
-        nickName,
-        email,
-        hashedPassword,
-        DOB,
-      });
-      return insertId;
+    const insertId = await insertUser({
+      name,
+      firstName,
+      BIO,
+      uniqueFilename: avatarFilename,
+      nickName,
+      email,
+      hashedPassword,
+      DOB,
     });
 
     const emailSubject = "Gracias por registrarte en fakNews";
-    const bodyMail = `Hola ${nickName}.
-    Bienvenido/a a fakNews`;
+    const bodyMail = `Hola ${nickName}. Bienvenido/a a fakNews`;
 
     await sendMail(email, emailSubject, bodyMail);
 
     res.status(201).send({
-      message: "Te has registrado mákina ✔️",
+      message: "Te has registrado máquina ✔️",
       data: { id: insertId, name, firstName, nickName, email, DOB },
     });
   } catch (error) {
@@ -74,3 +75,4 @@ const register = async (req, res, next) => {
 };
 
 export default register;
+

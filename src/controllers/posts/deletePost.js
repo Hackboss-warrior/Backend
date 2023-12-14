@@ -12,7 +12,6 @@ const deletePost = async (req, res, next) => {
     const AuthUserId = req.auth.jwtPayLoad.id;
     const id = req.params.id;
     const userId = await selectIdPostByIdUser(id);
-    console.log(userId.userId);
 
     if (AuthUserId !== userId.userId) {
       generateError(

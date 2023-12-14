@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createPost, lsPostById, deletePost, interactPost, getAllPosts, patchPost, filterPost, selectFavorites, insertFavorite } from "../controllers/posts/index.js";
+import { createPost, lsPostById, deletePost, interactPost, getAllPosts, patchPost, filterPost, selectFavorites, insertFavorite, commentPost } from "../controllers/posts/index.js";
 
 import validateAuth from "../middlewares/validateAuth.js";
 

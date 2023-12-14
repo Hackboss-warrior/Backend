@@ -10,9 +10,6 @@ import patchPost from "./patchPost.js";
 import filterPost from "./filterPost.js";
 import commentPost from "./commentPost.js";
 ////////////////////////////////////////
-import patchPost from "./patchPost.js"
-import filterPost from "./filterPost.js"
-////////////////////////////////////////
 import  {selectFavorites,insertFavorite} from "./favorites.js";
 export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost,commentPost,selectFavorites,insertFavorite };
 

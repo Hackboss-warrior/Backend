@@ -7,7 +7,7 @@ const useDb = async () => {
   try {
     const pool = await getPool();
     await pool.query(`USE ${process.env.DB_NAME}`);
-    console.log(`base de datos en uso`);
+    console.log(`Base de datos en uso`);
   } catch (error) {
     generateError("No se ha podido acceder a la base de datos", 500);
   }

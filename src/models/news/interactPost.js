@@ -2,11 +2,11 @@ import getPool from "../../db/pool.js";
 let pool = await getPool();
 import generateError from "../../utils/generateError.js";
 
-const likeInteract = async (binaryLikes, postId, AuthUserId) => {
+const likeInteract = async (like, postId, AuthUserId) => {
   try {
     await pool.query(
       `insert into interacts(interaction,postId,userId) values(?,?,?)`,
-      [binaryLikes, postId, AuthUserId]
+      [like, postId, AuthUserId]
     );
 
     return;
@@ -15,11 +15,11 @@ const likeInteract = async (binaryLikes, postId, AuthUserId) => {
   }
 };
 
-const modifyInteraction = async (binaryLikes, postId, AuthUserId) => {
+const modifyInteraction = async (like, postId, AuthUserId) => {
   try {
     await pool.query(
       "UPDATE interacts SET interaction = ? WHERE postId = ? AND userId = ?",
-      [binaryLikes, postId, AuthUserId]
+      [like, postId, AuthUserId]
     );
 
     return;
@@ -28,11 +28,11 @@ const modifyInteraction = async (binaryLikes, postId, AuthUserId) => {
   }
 };
 
-const dropInteraction = async (binaryLikes, postId, AuthUserId) => {
+const dropInteraction = async (like, postId, AuthUserId) => {
   try {
     await pool.query(
       "DELETE FROM interacts WHERE postId = ? AND userId = ? AND interaction = ?",
-      [postId, AuthUserId, binaryLikes]
+      [postId, AuthUserId, like]
     );
 
     return;

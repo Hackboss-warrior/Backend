@@ -8,7 +8,7 @@ const createDB = async () => {
     
     const pool = await getPool();
     await pool.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`);
-    console.log(`base de datos ${process.env.DB_NAME} creada con exito`);
+    console.log(`La base de datos ${process.env.DB_NAME} ha sido creada con éxito`);
     await useDb();
   } catch (error) {
     generateError(
