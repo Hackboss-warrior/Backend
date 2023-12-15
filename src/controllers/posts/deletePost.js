@@ -15,17 +15,35 @@ const deletePost = async (req, res, next) => {
 
     if (AuthUserId !== userId.userId) {
       generateError(
-        "No puedes elimiar un post que no sea tuyo, payaso :)",
+        "No puedes eliminar un post que no sea tuyo, payaso :)",
         400
       );
     }
 
-    await deleteCommentByPostId(id);
-    await deleteFavoriteByPostId(id);
-    await deleteInteractsByPostId(id);
-    await deletePostById(id);
+    try {
+      await deleteCommentByPostId(id);
+    } catch (error) {
+      next(error)
+    }
 
-    res.send(`El post ha sido eliminado correctamente`);
+    try {
+      await deleteFavoriteByPostId(id);
+    } catch (error) {
+      next(error)
+    }
+
+    try {
+      await deleteInteractsByPostId(id);
+    } catch (error) {
+      next(error)
+    }
+
+    try {
+      await deletePostById(id);
+      res.send(`El post ha sido eliminado correctamente`);
+    } catch (error) {
+      next(error)
+    }
   } catch (error) {
     next(error);
   }

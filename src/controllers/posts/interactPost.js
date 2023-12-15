@@ -7,6 +7,8 @@ const interactPost = async (req, res, next) => {
         let { like, postId } = req.body
         const selectPost = await selectInteracts(postId, AuthUserId)  
 
+        
+
         if (selectPost === undefined){
             await likeInteract(like, postId, AuthUserId);
             res.status(200).send('Has interactuado correctamente👍')

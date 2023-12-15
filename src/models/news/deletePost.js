@@ -6,7 +6,13 @@ const deletePostById = async (id) => {
 };
 
 const deleteCommentByPostId = async (id) => {
-  await pool.query("DELETE FROM comments WHERE postId = ?", [id]);
+  try {
+    await pool.query("DELETE FROM likeComments WHERE commentId IN (SELECT id FROM comments WHERE postId = ?)", [id]);
+    await pool.query("DELETE FROM comments WHERE postId = ?", [id]);
+
+  } catch (error) {
+    next(error)
+  }
 };
 
 const deleteFavoriteByPostId = async (id) => {

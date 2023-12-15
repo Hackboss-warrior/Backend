@@ -35,7 +35,7 @@ async function createTables() {
         userId INT NOT NULL,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
         modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
-        FOREIGN KEY(userId) REFERENCES users(id)
+        FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
     );`);
 
     await pool.query(`
@@ -46,8 +46,8 @@ async function createTables() {
                 interaction INT(2) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY(postId) REFERENCES posts(id),
-                FOREIGN KEY(userId) REFERENCES users(id)
+                FOREIGN KEY(postId) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
                 
              );`);
     await pool.query(`
@@ -57,8 +57,8 @@ async function createTables() {
                 userId INT NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY(postId) REFERENCES posts(id),
-                FOREIGN KEY(userId) REFERENCES users(id)
+                FOREIGN KEY(postId) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
              );`);
 
 
@@ -71,8 +71,8 @@ async function createTables() {
                   hierarchy VARCHAR(255),
                   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                   modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                  FOREIGN KEY(postId) REFERENCES posts(id),
-                  FOREIGN KEY(userId) REFERENCES users(id)
+                  FOREIGN KEY(postId) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                  FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
                );`);
 
     await pool.query(`
@@ -83,8 +83,8 @@ async function createTables() {
                   interaction INT(2) NOT NULL,
                   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                   modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                  FOREIGN KEY(commentId) REFERENCES comments(id),
-                  FOREIGN KEY(userId) REFERENCES users(id)
+                  FOREIGN KEY(commentId) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                  FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
                );`);
 
     console.log(`Las tablas fueron creadas con exito`);
