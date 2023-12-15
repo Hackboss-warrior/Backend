@@ -41,8 +41,8 @@ async function createTables() {
     await pool.query(`
             CREATE TABLE IF NOT EXISTS interacts (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                postId INT,
-                userId INT,
+                postId INT NOT NULL,
+                userId INT NOT NULL,
                 interaction INT(2) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
@@ -61,7 +61,6 @@ async function createTables() {
                 FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
              );`);
 
-
     await pool.query(`
               CREATE TABLE IF NOT EXISTS comments (
                   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -78,8 +77,8 @@ async function createTables() {
     await pool.query(`
               CREATE TABLE IF NOT EXISTS likeComments (
                   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                  commentId INT,
-                  userId INT,
+                  commentId INT NOT NULL,
+                  userId INT NOT NULL,
                   interaction INT(2) NOT NULL,
                   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                   modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
