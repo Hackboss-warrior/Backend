@@ -10,8 +10,7 @@
     "initDb": "node src/db/createDb.js && node src/db/createTables.js",
     "dropDb": "node src/db/dropDb.js",
     "createDb": "node src/db/createdb.js",
-    "createTables": "node src/db/createTables.js  ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "createTables": "node src/db/createTables.js  "
   },
   "author": "Xavi, Omar, Carlos, Aron",
   "license": "ISC",
@@ -26,7 +25,6 @@
     "morgan": "^1.10.0",
     "mysql2": "^3.6.5",
     "nodemailer": "^6.9.7",
-    "sharp": "^0.33.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
