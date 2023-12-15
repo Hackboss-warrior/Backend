@@ -11,7 +11,7 @@ const selectUser = async () => {
 
 const selectUserAll = async (id) => {
   const [users] = await pool.query(
-    "SELECT name, firstName, BIO, nickName, email, passwordHash, DOB FROM users WHERE id=?",
+    "SELECT name, firstName, avatar, BIO, nickName, email, passwordHash, DOB FROM users WHERE id=?",
     [id]
   );
 

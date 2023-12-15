@@ -19,8 +19,11 @@ const patchUser = async (req, res, next) => {
       password: reqPassword,
       DOB = user.DOB,
     } = req.body;
-
-    reqAvatar = req.files.avatar;
+    
+    if (req.files){
+      reqAvatar = req.files.avatar;
+    }
+    
 
     const password = reqPassword
       ? bcrypt.hashSync(reqPassword, 10)
@@ -42,7 +45,7 @@ const patchUser = async (req, res, next) => {
               const imageBuffer = fs.readFileSync(filePath);
               const fileExtension = path.extname(archivoSubido.name);
               avatar = uuidv4() + fileExtension;
-              const newFilePath = `./uploads/avatar/${avatar}`;
+              const newFilePath = `./uploads/${avatar}`;
 
               fs.writeFileSync(newFilePath, imageBuffer);
               fs.unlinkSync(`./temp/${archivoSubido.name}`);
