@@ -33,3 +33,25 @@ La API backend se concibe como el motor principal que impulsará la aplicación 
 
 **_Se invita a revisar gitBook para obtener una visión más detallada sobre el funcionamiento y los componentes adicionales de este proyecto._**
 https://hackaboss.gitbook.io/faknews/
+
+# PRIMEROS PASOS
+
+## Primer paso
+Instale las dependencias del proyecto ejecutando el siguiente comando.
+npm i
+
+## Segundo paso
+Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas.
+npm run initDb
+
+## Tercer paso (opcional)
+En caso de  tener la base de datos creada  y querer borrarla ejecutar el comando.
+npm run dropDb
+
+## Cuarto paso (opcional)
+En caso de no tener la base de datos creada y querer crear una ejecutar el comando
+npm run initDb
+
+## Quinto paso
+Para arrancar el servidor ejecutar.
+npm start
