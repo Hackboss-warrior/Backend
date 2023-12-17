@@ -38,20 +38,29 @@ https://hackaboss.gitbook.io/faknews/
 
 ## Primer paso
 Instale las dependencias del proyecto ejecutando el siguiente comando.
+```
 npm i
+```
 
 ## Segundo paso
 Renombrar el .envexample a .env y completar los valores sin comillas excepto la contraseña y el token que va entre comillas.
+```
 npm run initDb
+```
 
 ## Tercer paso (opcional)
 En caso de  tener la base de datos creada  y querer borrarla ejecutar el comando.
+```
 npm run dropDb
+```
 
 ## Cuarto paso (opcional)
-En caso de no tener la base de datos creada y querer crear una ejecutar el comando
+En caso de no tener la base de datos creada y querer crear una ejecutar el comando.
+```
 npm run initDb
-
+```
 ## Quinto paso
 Para arrancar el servidor ejecutar.
+```
 npm start
+```
