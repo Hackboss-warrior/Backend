@@ -41,7 +41,7 @@ Instale las dependencias del proyecto ejecutando el siguiente comando.
 npm i
 
 ## Segundo paso
-Renombrar el .envexample a .env y completar los valores sin comillas exepto la contraseña y el token que va entre comillas.
+Renombrar el .envexample a .env y completar los valores sin comillas excepto la contraseña y el token que va entre comillas.
 npm run initDb
 
 ## Tercer paso (opcional)
