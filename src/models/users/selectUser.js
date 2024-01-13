@@ -9,7 +9,7 @@ const selectUser = async () => {
   return users;
 };
 
-const selectUserAll = async (id) => {
+const selectUserById = async (id) => {
   const [users] = await pool.query(
     "SELECT name, firstName, avatar, BIO, nickName, email, passwordHash, DOB FROM users WHERE id=?",
     [id]
@@ -18,4 +18,4 @@ const selectUserAll = async (id) => {
   return users;
 };
 
-export { selectUser, selectUserAll };
+export { selectUser, selectUserById };

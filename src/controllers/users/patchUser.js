@@ -1,4 +1,4 @@
-import { selectUserAll, editUser } from "../../models/users/index.js";
+import { selectUserById, editUser } from "../../models/users/index.js";
 import bcrypt from "bcrypt";
 import fs from "fs";
 import path from "path";
@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 const patchUser = async (req, res, next) => {
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
-    const [user] = await selectUserAll(AuthUserId);
+    const [user] = await selectUserById(AuthUserId);
 
     let {
       name = user.name,

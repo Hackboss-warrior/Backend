@@ -72,22 +72,23 @@ npm start
 
 - [ ] No tiene mucho sentido lo de los ATTEMPS para arrancar el server. Si el server no arranca a la primera, seguramente haya algún error o esté el puerto ocupado.
 
-- [ ] Los campos nickName y avatar deberían ser UNIQUE.
+- [x] Los campos nickName y avatar deberían ser UNIQUE.
 
-- [ ] Para el campo avatar os servía un VARCHAR en vez de un LONGTEXT. Lo mismo con "files" en la tabla de posts.
+- [x] Para el campo avatar os servía un VARCHAR en vez de un LONGTEXT. Lo mismo con "files" en la tabla de posts.
+
 - [ ] Al registrarse, habéis complicado bastante la subida del avatar. No termino de ver por qué hacéis lo de guardarlo primero en una carpeta temp en vez de guardarlo directamente en uploads.
 
 - [ ] Al hacer login, para buscar al usuario por mail o nickname, hacéis un SELECT de todos los users de la DB y luego hacéis un find. Podríais hacer el SELECT directamente del user que queréis.
 
-- [ ] El patchUser debería de tener método PATCH en vez de POST.
+- [x] El patchUser debería de tener método PATCH en vez de POST.
 
-- [ ] En patchUser llamáis a una función "selectUserAll". Esta función no selecciona todos los users, selecciona por ID. Debería llamarse "selectUserById".
+- [x] En patchUser llamáis a una función "selectUserById". Esta función no selecciona todos los users, selecciona por ID. Debería llamarse "selectUserById".
 
 - [ ] No me convence el sistema de tags que habéis hecho para los posts. Tendríais que haber creado una tabla de mysql para las tags y relacionar posts con tags. La forma en la que lo hacéis podría funcionar, pero es muy importante que implementéis mejores validaciones, ya que ahora mismo puedo mandar cualquier texto con el formato que yo quiera o un objeto con la estructura que me de la gana.
 
-- [ ] Como os comenté muchas veces, al crear o modificar algo, el servidor debería responder con los datos completos de lo que se ha creado/modificado. Al crear un post y en más ocasiones, no respondéis con los datos completos del elemento creado/modificado.
+- [x] Como os comenté muchas veces, al crear o modificar algo, el servidor debería responder con los datos completos de lo que se ha creado/modificado. Al crear un post y en más ocasiones, no respondéis con los datos completos del elemento creado/modificado (join).
 
-- [ ] Al hacer un GET /posts, falta info en cada uno de los posts. Deberíamos de poder ver el username y avatar del usuario que crea el post, número de likes y dislikes...
+- [ ] Al hacer un GET /posts, falta info en cada uno de los posts. Deberíamos de poder ver el username y avatar del usuario que crea el post, número de likes y dislikes... (join)
 
 - [ ] En deletePost, tenéis un montón de try catch que hacen lo mismo. Podríais borrar todos excepto el global.
 
@@ -95,9 +96,9 @@ npm start
 
 - [ ] En deletePost, os encargáis de borrar los comentarios, favoritos y esas cosas de los posts de forma manual. Si en las FOREIGN KEYS de estas tabals añadís "ON DELETE CASCADE", este borrado se hace de forma automática.
 
-- [ ] En el model "deleteCommentByPostId" tenéis un try catch que no deberíais tener. Además, llamáis a next() que no existe ahí.
+- [x] En el model "deleteCommentByPostId" tenéis un try catch que no deberíais tener. Además, llamáis a next() que no existe ahí.
 
-- [ ] Al hacer un GET /post/:id, debería de devolver la información del post, lo comentado arriba (username y avatar del creador, likes, dislikes...) y la lista de comentarios.
+- [ ] Al hacer un GET /post/:id, debería de devolver la información del post, lo comentado arriba (username y avatar del creador, likes, dislikes...) y la lista de comentarios (Join).
 
 - [ ] En patchPost falta validar con Joi.
 
@@ -111,8 +112,9 @@ npm start
 
 - [ ] Al añadir favoritos no comprobáis si la noticia existe.
 
-- [ ] Al ver la lista de favoritos, debería de verse toda la info del post, no solo los ids
-En likeComments no comprobáis si el comentario existe. El campo like debería de ser un booleano como comentado anteriormente con las interacciones.
+- [ ] Al ver la lista de favoritos, debería de verse toda la info del post, no solo los ids.
+
+- [ ] En likeComments no comprobáis si el comentario existe. El campo like debería de ser un booleano como comentado anteriormente con las interacciones.
 
 - [ ] Los ids se suelen enviar por path params en vez de en el body. Por ejemplo, en likeComments en vez de enviar el commentId en el body, estaría mejor incluirlo en la ruta, por ejemplo /likeComments/:commentId.
 
