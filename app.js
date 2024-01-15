@@ -15,7 +15,7 @@ import { notFound, handleError } from "./src/middlewares/index.js";
 const app = express();
 
 // Generamos los middlewares
-app.use(cors());
+app.use(cors({ origin: ["http://localhost:5173"] }));
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -78,4 +78,3 @@ function startServer() {
 }
 
 startServer();
-

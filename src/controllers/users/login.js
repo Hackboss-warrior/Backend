@@ -8,6 +8,8 @@ const login = async (req, res, next) => {
   try {
     const { email, nickName, password } = req.body;
 
+    console.log(email, nickName, password);
+
     const user = await selectUser();
 
     if (!user) {
