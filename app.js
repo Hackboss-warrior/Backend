@@ -15,16 +15,20 @@ import { notFound, handleError } from "./src/middlewares/index.js";
 const app = express();
 
 // Generamos los middlewares
-app.use(cors());
+app.use(cors({ origin: ["http://localhost:5173"] }));
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(express.static("uploads"));
 
+/*
 app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp/",
   })
-);
+); */
+
+app.use(fileUpload());
 
 // Apuntamos a la base de datos que queremos utilizar.
 useDb();
@@ -78,4 +82,3 @@ function startServer() {
 }
 
 startServer();
-

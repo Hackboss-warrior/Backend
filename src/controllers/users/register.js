@@ -17,20 +17,22 @@ const register = async (req, res, next) => {
     const userWithSameEmail = await selectUserByEmail(email);
     const userWithSameNickName = await selectUserByNickName(nickName);
 
-    if (userWithSameEmail || userWithSameNickName) {
-      generateError("El nickname o el email ya están registrados", 400);
+    if (userWithSameNickName) {
+      generateError("El nickname ya están registrados", 400);
+      return;
+    }
+
+    if (userWithSameEmail) {
+      generateError("El email ya están registrados", 400);
       return;
     }
 
     registerValidation({name, firstName, BIO, nickName, email, password, DOB})
 
-
-
     const processAvatar = async () => {
       if (req.files && req.files.avatar && Object.keys(req.files.avatar).length !== 0) {
         const archivoSubido = req.files.avatar;
         const filePath = `./temp/${archivoSubido.name}`;
-    
         try {
           await new Promise((resolve, reject) => {
             archivoSubido.mv(filePath, (err) => {
