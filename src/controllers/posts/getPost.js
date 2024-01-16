@@ -15,11 +15,11 @@ const lsPostById = async (req, res, next) => {
         400
       );
     }
-
+    console.log(post);
     //////////////////////////////////////
-    const comments = await listCommentByPostId(id);
+    //const comments = await listCommentByPostId(id);
     //////////////////////////////////////
-    res.send({ post, comments });
+    res.send(post /*comments*/);
   } catch (error) {
     next(error);
   }
