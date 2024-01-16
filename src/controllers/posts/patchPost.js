@@ -1,5 +1,6 @@
 import { selectPostById, updatePost, selectPostByIdLimit } from "../../models/news/index.js";
 import generateError from "../../utils/generateError.js"
+import { editPostValidation } from "../../utils/joi.js";
 
 const patchPost = async (req, res, next) => {
   try {
@@ -16,7 +17,9 @@ const patchPost = async (req, res, next) => {
     if (post.userId !== AuthUserId) {
       generateError("Solo puedes editar noticias tuyas", 403);
     }
-    
+
+    editPostValidation = ({ title, topic, body, tags })
+
     const postToUpdate = {
        ...post,
        ...req.body,

@@ -5,12 +5,21 @@ import {
   deleteFavoriteByPostId,
   deleteInteractsByPostId,
 } from "../../models/news/index.js";
+import { selectPostById } from "../../models/news/index.js";
 import generateError from "../../utils/generateError.js";
 
 const deletePost = async (req, res, next) => {
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
     const id = req.params.id;
+
+    if (!await selectPostById(id)){
+      generateError(
+        "No puedes eliminar un post que no existe",
+        404
+      );
+    }
+    
     const userId = await selectIdPostByIdUser(id);
 
     if (AuthUserId !== userId.userId) {
@@ -19,31 +28,10 @@ const deletePost = async (req, res, next) => {
         400
       );
     }
-
-    try {
-      await deleteCommentByPostId(id);
-    } catch (error) {
-      next(error)
-    }
-
-    try {
-      await deleteFavoriteByPostId(id);
-    } catch (error) {
-      next(error)
-    }
-
-    try {
-      await deleteInteractsByPostId(id);
-    } catch (error) {
-      next(error)
-    }
-
-    try {
-      await deletePostById(id);
-      res.send(`El post ha sido eliminado correctamente`);
-    } catch (error) {
-      next(error)
-    }
+    await deletePostById(id);
+    res.send(`El post ha sido eliminado correctamente`);
+    
+    
   } catch (error) {
     next(error);
   }

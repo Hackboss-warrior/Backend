@@ -12,8 +12,7 @@ const interactPost = async (req, res, next) => {
         if (selectPost === undefined){
             await likeInteract(like, postId, AuthUserId);
             res.status(200).send('Has interactuado correctamente👍')
-        } else if (selectPost.postId === postId && selectPost.userId === AuthUserId && selectPost.interaction === like){
-            
+        } else if (selectPost.interaction === like){
             await dropInteraction(like, postId, AuthUserId);
             res.status(200).send('Has borrado correctamente la interación👍')
         } else {

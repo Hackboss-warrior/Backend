@@ -1,4 +1,5 @@
 import { selectUserById, editUser } from "../../models/users/index.js";
+import { editUserValidation } from "../../utils/joi.js";
 import bcrypt from "bcrypt";
 import fs from "fs";
 import path from "path";
@@ -24,7 +25,7 @@ const patchUser = async (req, res, next) => {
       reqAvatar = req.files.avatar;
     }
     
-
+    editUserValidation({name, firstName, BIO, nickName, email, password, DOB})
     const password = reqPassword
       ? bcrypt.hashSync(reqPassword, 10)
       : user.passwordHash;
