@@ -6,4 +6,5 @@ const selectInteracts = async (postId, userId) => {
     return selectInteracts;
 }
 
-export default selectInteracts
+
+export {selectInteracts}

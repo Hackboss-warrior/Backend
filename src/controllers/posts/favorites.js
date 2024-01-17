@@ -1,12 +1,21 @@
-import { selectFavoriteByPost, saveFavorite, dropfavorite, selectFavoritesPosts } from "../../models/news/index.js"
+
+import { selectFavoriteByPost, saveFavorite, dropfavorite, selectFavoritesPosts, selectPostByIdLimit } from "../../models/news/index.js"
+import generateError from "../../utils/generateError.js";
 
 const insertFavorite = async (req, res, next) => {
+
 
     try {
         const AuthUserId = req.auth.jwtPayLoad.id;
         let postId = req.params.id
-        const selectPost = await selectFavoriteByPost(postId, AuthUserId)
 
+        const validator = await selectPostByIdLimit(postId)
+        if (!validator) {
+            generateError('El post que intentas añadir a favoritos no existe ', 404)
+        }
+
+
+        const selectPost = await selectFavoriteByPost(postId, AuthUserId)
         if (selectPost === undefined) {
             await saveFavorite(postId, AuthUserId);
             res.status(200).send('Has almacenado en favoritos 👍')

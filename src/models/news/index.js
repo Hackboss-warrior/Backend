@@ -5,7 +5,7 @@ import { selectPostById, selectPostByIdLimit } from "./selectPostById.js";
 import { deletePostById, deleteCommentByPostId, deleteFavoriteByPostId, deleteInteractsByPostId} from "./deletePost.js";
 import selectIdPostByIdUser from "./selectIdPostByIdUser.js"
 import selectPosts from "./selectPosts.js"
-import selectInteracts from "./selectInteracts.js"
+import {selectInteracts} from "./selectInteracts.js"
 import {likeInteract, modifyInteraction, dropInteraction} from "./interactPost.js";
 import updatePost from "./updatePost.js"
 import filterPostByTags from "./filterPostByTags.js"
@@ -17,6 +17,6 @@ import { selectInteractsComment, likeInteractComment, dropInteractionComment, mo
 import selectPostByTitle from "./selectPostByTitle.js"
 
 
-export {insertPost,selectPostByIdLimit, selectPostById, deletePostById, selectIdPostByIdUser, selectPosts, selectInteracts, likeInteract, modifyInteraction, dropInteraction, updatePost, filterPostByTags, insertComment, listCommentByPostId, deleteCommentByPostId, deleteFavoriteByPostId, deleteInteractsByPostId,/**/selectFavoriteByPost,saveFavorite,  dropfavorite,selectFavoritesPosts/**/ /*Aaron*/, selectInteractsComment, likeInteractComment, dropInteractionComment, modifyInteractionComment/*Aaron*/,selectPostByTitle} ;
+export {insertPost,selectPostByIdLimit, selectPostById, deletePostById, selectIdPostByIdUser, selectPosts, selectInteracts, likeInteract, modifyInteraction, dropInteraction, updatePost, filterPostByTags, insertComment, listCommentByPostId, deleteCommentByPostId, deleteFavoriteByPostId, deleteInteractsByPostId,selectFavoriteByPost,saveFavorite,  dropfavorite,selectFavoritesPosts, selectInteractsComment, likeInteractComment, dropInteractionComment, modifyInteractionComment,selectPostByTitle} ;
 
 

@@ -5,6 +5,9 @@ import generateError from "../../utils/generateError.js";
 
 
 
+
+
+
 const selectFavoriteByPost = async (postId, userId) => {
   const [[selectFavorites]] = await pool.query(`SELECT postId, userId FROM favorites WHERE postId =? AND userId= ?`, [postId, userId]);
   return selectFavorites;
@@ -42,13 +45,13 @@ const dropfavorite = async (postId, AuthUserId) => {
 const selectFavoritesPosts = async (AuthUserId) => {
 
 
-  const [resultado] = await pool.query("SELECT * FROM favorites where userId=?", [AuthUserId]);
+  const [resultado] = await pool.query("SELECT posts.* FROM favorites inner join posts on posts.id = favorites.postId where favorites.userId=?;", [AuthUserId]);
 
   return resultado
 }
 
 
-export { selectFavoriteByPost, saveFavorite, dropfavorite, selectFavoritesPosts };
+export { selectFavoriteByPost, saveFavorite, dropfavorite, selectFavoritesPosts  };
 
 
 
