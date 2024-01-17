@@ -10,6 +10,7 @@ import { registerValidation } from "../../utils/joi.js";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
+import sharp from "sharp";
 
 const register = async (req, res, next) => {
   try {
@@ -27,43 +28,33 @@ const register = async (req, res, next) => {
       return;
     }
 
-    registerValidation({name, firstName, BIO, nickName, email, password, DOB})
+    registerValidation({ name, firstName, BIO, nickName, email, password, DOB })
 
     const processAvatar = async () => {
-      if (req.files && req.files.avatar && Object.keys(req.files.avatar).length !== 0) {
+      if (req.files?.avatar) {
         const archivoSubido = req.files.avatar;
-        const filePath = `./temp/${archivoSubido.name}`;
-        try {
-          await new Promise((resolve, reject) => {
-            archivoSubido.mv(filePath, (err) => {
-              if (err) {
-                reject(err);
-              } else {
-                resolve();
-              }
-            });
-          });
-    
-          const imageBuffer = fs.readFileSync(filePath);
-          const fileExtension = path.extname(archivoSubido.name);
-          const uniqueFilename = uuidv4() + fileExtension;
-          const newFilePath = `./uploads/${uniqueFilename}`;
-    
-          fs.writeFileSync(newFilePath, imageBuffer);
-          fs.unlinkSync(filePath);
-    
-          return uniqueFilename;
-        } catch (err) {
-          console.error("Error al mover el archivo:", err);
-          throw new Error("Error al procesar el avatar");
+        if (path.extname(archivoSubido.name) !== '.gif' && path.extname(archivoSubido.name) !== '.jpeg' && path.extname(archivoSubido.name) !== '.png'
+        ) {
+          generateError("Archivo de imagen no soportado. Utilice: png, jpeg o gif", 400);
         }
+        const uniqueFilename = uuidv4() + path.extname(archivoSubido.name);
+
+        sharp(archivoSubido.data)
+          .resize(300, 200)
+          .toFile(`./uploads/${uniqueFilename}`, (err, info) => {
+            if (err) {
+              generateError("Hubo un error con la subida de imagen", 500);
+            }
+          });
+        return uniqueFilename;
       } else {
         return null; // Si no se proporciona un avatar, devuelve null
       }
     };
-    
 
     const avatarFilename = await processAvatar();
+
+    console.log(avatarFilename)
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 

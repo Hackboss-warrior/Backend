@@ -8,38 +8,27 @@ const login = async (req, res, next) => {
   try {
     const { email, nickName, password } = req.body;
 
-    console.log(email, nickName, password);
+    const user = await selectUser(email, nickName);
 
-    const user = await selectUser();
-
-    if (!user) {
+    if (!bcrypt.compareSync(password, user[0].passwordHash)) {
       generateError(
-        "El email o la contraseña son incorrectos, por favor, revise los datos introducidos",
+        "Credenciales inválidas, por favor, revise los datos introducidos",
         400
       );
     }
 
-    const foundUser = user.find(
-      (data) =>
-        (data.email === email || data.nickName === nickName) &&
-        bcrypt.compareSync(password, data.passwordHash)
+    let jwtPayLoad = { id: user[0].id };
+
+    const token = jwt.sign(
+      {
+        jwtPayLoad,
+      },
+      process.env.TOKEN_SECRET,
+      { expiresIn: "5d" }
     );
 
-    if (foundUser) {
-      let jwtPayLoad = { id: foundUser.id };
+    res.status(200).json({ id: jwtPayLoad.id, token: token });
 
-      const token = jwt.sign(
-        {
-          jwtPayLoad,
-        },
-        process.env.TOKEN_SECRET,
-        { expiresIn: "5d" }
-      );
-
-      res.status(200).json({ id: jwtPayLoad.id, token: token });
-    } else {
-      generateError("Credenciales inválidas", 401);
-    }
   } catch (error) {
     next(error);
   }

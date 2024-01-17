@@ -43,7 +43,7 @@ app.use(handleError);
 // función controladora de la escucha del puerto, en caso de que este ocupada probará 4 veces y si no hay resultado pasará a probar escuchar en el puerto 5000
 
 // Variable que almacena el número de intentos para conectar al puerto
-let ATTEMPTS = process.env.ATTEMPTS;
+let ATTEMPTS = 0;
 function startServer() {
   const server = app.listen(process.env.PORT);
 
@@ -56,22 +56,22 @@ function startServer() {
       console.log(`El puerto ${process.env.PORT} ya está en uso`);
       server.close();
 
-      if (ATTEMPTS > 0) {
-        ATTEMPTS -= 1;
+      if (ATTEMPTS === 0) {
         console.log(
-          `Intentando reiniciar el servidor en el puerto ${process.env.PORT}. Intentos restantes: ${ATTEMPTS}`
+          `Intentando reiniciar el servidor en el puerto ${process.env.PORT}.`
         );
-
-        if (ATTEMPTS === 0) {
-          process.env.PORT = 5000;
-        }
-
-        setTimeout(() => {
-          startServer();
-        }, process.env.DURATION);
+        ATTEMPTS += 1;
+        startServer();
+      } else if (ATTEMPTS === 1) {
+        process.env.PORT = 5000;
+        console.log(
+          `Intentando reiniciar el servidor en el puerto ${process.env.PORT}.`
+        );
+        ATTEMPTS += 1;
+        startServer();
       } else {
         console.log(
-          "No quedan más intentos. Servidor apagándose. Por favor verifique que el puerto no esté ocupado por otra aplicación antes de ejecutar"
+          "Servidor apagándose. Por favor, verifique que el puerto no esté ocupado por otra aplicación antes de ejecutar"
         );
         process.exit();
       }

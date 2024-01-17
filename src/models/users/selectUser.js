@@ -1,9 +1,10 @@
 import getPool from "../../db/pool.js";
 let pool = await getPool();
 
-const selectUser = async () => {
+const selectUser = async (email, nickName) => {
   const [users] = await pool.query(
-    "SELECT id, email, nickName, passwordHash FROM users"
+    "SELECT id, email, nickName, passwordHash FROM users WHERE email = ? OR nickName = ?",
+    [email, nickName]
   );
 
   return users;
