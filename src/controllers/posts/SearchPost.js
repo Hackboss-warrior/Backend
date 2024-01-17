@@ -5,7 +5,6 @@ import {
 
   
   const lsPostByTitle = async (req, res, next) => {
-    console.log('patata');
     try {
       const title = req.params.title;
   
@@ -16,7 +15,6 @@ import {
           400
         );
       }
-      console.log(post);
       res.send(post);/*comments*/
     } catch (error) {
       next(error);

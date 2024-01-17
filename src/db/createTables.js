@@ -67,7 +67,6 @@ async function createTables() {
                   postId INT NOT NULL,
                   userId INT NOT NULL,
                   comment VARCHAR(255) NOT NULL,
-                  hierarchy VARCHAR(255),
                   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                   modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
                   FOREIGN KEY(postId) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -85,6 +84,18 @@ async function createTables() {
                   FOREIGN KEY(commentId) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE,
                   FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
                );`);
+    await pool.query(`
+              CREATE TABLE IF NOT EXISTS answers (
+                id INT PRIMARY KEY,
+                commentId INT,
+                userId VARCHAR(255),
+                answerComment TEXT,
+                answerRef INT,
+                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (commentId) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY (answerRef) REFERENCES answers(id) ON DELETE CASCADE ON UPDATE CASCADE
+              );`);
 
     console.log(`Las tablas fueron creadas con exito`);
     process.exit();

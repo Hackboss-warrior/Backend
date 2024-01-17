@@ -54,8 +54,6 @@ const register = async (req, res, next) => {
 
     const avatarFilename = await processAvatar();
 
-    console.log(avatarFilename)
-
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const insertId = await insertUser({
