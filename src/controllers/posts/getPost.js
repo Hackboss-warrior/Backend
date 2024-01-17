@@ -1,6 +1,5 @@
 import {
-  selectPostById,
-  listCommentByPostId,
+  selectPostById
 } from "../../models/news/index.js";
 import generateError from "../../utils/generateError.js";
 

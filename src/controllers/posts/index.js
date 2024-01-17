@@ -11,7 +11,8 @@ import filterPost from "./filterPost.js";
 import commentPost from "./commentPost.js";
 import  {selectFavorites,insertFavorite} from "./favorites.js";
 import interactComments from "./likeComments.js";
+import lsPostByTitle from "./SearchPost.js"
 
-export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost,commentPost,selectFavorites,insertFavorite, interactComments };
+export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost,commentPost,selectFavorites,insertFavorite, interactComments,lsPostByTitle };
 
 
