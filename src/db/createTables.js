@@ -88,13 +88,13 @@ async function createTables() {
               CREATE TABLE IF NOT EXISTS answers (
                 id INT PRIMARY KEY,
                 commentId INT,
-                userId VARCHAR(255),
+                userId INT NOT NULL,
                 answerComment TEXT,
                 answerRef INT,
                 createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (commentId) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE,
-                FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
-                FOREIGN KEY (answerRef) REFERENCES answers(id) ON DELETE CASCADE ON UPDATE CASCADE
+                FOREIGN KEY (answerRef) REFERENCES answers(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
               );`);
 
     console.log(`Las tablas fueron creadas con exito`);
