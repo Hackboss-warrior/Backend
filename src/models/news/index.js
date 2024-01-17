@@ -2,21 +2,66 @@
 import insertPost from "./insertPost.js";
 
 import { selectPostById, selectPostByIdLimit } from "./selectPostById.js";
-import { deletePostById, deleteCommentByPostId, deleteFavoriteByPostId, deleteInteractsByPostId} from "./deletePost.js";
-import selectIdPostByIdUser from "./selectIdPostByIdUser.js"
-import selectPosts from "./selectPosts.js"
-import selectInteracts from "./selectInteracts.js"
-import {likeInteract, modifyInteraction, dropInteraction} from "./interactPost.js";
-import updatePost from "./updatePost.js"
-import filterPostByTags from "./filterPostByTags.js"
+import {
+  deletePostById,
+  deleteCommentByPostId,
+  deleteFavoriteByPostId,
+  deleteInteractsByPostId,
+} from "./deletePost.js";
+import selectIdPostByIdUser from "./selectIdPostByIdUser.js";
+import selectPosts from "./selectPosts.js";
+import selectInteracts from "./selectInteracts.js";
+import {
+  likeInteract,
+  modifyInteraction,
+  dropInteraction,
+} from "./interactPost.js";
+import updatePost from "./updatePost.js";
+import filterPostByTags from "./filterPostByTags.js";
 import insertComment from "./insertComment.js";
 import listCommentByPostId from "./listCommentsByPostId.js";
 ///////////////////////////////////////
-import { selectFavoriteByPost,saveFavorite,  dropfavorite,selectFavoritesPosts } from "./favorites.js";
-import { selectInteractsComment, likeInteractComment, dropInteractionComment, modifyInteractionComment } from "./likeComents.js"
-import selectPostByTitle from "./selectPostByTitle.js"
+import {
+  selectFavoriteByPost,
+  saveFavorite,
+  dropfavorite,
+  selectFavoritesPosts,
+} from "./favorites.js";
+import {
+  selectInteractsComment,
+  likeInteractComment,
+  dropInteractionComment,
+  modifyInteractionComment,
+} from "./likeComents.js";
+import selectPostByTitle from "./selectPostByTitle.js";
+import getComments from "./getComments.js";
 
-
-export {insertPost,selectPostByIdLimit, selectPostById, deletePostById, selectIdPostByIdUser, selectPosts, selectInteracts, likeInteract, modifyInteraction, dropInteraction, updatePost, filterPostByTags, insertComment, listCommentByPostId, deleteCommentByPostId, deleteFavoriteByPostId, deleteInteractsByPostId,/**/selectFavoriteByPost,saveFavorite,  dropfavorite,selectFavoritesPosts/**/ /*Aaron*/, selectInteractsComment, likeInteractComment, dropInteractionComment, modifyInteractionComment/*Aaron*/,selectPostByTitle} ;
-
-
+export {
+  insertPost,
+  selectPostByIdLimit,
+  selectPostById,
+  deletePostById,
+  selectIdPostByIdUser,
+  selectPosts,
+  selectInteracts,
+  likeInteract,
+  modifyInteraction,
+  dropInteraction,
+  updatePost,
+  filterPostByTags,
+  insertComment,
+  listCommentByPostId,
+  deleteCommentByPostId,
+  deleteFavoriteByPostId,
+  deleteInteractsByPostId,
+  /**/ selectFavoriteByPost,
+  saveFavorite,
+  dropfavorite,
+  selectFavoritesPosts /**/ /*Aaron*/,
+  selectInteractsComment,
+  likeInteractComment,
+  dropInteractionComment,
+  modifyInteractionComment /*Aaron*/,
+  selectPostByTitle,
+  getComments,
+};

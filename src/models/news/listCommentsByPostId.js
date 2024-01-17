@@ -3,7 +3,7 @@ let pool = await getPool();
 
 const listCommentByPostId = async (id) => {
   const [[resultado]] = await pool.query(
-    "SELECT * FROM comments WHERE  postId = ?;",
+    "SELECT * FROM comments WHERE postId = ?",
     [id]
   );
 

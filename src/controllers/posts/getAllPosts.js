@@ -1,13 +1,12 @@
-import { selectPosts } from "../../models/news/index.js";
+import { getComments, selectPosts } from "../../models/news/index.js";
 
 const getAllPosts = async (req, res, next) => {
   try {
-
     const posts = await selectPosts();
-    res.send(posts)
-
+    const comments = await getComments();
+    res.send([posts, comments]);
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
