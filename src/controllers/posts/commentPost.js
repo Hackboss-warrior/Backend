@@ -7,7 +7,7 @@ const commentPost = async (req, res, next) => {
 
     const postId = req.params.id;
 
-    const { comment, hierarchy } = req.body;
+    const { comment } = req.body;
 
     // const comment = commentBody.comment;
 
@@ -15,7 +15,7 @@ const commentPost = async (req, res, next) => {
       generateError("El comentario no puede estar vacío", 400);
     }
 
-    await insertComment({ postId, AuthUserId, comment, hierarchy });
+    await insertComment({ postId, AuthUserId, comment });
 
     res.send(`Su comentario "${comment}" se ha publicado`);
   } catch (error) {
