@@ -4,12 +4,14 @@ import bcrypt from "bcrypt";
 import fs from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
+import sharp from "sharp";
 
 const patchUser = async (req, res, next) => {
+
   try {
+
     const AuthUserId = req.auth.jwtPayLoad.id;
     const [user] = await selectUserById(AuthUserId);
-
     let {
       name = user.name,
       firstName = user.firstName,
@@ -20,43 +22,47 @@ const patchUser = async (req, res, next) => {
       password: reqPassword,
       DOB = user.DOB,
     } = req.body;
-    
-    if (req.files){
+
+    if (req.files) {
       reqAvatar = req.files.avatar;
     }
-    
-    editUserValidation({name, firstName, BIO, nickName, email, password, DOB})
+
+
+    editUserValidation({ name, firstName, BIO, nickName, email, password: reqPassword, DOB })
+
     const password = reqPassword
       ? bcrypt.hashSync(reqPassword, 10)
       : user.passwordHash;
     let avatar;
+
+
+    res.status(200).send("Has modificado tu perfil");
+
+
 
     let processAvatar = async (reqAvatar) => {
       if (reqAvatar) {
         const archivoSubido = reqAvatar;
         const filePath = `./temp/${archivoSubido.name}`;
 
-        try {
-          await new Promise((resolve, reject) => {
-            archivoSubido.mv(filePath, async (err) => {
+        if (req.files?.avatar) {
+          const archivoSubido = req.files.avatar;
+          if (path.extname(archivoSubido.name) !== '.gif' && path.extname(archivoSubido.name) !== '.jpeg' && path.extname(archivoSubido.name) !== '.png'
+          ) {
+            generateError("Archivo de imagen no soportado. Utilice: png, jpeg o gif", 400);
+          }
+          const uniqueFilename = uuidv4() + path.extname(archivoSubido.name);
+
+          sharp(archivoSubido.data)
+            .resize(300, 200)
+            .toFile(`./uploads/${uniqueFilename}`, (err, info) => {
               if (err) {
-                reject(err);
+                generateError("Hubo un error con la subida de imagen", 500);
               }
-
-              const imageBuffer = fs.readFileSync(filePath);
-              const fileExtension = path.extname(archivoSubido.name);
-              avatar = uuidv4() + fileExtension;
-              const newFilePath = `./uploads/${avatar}`;
-
-              fs.writeFileSync(newFilePath, imageBuffer);
-              fs.unlinkSync(`./temp/${archivoSubido.name}`);
-
-              resolve();
             });
-          });
-        } catch (err) {
-          console.error("Error al subir el archivo:", err);
-          throw new Error("Error al subir el archivo");
+          return uniqueFilename;
+        } else {
+          return null;
         }
       } else {
         avatar = user.avatar;

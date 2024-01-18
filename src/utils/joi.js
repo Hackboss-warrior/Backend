@@ -18,7 +18,7 @@ const registerValidation = ({
     BIO: Joi.string().max(200),
     nickName: Joi.string().min(4).max(16).required(),
     email: Joi.string().email().required(),
-    password: Joi.string().min(6).max(20).required(),
+    password: Joi.string().min(6).max(60).required(),
     DOB: Joi.date().required(),
   });
   const validation = schema.validate({
@@ -50,7 +50,7 @@ const editUserValidation = ({
     BIO: Joi.string().max(200),
     nickName: Joi.string().min(4).max(16),
     email: Joi.string().email(),
-    password: Joi.string().min(6).max(20),
+    password: Joi.string().min(6).max(60),
     DOB: Joi.date(),
   });
   const validation = schema.validate({
