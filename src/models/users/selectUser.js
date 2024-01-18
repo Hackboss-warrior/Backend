@@ -9,21 +9,14 @@ const selectUser = async () => {
   return users;
 };
 
-const selectUserById = async (id) => {
+const selectgetUserById = async (id) => {
   const [users] = await pool.query(
     "SELECT name, firstName, avatar, BIO, nickName, email, passwordHash, DOB FROM users WHERE id=?",
     [id]
   );
   return users;
 };
-// igual que la de arriba pero no solicita passwordHash
-const selectUserByAuthToken = async (id) => {
-  const [users] = await pool.query(
-    "SELECT name, firstName, avatar, BIO, nickName, email,  DOB FROM users WHERE id=?",
-    [id]
-  );
-  return users;
-  }
 
 
-export { selectUser, selectUserById, selectUserByAuthToken };
+
+export { selectUser, selectgetUserById };

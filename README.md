@@ -94,7 +94,7 @@ npm start
 
 - [x] El patchUser debería de tener método PATCH en vez de POST.
 
-- [x] En patchUser llamáis a una función "selectUserById". Esta función no selecciona todos los users, selecciona por ID. Debería llamarse "selectUserById".
+- [x] En patchUser llamáis a una función "selectgetUserById". Esta función no selecciona todos los users, selecciona por ID. Debería llamarse "selectgetUserById".
 
 - [ ] No me convence el sistema de tags que habéis hecho para los posts. Tendríais que haber creado una tabla de mysql para las tags y relacionar posts con tags. La forma en la que lo hacéis podría funcionar, pero es muy importante que implementéis mejores validaciones, ya que ahora mismo puedo mandar cualquier texto con el formato que yo quiera o un objeto con la estructura que me de la gana.
 

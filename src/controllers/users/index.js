@@ -3,6 +3,6 @@
 import login from "./login.js";
 import register from "./register.js";
 import patchUser from "./patchUser.js";
-import { userById } from "./getUserById.js";
+import getUserById  from "./getUserById.js";
 
-export { login, register, patchUser, userById };
+export { login, register, patchUser, getUserById };

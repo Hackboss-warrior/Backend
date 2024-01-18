@@ -1,4 +1,4 @@
-import { selectUserById, editUser } from "../../models/users/index.js";
+import { selectgetUserById, editUser } from "../../models/users/index.js";
 import { editUserValidation } from "../../utils/joi.js";
 import bcrypt from "bcrypt";
 import fs from "fs";
@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 const patchUser = async (req, res, next) => {
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
-    const [user] = await selectUserById(AuthUserId);
+    const [user] = await selectgetUserById(AuthUserId);
 
     let {
       name = user.name,
@@ -20,12 +20,12 @@ const patchUser = async (req, res, next) => {
       password: reqPassword,
       DOB = user.DOB,
     } = req.body;
-    
-    if (req.files){
+
+    if (req.files) {
       reqAvatar = req.files.avatar;
     }
-    
-    editUserValidation({name, firstName, BIO, nickName, email, password, DOB})
+
+    editUserValidation({ name, firstName, BIO, nickName, email, password, DOB })
     const password = reqPassword
       ? bcrypt.hashSync(reqPassword, 10)
       : user.passwordHash;

@@ -2,7 +2,7 @@
 import selectUserByEmail from "./SelectEmailUsers.js";
 import selectUserByNickName from "./SelectNickNameUsers.js";
 import insertUser from "./insertUser.js";
-import {selectUser, selectUserById,selectUserByAuthToken} from "./selectUser.js";
+import { selectUser, selectgetUserById} from "./selectUser.js";
 import editUser from "./editUser.js"
 
-export { selectUserByEmail, selectUserByNickName, insertUser, selectUser, selectUserById, editUser,selectUserByAuthToken };
+export { selectUserByEmail, selectUserByNickName, insertUser, selectUser, selectgetUserById, editUser };
