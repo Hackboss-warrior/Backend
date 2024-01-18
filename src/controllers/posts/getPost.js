@@ -16,9 +16,7 @@ const lsPostById = async (req, res, next) => {
       );
     }
 
-    //////////////////////////////////////
     const comments = await listCommentByPostId(id);
-    //////////////////////////////////////
 
     res.send([post, comments]);
   } catch (error) {

@@ -3,7 +3,7 @@ let pool = await getPool();
 
 const listCommentByPostId = async (id) => {
   const [resultado] = await pool.query(
-    "SELECT * FROM comments WHERE postId = ?",
+    "SELECT comments.*, posts.id as postIds, users.nickName, users.avatar FROM comments INNER JOIN posts ON comments.postId = posts.id INNER JOIN users ON comments.userId = users.id WHERE postId=?",
     [id]
   );
 
