@@ -5,6 +5,8 @@ import cors from "cors";
 import useDb from "./src/db/useDb.js";
 import morgan from "morgan";
 import fileUpload from "express-fileupload";
+import { createServer } from "http";
+import { Server } from "socket.io"; // Agrega la importación de Server desde socket.io
 // Importamos las rutas
 import router from "./src/routes/index.js";
 
@@ -14,33 +16,74 @@ import { notFound, handleError } from "./src/middlewares/index.js";
 // Definimos la variable app para utilizar los métodos de express a través de ella
 const app = express();
 
-// Generamos los middlewares
-app.use(cors({ origin: ["http://localhost:5173"] }));
+//const io = new Server({ /* options */ });
+
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, { 
+  cors: {
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+  },
+ });
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+httpServer.listen(3000);
+
+
+
+
+app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.static("uploads"));
-
-/*
-app.use(
-  fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp/",
-  })
-); */
-
 app.use(fileUpload());
-
-// Apuntamos a la base de datos que queremos utilizar.
 useDb();
-
-// Ruta con todos los endpoints de usuario modularizados
 app.use(router);
-
-// Implementamos los middlewares de gestión de errores y de ruta no encontrada
 app.use(notFound);
 app.use(handleError);
 
+
+
+// app.use(cors({ origin: ["http://localhost:5173"] }));
+// app.use(express.json());
+// app.use(morgan("dev"));
+// app.use(express.static("uploads"));
+
+// /*
+// app.use(
+//   fileUpload({
+//     useTempFiles: true,
+//     tempFileDir: "/tmp/",
+//   })
+// ); */
+
+// app.use(fileUpload());
+
+// // Apuntamos a la base de datos que queremos utilizar.
+// useDb();
+
+// // Ruta con todos los endpoints de usuario modularizados
+// app.use(router);
+
+// // Implementamos los middlewares de gestión de errores y de ruta no encontrada
+// app.use(notFound);
+// app.use(handleError);
+
 // función controladora de la escucha del puerto, en caso de que este ocupada probará 4 veces y si no hay resultado pasará a probar escuchar en el puerto 5000
+// Conectar socket.io al servidor HTTP
+io.on("connection", (socket) => {
+  console.log(`Cliente conectado: ${socket.id}`);
+
+  socket.on("disconnect", () => {
+    console.log(`Cliente desconectado: ${socket.id}`);
+  });
+});
+
+export { io };
 
 // Variable que almacena el número de intentos para conectar al puerto
 let ATTEMPTS = 0;
