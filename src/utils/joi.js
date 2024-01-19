@@ -97,5 +97,20 @@ const editPostValidation = ({ title, topic, body, tags }) => {
     generateError(validation.error.message, 400);
   }
 };
+const createContactMessageValidation = ({ subject,email,body }) => {
+  const schema = Joi.object().keys({
+    subject: Joi.string().min(2).max(30),
+    email: Joi.string().min(2).max(100),
+    body: Joi.string().max(600),
+     });
 
-export { createPostValidation, registerValidation, editUserValidation, editPostValidation };
+  const validation = schema.validate({ subject,email,body});
+
+  if (validation.error) {
+    generateError(validation.error.message, 400);
+  }
+};
+
+
+
+export { createPostValidation, registerValidation, editUserValidation, editPostValidation ,createContactMessageValidation};

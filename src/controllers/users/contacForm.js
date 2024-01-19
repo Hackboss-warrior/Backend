@@ -1,18 +1,17 @@
-import generateError from "../../utils/generateError.js";
 import insertForm from "../../models/users/insertContactForm.js";
+import createContactMessageValidation from "../../utils/joi.js"
+const contacForm = async (req, res, next) => {
 
-const contacForm = async (req, res, next)=>{
+    const { subject, email, body } = req.body
+    console.log(subject, email, body);
+    try {
+        createContactMessageValidation({ subject, email, body })
+        await insertForm(subject, email, body)
 
-const {asunto, email,body} = req.body
-console.log(asunto, email,body);
-try {
-
-     await insertForm(asunto, email,body)
-    
-    res.send("Su exposición ha sido subida con el asunto: "+asunto)
-} catch (error) {
-    next(error)
-}
+        res.send("Su exposición ha sido subida con el asunto: " + subject)
+    } catch (error) {
+        next(error)
+    }
 
 }
 
