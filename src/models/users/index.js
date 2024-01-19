@@ -4,6 +4,6 @@ import selectUserByNickName from "./SelectNickNameUsers.js";
 import insertUser from "./insertUser.js";
 import { selectUser, selectgetUserById} from "./selectUser.js";
 import editUser from "./editUser.js"
-import insertFrom from "./insertContactForm.js";
+import insertForm from "./insertContactForm.js";
 
-export { selectUserByEmail, selectUserByNickName, insertUser, selectUser, selectgetUserById, editUser,insertFrom };
+export { selectUserByEmail, selectUserByNickName, insertUser, selectUser, selectgetUserById, editUser,insertForm };
