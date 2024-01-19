@@ -87,6 +87,7 @@ async function createTables() {
                );`);
 
     await pool.query(`
+<<<<<<< Updated upstream
                CREATE TABLE IF NOT EXISTS contactForm (
                  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                  asunto VARCHAR(50) NOT NULL,
@@ -98,6 +99,17 @@ async function createTables() {
 
 
 
+=======
+      CREATE TABLE IF NOT EXISTS puntoDeContacto (
+        id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        asunto VARCHAR(50) NOT NULL,
+        email VARCHAR(100),
+        body LONGTEXT NOT NULL,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
+       
+    );`);
+>>>>>>> Stashed changes
 
     console.log(`Las tablas fueron creadas con exito`);
     process.exit();
