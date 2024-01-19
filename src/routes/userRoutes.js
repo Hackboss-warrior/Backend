@@ -1,6 +1,6 @@
 import express from "express";
 import validateAuth from "../middlewares/validateAuth.js";
-import { getUserById, login, register, patchUser } from "../controllers/users/index.js";
+import { getUserById, login, register, patchUser,contacForm } from "../controllers/users/index.js";
 
 
 
@@ -12,5 +12,6 @@ router.post("/register", register);
 router.post("/login", login);
 router.patch("/user", validateAuth, patchUser);
 router.get("/profile", validateAuth, getUserById);
-
+//----------------------
+router.post("/contact", contacForm);
 export default router;

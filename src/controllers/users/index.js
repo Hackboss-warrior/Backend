@@ -4,5 +4,5 @@ import login from "./login.js";
 import register from "./register.js";
 import patchUser from "./patchUser.js";
 import getUserById  from "./getUserById.js";
-
-export { login, register, patchUser, getUserById };
+import contacForm from "./contacForm.js"
+export { login, register, patchUser, getUserById,contacForm };
