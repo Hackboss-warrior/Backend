@@ -28,19 +28,33 @@ const register = async (req, res, next) => {
       return;
     }
 
-    registerValidation({ name, firstName, BIO, nickName, email, password, DOB })
+    registerValidation({
+      name,
+      firstName,
+      BIO,
+      nickName,
+      email,
+      password,
+      DOB,
+    });
 
     const processAvatar = async () => {
       if (req.files?.avatar) {
         const archivoSubido = req.files.avatar;
-        if (path.extname(archivoSubido.name) !== '.gif' && path.extname(archivoSubido.name) !== '.jpeg' && path.extname(archivoSubido.name) !== '.png'
+        if (
+          path.extname(archivoSubido.name) !== ".gif" &&
+          path.extname(archivoSubido.name) !== ".jpeg" &&
+          path.extname(archivoSubido.name) !== ".png"
         ) {
-          generateError("Archivo de imagen no soportado. Utilice: png, jpeg o gif", 400);
+          generateError(
+            "Archivo de imagen no soportado. Utilice: png, jpeg o gif",
+            400
+          );
         }
         const uniqueFilename = uuidv4() + path.extname(archivoSubido.name);
 
         sharp(archivoSubido.data)
-          .resize(300, 200)
+          .resize(500, 500)
           .toFile(`./uploads/${uniqueFilename}`, (err, info) => {
             if (err) {
               generateError("Hubo un error con la subida de imagen", 500);
@@ -82,4 +96,3 @@ const register = async (req, res, next) => {
 };
 
 export default register;
-

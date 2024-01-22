@@ -18,6 +18,7 @@ async function createTables() {
                avatar VARCHAR(255) UNIQUE,
                nickName VARCHAR(100) NOT NULL UNIQUE,
                email VARCHAR(100) NOT NULL,
+               role VARCHAR(50) DEFAULT 'user' NOT NULL,
                passwordHash VARCHAR(255) NOT NULL,
                DOB DATE NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
