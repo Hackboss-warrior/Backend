@@ -17,7 +17,7 @@ const login = async (req, res, next) => {
       );
     }
 
-    let jwtPayLoad = { id: user[0].id };
+    let jwtPayLoad = { id: user[0].id, role: user[0].role };
 
     const token = jwt.sign(
       {
@@ -26,8 +26,10 @@ const login = async (req, res, next) => {
       process.env.TOKEN_SECRET,
       { expiresIn: "5d" }
     );
+    
+    console.log(jwtPayLoad)
 
-    res.status(200).json({ id: jwtPayLoad.id, token: token });
+    res.status(200).json({ id: jwtPayLoad.id, role:jwtPayLoad.role, token: token });
 
   } catch (error) {
     next(error);

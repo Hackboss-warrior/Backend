@@ -3,7 +3,7 @@ let pool = await getPool();
 
 const selectUser = async (email, nickName) => {
   const [users] = await pool.query(
-    "SELECT id, email, nickName, passwordHash FROM users WHERE email = ? OR nickName = ?",
+    "SELECT id, email, nickName, passwordHash, role FROM users WHERE email = ? OR nickName = ?",
     [email, nickName]
   );
 
@@ -12,7 +12,7 @@ const selectUser = async (email, nickName) => {
 
 const selectUserById = async (id) => {
   const [users] = await pool.query(
-    "SELECT name, firstName, avatar, BIO, nickName, email, passwordHash, DOB, admin FROM users WHERE id=?",
+    "SELECT name, firstName, avatar, BIO, nickName, email, passwordHash, DOB, role FROM users WHERE id=?",
     [id]
   );
 

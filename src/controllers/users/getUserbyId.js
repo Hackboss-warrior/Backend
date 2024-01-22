@@ -6,21 +6,34 @@ import { v4 as uuidv4 } from "uuid";
 import sharp from "sharp";
 import generateError from "../../utils/generateError.js";
 
-const getAllUser = async (req, res, next) => {
+const getUserbyId = async (req, res, next) => {
 
   try {
+
     const AuthUserId = req.auth.jwtPayLoad.id;
     
-    const userID = await selectUserById(AuthUserId)
-    if (userID[0].role !== 'admin'){
-        generateError("Que intentas hacer si no eres admin..., tira pa' casa flipao")
+    const userId = await selectUserById(AuthUserId)
+
+    if (!userId){
+        generateError("No tienes acceso a un perfil que no sea el tuyo")
     }
     const user = await selectUserAll()
-    res.status(200).send(user);
+    console.log("hola")
+    res.status(200).send(user[0]);
     
   } catch (error) {
     next(error);
   }
 };
 
-export default getAllUser;
+export default getUserbyId;
+
+
+
+
+
+
+
+
+
+
