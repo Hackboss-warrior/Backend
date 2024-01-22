@@ -9,7 +9,6 @@ import sharp from "sharp";
 const patchUser = async (req, res, next) => {
 
   try {
-
     const AuthUserId = req.auth.jwtPayLoad.id;
     const [user] = await selectUserById(AuthUserId);
     let {

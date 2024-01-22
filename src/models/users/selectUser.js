@@ -12,11 +12,17 @@ const selectUser = async (email, nickName) => {
 
 const selectUserById = async (id) => {
   const [users] = await pool.query(
-    "SELECT name, firstName, avatar, BIO, nickName, email, passwordHash, DOB FROM users WHERE id=?",
+    "SELECT name, firstName, avatar, BIO, nickName, email, passwordHash, DOB, admin FROM users WHERE id=?",
     [id]
   );
 
   return users;
 };
 
-export { selectUser, selectUserById };
+const selectUserAll = async () => {
+  const [users] = await pool.query("SELECT * FROM users");
+
+  return users;
+};
+
+export { selectUser, selectUserById, selectUserAll };

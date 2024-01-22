@@ -3,13 +3,13 @@ import generateError from "../utils/generateError.js";
 
 const validateAuth = (req, res, next) => {
   try {
-    const { authorization } = req.headers;
-
-    if (!authorization) {
-      return generateError("El header 'authorization' es requerido", 401);
-    }
+    const  {authorization}  = req.headers;
 
     const [tokenType, token] = authorization.split(" ");
+
+    if (token === "null") {
+      return generateError("El header 'authorization' es requerido", 401);
+    }
 
     if (tokenType !== "Bearer") {
       return generateError("El token debe ser de tipo 'Bearer'", 400);
@@ -23,7 +23,6 @@ const validateAuth = (req, res, next) => {
       return generateError("El token es inválido", 400);
     }
 
-    
   } catch (error) {
     next(error);
   }
