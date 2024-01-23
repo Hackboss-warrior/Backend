@@ -93,7 +93,7 @@ async function createTables() {
         email VARCHAR(100),
         body LONGTEXT NOT NULL,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-        modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
+        modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP           
        
     );`);
 

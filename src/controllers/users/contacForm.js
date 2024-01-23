@@ -1,5 +1,5 @@
 import insertForm from "../../models/users/insertContactForm.js";
-import createContactMessageValidation from "../../utils/joi.js"
+import {createContactMessageValidation} from "../../utils/joi.js"
 const contacForm = async (req, res, next) => {
 
     const { subject, email, body } = req.body
