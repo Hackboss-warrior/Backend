@@ -1,4 +1,4 @@
-import { selectUserById, selectUserAll } from "../../models/users/index.js";
+import { selectUserById } from "../../models/users/index.js";
 import generateError from "../../utils/generateError.js";
 
 const getUserbyId = async (req, res, next) => {
