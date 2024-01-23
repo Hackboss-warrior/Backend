@@ -9,7 +9,7 @@ import generateError from "../../utils/generateError.js";
 const getUserbyId = async (req, res, next) => {
 
   try {
-
+    
     const AuthUserId = req.auth.jwtPayLoad.id;
     
     const userId = await selectUserById(AuthUserId)
@@ -17,9 +17,8 @@ const getUserbyId = async (req, res, next) => {
     if (!userId){
         generateError("No tienes acceso a un perfil que no sea el tuyo")
     }
-    const user = await selectUserAll()
-    console.log("hola")
-    res.status(200).send(user[0]);
+
+    res.status(200).send(userId[0]);
     
   } catch (error) {
     next(error);
