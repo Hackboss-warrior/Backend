@@ -41,4 +41,17 @@ const dropInteraction = async (like, postId, AuthUserId) => {
   }
 };
 
-export { likeInteract, modifyInteraction, dropInteraction };
+const listInteractsByPostId = async (id) => {
+  const [resultado] = await pool.query(
+    "SELECT interacts.*, posts.id FROM interacts INNER JOIN posts ON interacts.postId = posts.id WHERE postId = ?",
+    [id]
+  );
+
+  return resultado;
+};
+export {
+  likeInteract,
+  modifyInteraction,
+  dropInteraction,
+  listInteractsByPostId,
+};
