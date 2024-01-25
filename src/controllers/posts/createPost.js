@@ -43,20 +43,16 @@ const createPost = async (req, res, next) => {
       }
     };
 
-    uniqueFilename = await uploadFile(); 
+    uniqueFilename = await uploadFile();
 
     createPostValidation({ title, topic, body });
-    
-    
 
     await insertPost({ title, topic, uniqueFilename, body, tags, AuthUserId });
 
-    res.send(title);
+    res.send(`Felicidades su artículo ${title} se ha publicado con éxito`);
   } catch (error) {
     next(error);
   }
 };
 
-
 export default createPost;
-
