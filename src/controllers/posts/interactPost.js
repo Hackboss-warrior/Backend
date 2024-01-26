@@ -9,7 +9,7 @@ const interactPost = async (req, res, next) => {
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
     let { like, postId } = req.body;
-
+    console.log(AuthUserId);
     const selectPost = await selectInteracts(postId, AuthUserId);
 
     if (selectPost === undefined) {
