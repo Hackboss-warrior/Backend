@@ -1,4 +1,4 @@
-import { insertComment } from "../../models/news/index.js";
+import { getComments, insertComment } from "../../models/news/index.js";
 import generateError from "../../utils/generateError.js";
 
 const commentPost = async (req, res, next) => {
@@ -17,7 +17,8 @@ const commentPost = async (req, res, next) => {
 
     await insertComment({ postId, AuthUserId, comment });
 
-    res.send(`Su comentario "${comment}" se ha publicado`);
+    const resComments = await getComments();
+    res.send(resComments);
   } catch (error) {
     next(error);
   }

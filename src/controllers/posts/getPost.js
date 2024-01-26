@@ -1,5 +1,6 @@
 import {
   listCommentByPostId,
+  listInteractsByPostId,
   selectPostById,
 } from "../../models/news/index.js";
 import generateError from "../../utils/generateError.js";
@@ -9,6 +10,7 @@ const lsPostById = async (req, res, next) => {
     const id = req.params.id;
 
     const post = await selectPostById(id);
+
     if (!post) {
       generateError(
         "El post solicitado no existe, por favor compruebe su solicitud",
@@ -18,7 +20,9 @@ const lsPostById = async (req, res, next) => {
 
     const comments = await listCommentByPostId(id);
 
-    res.send([post, comments]);
+    const likes = await listInteractsByPostId(id);
+
+    res.send([post, comments, likes]);
   } catch (error) {
     next(error);
   }
