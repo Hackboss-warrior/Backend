@@ -37,7 +37,7 @@ import {
 import selectPostByTitle from "./selectPostByTitle.js";
 import getComments from "./getComments.js";
 import  aboutCount  from "./aboutCount.js";
-
+import insertContactForm from "./insertContactForm.js";
 
 export {
   aboutCount, 
@@ -59,15 +59,17 @@ export {
   deleteCommentByPostId,
   deleteFavoriteByPostId,
   deleteInteractsByPostId,
-  /**/ selectFavoriteByPost,
+  selectFavoriteByPost,
   saveFavorite,
   dropfavorite,
-  selectFavoritesPosts /**/ /*Aaron*/,
+  selectFavoritesPosts ,
   selectInteractsComment,
   likeInteractComment,
   dropInteractionComment,
-  modifyInteractionComment /*Aaron*/,
+  modifyInteractionComment ,
   selectPostByTitle,
   getComments,
+  insertContactForm
   listInteractsByPostId,
+
 };

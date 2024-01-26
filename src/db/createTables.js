@@ -98,6 +98,17 @@ async function createTables() {
                 FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
               );`);
 
+    await pool.query(`
+              CREATE TABLE IF NOT EXISTS contactPoint (
+        id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        subject VARCHAR(100) NOT NULL,
+        email VARCHAR(50),
+        body LONGTEXT NOT NULL,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP            
+       
+    );`);
+
     console.log(`Las tablas fueron creadas con exito`);
     process.exit();
   } catch (error) {
