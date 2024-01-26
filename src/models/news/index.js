@@ -10,11 +10,12 @@ import {
 } from "./deletePost.js";
 import selectIdPostByIdUser from "./selectIdPostByIdUser.js";
 import selectPosts from "./selectPosts.js";
-import selectInteracts from "./selectInteracts.js";
+import { selectInteracts, selectAllInteracts } from "./selectInteracts.js";
 import {
   likeInteract,
   modifyInteraction,
   dropInteraction,
+  listInteractsByPostId,
 } from "./interactPost.js";
 import updatePost from "./updatePost.js";
 import filterPostByTags from "./filterPostByTags.js";
@@ -47,6 +48,7 @@ export {
   selectIdPostByIdUser,
   selectPosts,
   selectInteracts,
+  selectAllInteracts,
   likeInteract,
   modifyInteraction,
   dropInteraction,
@@ -68,4 +70,6 @@ export {
   selectPostByTitle,
   getComments,
   insertContactForm
+  listInteractsByPostId,
+
 };
