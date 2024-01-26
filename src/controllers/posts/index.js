@@ -12,7 +12,8 @@ import commentPost from "./commentPost.js";
 import  {selectFavorites,insertFavorite} from "./favorites.js";
 import interactComments from "./likeComments.js";
 import lsPostByTitle from "./SearchPost.js"
+import aboutCounting from "./aboutCount.js";
 
-export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost,commentPost,selectFavorites,insertFavorite, interactComments,lsPostByTitle };
+export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost,commentPost,selectFavorites,insertFavorite, interactComments,lsPostByTitle, aboutCounting };
 
 
