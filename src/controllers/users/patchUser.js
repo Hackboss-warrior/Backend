@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import sharp from "sharp";
+import generateError from "../../utils/generateError.js";
 
 const patchUser = async (req, res, next) => {
 
@@ -53,7 +54,7 @@ const patchUser = async (req, res, next) => {
           const uniqueFilename = uuidv4() + path.extname(archivoSubido.name);
 
           sharp(archivoSubido.data)
-            .resize(300, 200)
+            .resize(500, 500)
             .toFile(`./uploads/${uniqueFilename}`, (err, info) => {
               if (err) {
                 generateError("Hubo un error con la subida de imagen", 500);

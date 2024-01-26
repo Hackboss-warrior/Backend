@@ -35,8 +35,11 @@ import {
 } from "./likeComents.js";
 import selectPostByTitle from "./selectPostByTitle.js";
 import getComments from "./getComments.js";
+import  aboutCount  from "./aboutCount.js";
+
 
 export {
+  aboutCount, 
   insertPost,
   selectPostByIdLimit,
   selectPostById,
