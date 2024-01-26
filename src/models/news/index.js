@@ -69,7 +69,7 @@ export {
   modifyInteractionComment ,
   selectPostByTitle,
   getComments,
-  insertContactForm
-  listInteractsByPostId,
+  insertContactForm,
+  listInteractsByPostId
 
 };

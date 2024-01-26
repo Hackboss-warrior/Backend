@@ -101,8 +101,8 @@ const editPostValidation = ({ title, topic, body, tags }) => {
 const createPostContactValidation = ({ subject, email, body}) => {
   const schema = Joi.object().keys({
     subject: Joi.string().min(2).max(50).required(),
-    email: Joi.string().min(2).max(100),
-    body: Joi.string().max(600),
+    email: Joi.string().min(2).max(100).required(),
+    body: Joi.string().max(600).required(),
     
   });
 
