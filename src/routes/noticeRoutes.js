@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createPost, lsPostById, deletePost, interactPost, getAllPosts, patchPost, filterPost, selectFavorites, insertFavorite, commentPost, interactComments,lsPostByTitle,aboutCounting } from "../controllers/posts/index.js";
+import { createPost, lsPostById, deletePost, interactPost, getAllPosts, patchPost, filterPost, selectFavorites, insertFavorite, commentPost, interactComments,lsPostByTitle,aboutCounting, postContactForm } from "../controllers/posts/index.js";
 
 
 import validateAuth from "../middlewares/validateAuth.js";
@@ -22,5 +22,7 @@ router.get("/favorites", validateAuth, selectFavorites);
 router.post("/post/:id", validateAuth, commentPost);
 router.post("/likeComments", validateAuth, interactComments);
 router.get("/about", aboutCounting);
+router.post("/contact", postContactForm);
+
 export default router;
 
