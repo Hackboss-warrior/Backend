@@ -1,5 +1,5 @@
 import express from "express";
-import validateAuth from "../middlewares/validateAuth.js";
+import {validateAuth} from "../middlewares/index.js";
 import { login, register, patchUser, getAllUser, getUserbyId } from "../controllers/users/index.js";
 
 // Creamos el enrutador de express

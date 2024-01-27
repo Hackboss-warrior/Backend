@@ -27,7 +27,6 @@ const patchUser = async (req, res, next) => {
       reqAvatar = req.files.avatar;
     }
 
-
     editUserValidation({ name, firstName, BIO, nickName, email, password: reqPassword, DOB })
 
     const password = reqPassword
