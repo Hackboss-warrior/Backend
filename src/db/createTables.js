@@ -32,7 +32,6 @@ async function createTables() {
         files VARCHAR(255),
         topic VARCHAR(100),
         body LONGTEXT NOT NULL,
-        tags LONGTEXT DEFAULT ('{"Política":false, "Economía":false, "Tecnología":false, "Ciencia":false, "Salud":false, "Cultura":false, "Deportes":false, "Entretenimiento":false}'),
         userId INT NOT NULL,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
         modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,            
@@ -97,18 +96,43 @@ async function createTables() {
                 FOREIGN KEY (answerRef) REFERENCES answers(id) ON DELETE CASCADE ON UPDATE CASCADE,
                 FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
               );`);
-
     await pool.query(`
               CREATE TABLE IF NOT EXISTS contactPoint (
-        id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        subject VARCHAR(100) NOT NULL,
-        email VARCHAR(50),
-        body LONGTEXT NOT NULL,
-        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-        modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP            
-       
-    );`);
-
+                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                subject VARCHAR(100) NOT NULL,
+                email VARCHAR(50),
+                body LONGTEXT NOT NULL,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP            
+              );`);
+    await pool.query(`
+              CREATE TABLE IF NOT EXISTS tags (
+                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                tag VARCHAR(100) NOT NULL,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP            
+              );`);
+    await pool.query(`
+              INSERT INTO tags (id, tag) VALUES
+              (1, 'Política'),
+              (2, 'Economía'),
+              (3, 'Tecnología'),
+              (4, 'Ciencia'),
+              (5, 'Salud'),
+              (6, 'Cultura'),
+              (7, 'Deportes'),
+              (8, 'Entretenimiento');
+            `);
+    await pool.query(`
+              CREATE TABLE IF NOT EXISTS postTags (
+                id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                tagId INT NOT NULL,
+                postId INT NOT NULL,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                FOREIGN KEY (tagId) REFERENCES tags(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE           
+              );`);
     console.log(`Las tablas fueron creadas con exito`);
     process.exit();
   } catch (error) {

@@ -19,4 +19,16 @@ const editUser = async ({
   return insertId;
 };
 
-export default editUser;
+const editUserAdmin = async ({
+  id,
+  role,
+}) => {
+  const [{ insertId }] = await pool.query(
+    "UPDATE users SET role = ? WHERE id = ?",
+    [role, id]
+  );
+  console.log(role, id)
+  return insertId;
+};
+
+export {editUser, editUserAdmin};

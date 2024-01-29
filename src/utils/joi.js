@@ -68,30 +68,28 @@ const editUserValidation = ({
 };
 
 //guardar nueva noticia
-const createPostValidation = ({ title, topic, body, tags }) => {
+const createPostValidation = ({ title, topic, body}) => {
   const schema = Joi.object().keys({
     title: Joi.string().min(2).max(30).required(),
     topic: Joi.string().min(2).max(100),
     body: Joi.string().max(600),
-    tags: Joi.object(),
   });
 
-  const validation = schema.validate({ title, topic, body, tags });
+  const validation = schema.validate({ title, topic, body });
 
   if (validation.error) {
     generateError(validation.error.message, 400);
   }
 };
 
-const editPostValidation = ({ title, topic, body, tags }) => {
+const editPostValidation = ({ title, topic, body }) => {
   const schema = Joi.object().keys({
     title: Joi.string().min(2).max(30),
     topic: Joi.string().min(2).max(100),
     body: Joi.string().max(600),
-    tags: Joi.object(),
   });
 
-  const validation = schema.validate({ title, topic, body, tags });
+  const validation = schema.validate({ title, topic, body});
 
   if (validation.error) {
     generateError(validation.error.message, 400);

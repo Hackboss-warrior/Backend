@@ -5,4 +5,7 @@ import register from "./register.js";
 import patchUser from "./patchUser.js";
 import getAllUser from "./getAllUser.js"
 import getUserbyId from "./getUserbyId.js"
-export { login, register, patchUser, getAllUser, getUserbyId };
+import deleteUserAdmin from "./deleteUserAdmin.js"
+import patchUserAdmin from "./patchUserAdmin.js"
+
+export { login, register, patchUser, getAllUser, getUserbyId, deleteUserAdmin, patchUserAdmin };

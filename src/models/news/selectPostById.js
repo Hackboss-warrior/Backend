@@ -12,7 +12,7 @@ const selectPostById = async (id) => {
 
 const selectPostByIdLimit = async (id) => {
   const [[resultado]] = await pool.query(
-    "SELECT title, files, topic, body, tags FROM posts WHERE  id = ?;",
+    "SELECT title, files, topic, body, FROM posts WHERE  id = ?;",
     [id]
   );
 

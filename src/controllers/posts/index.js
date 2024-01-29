@@ -14,7 +14,9 @@ import interactComments from "./likeComments.js";
 import lsPostByTitle from "./SearchPost.js"
 import aboutCounting from "./aboutCount.js";
 import postContactForm from "./contactForm.js";
+import deletePostAdmin from "./deletePostAdmin.js";
+import answerPost from "./answerPost.js"
 
-export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost,commentPost,selectFavorites,insertFavorite, interactComments,lsPostByTitle, aboutCounting, postContactForm };
+export { createPost,lsPostById,deletePost, interactPost, getAllPosts, patchPost, filterPost,commentPost,selectFavorites,insertFavorite, interactComments,lsPostByTitle, aboutCounting, postContactForm, deletePostAdmin, answerPost };
 
 

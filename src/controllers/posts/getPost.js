@@ -17,7 +17,7 @@ const lsPostById = async (req, res, next) => {
         400
       );
     }
-
+    
     const comments = await listCommentByPostId(id);
 
     const likes = await listInteractsByPostId(id);

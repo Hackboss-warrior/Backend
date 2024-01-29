@@ -6,13 +6,13 @@ const insertPost = async ({
   uniqueFilename,
   topic,
   body,
-  tags,
   AuthUserId,
+  tag,
 }) => {
   let [{ InsertId }] = await pool.query(
-    `INSERT INTO posts (title,files,topic,body,tags,userId) 
+    `INSERT INTO posts (title,files,topic,body,userId,tag) 
      VALUES (?,?,?,?,?,?)`,
-    [title, uniqueFilename, topic, body, tags, AuthUserId]
+    [title, uniqueFilename, topic, body, AuthUserId, tag]
   );
 
   return InsertId;

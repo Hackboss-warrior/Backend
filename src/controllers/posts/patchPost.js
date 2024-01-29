@@ -18,16 +18,16 @@ const patchPost = async (req, res, next) => {
       generateError("Solo puedes editar noticias tuyas", 403);
     }
 
-    editPostValidation = ({ title, topic, body, tags })
+    editPostValidation = ({ title, topic, body })
 
     const postToUpdate = {
        ...post,
        ...req.body,
     };
     
-    const { title, files, topic, body, tags } = postToUpdate;
+    const { title, files, topic, body } = postToUpdate;
     
-    await updatePost({ title, files, topic, body, tags, id })
+    await updatePost({ title, files, topic, body, id })
     const updatedPost = await selectPostByIdLimit(id)
     res.send({ updatedPost });
 

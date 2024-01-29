@@ -1,16 +1,14 @@
 import getPool from "../../db/pool.js";
-import generateError from "../../utils/generateError.js";
 let pool = await getPool();
 
-const filterPostByTags = async ({ etiqueta }) => {
-  const conditions = etiqueta.map(etiqueta => `JSON_EXTRACT(tags, '$.${etiqueta}') = true`).join(' OR ');
-  const queryString = `SELECT title, files, topic, body, tags, userId, createdAt FROM posts WHERE ${conditions}`;
-  try {
-    const [rows] = await pool.query(queryString);
-    return rows;
-  } catch (error) {
-    generateError(`Error al buscar posts por etiquetas:${error}`, 400)
-  }
+const filterPostByTags = async (tag) => {
+  const [resultado] = await pool.query(
+    "SELECT users.nickName, users.avatar, users.id as idUserTable,  posts.*, comments.comment, interacts.postId as interactPostId, interacts.userId as interactUserId, interacts.interaction FROM users INNER JOIN posts ON users.id = posts.userId LEFT JOIN comments ON posts.id = comments.postId LEFT JOIN interacts ON posts.id = interacts.postId WHERE posts.tag = ?",
+    [tag]
+  );
+
+  return resultado;
 };
+
 
 export default filterPostByTags;

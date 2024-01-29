@@ -194,11 +194,6 @@
 									"key": "body",
 									"value": "Contenido del artículo de prueba 1",
 									"type": "text"
-								},
-								{
-									"key": "tags",
-									"value": "{ \"Política\": true, \"Economía\": false, \"Tecnología\": false,  \"Ciencia\": true, \"Salud\": false, \"Cultura\": false, \"Deportes\": false, \"Entretenimiento\": false }",
-									"type": "text"
 								}
 							]
 						},
