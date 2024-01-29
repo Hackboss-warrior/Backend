@@ -9,9 +9,12 @@ import generateError from "../../utils/generateError.js";
 
 const patchUser = async (req, res, next) => {
 
+  
+
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
     const [user] = await selectUserById(AuthUserId);
+    
     let {
       name = user.name,
       firstName = user.firstName,
@@ -22,22 +25,17 @@ const patchUser = async (req, res, next) => {
       password: reqPassword,
       DOB = user.DOB,
     } = req.body;
-
+    
     if (req.files) {
       reqAvatar = req.files.avatar;
     }
-
-    editUserValidation({ name, firstName, BIO, nickName, email, password: reqPassword, DOB })
 
     const password = reqPassword
       ? bcrypt.hashSync(reqPassword, 10)
       : user.passwordHash;
     let avatar;
 
-
-    res.status(200).send("Has modificado tu perfil");
-
-
+    editUserValidation( name, firstName, BIO, nickName, password, email,  DOB )
 
     let processAvatar = async (reqAvatar) => {
       if (reqAvatar) {
