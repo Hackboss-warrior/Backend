@@ -35,12 +35,17 @@ import {
   modifyInteractionComment,
 } from "./likeComents.js";
 import selectPostByTitle from "./selectPostByTitle.js";
-import getComments from "./getComments.js";
-import  aboutCount  from "./aboutCount.js";
+import {
+  getComments,
+  getCommentsbyId,
+  selectIdCommentByIdUser,
+  deleteCommentById,
+} from "./getComments.js";
+import aboutCount from "./aboutCount.js";
 import insertContactForm from "./insertContactForm.js";
 
 export {
-  aboutCount, 
+  aboutCount,
   insertPost,
   selectPostByIdLimit,
   selectPostById,
@@ -62,14 +67,16 @@ export {
   selectFavoriteByPost,
   saveFavorite,
   dropfavorite,
-  selectFavoritesPosts ,
+  selectFavoritesPosts,
   selectInteractsComment,
   likeInteractComment,
   dropInteractionComment,
-  modifyInteractionComment ,
+  modifyInteractionComment,
   selectPostByTitle,
   getComments,
   insertContactForm,
-  listInteractsByPostId
-
+  listInteractsByPostId,
+  getCommentsbyId,
+  selectIdCommentByIdUser,
+  deleteCommentById,
 };

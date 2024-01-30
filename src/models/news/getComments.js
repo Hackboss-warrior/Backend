@@ -9,4 +9,30 @@ const getComments = async () => {
   return resultado;
 };
 
-export default getComments;
+const getCommentsbyId = async (id) => {
+  const [resultado] = await pool.query("SELECT * FROM comments WHERE id= ?", [
+    id,
+  ]);
+
+  return resultado;
+};
+
+const selectIdCommentByIdUser = async (id) => {
+  const [[resultado]] = await pool.query(
+    "SELECT * FROM comments WHERE id = ?;",
+    [id]
+  );
+
+  return resultado;
+};
+
+const deleteCommentById = async (id) => {
+  await pool.query("DELETE FROM comments WHERE  id = ?;", [id]);
+};
+
+export {
+  getComments,
+  getCommentsbyId,
+  selectIdCommentByIdUser,
+  deleteCommentById,
+};
