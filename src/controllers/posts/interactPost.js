@@ -3,6 +3,7 @@ import {
   modifyInteraction,
   selectInteracts,
   dropInteraction,
+  selectAllInteracts,
 } from "../../models/news/index.js";
 
 const interactPost = async (req, res, next) => {
@@ -14,16 +15,19 @@ const interactPost = async (req, res, next) => {
 
     if (selectPost === undefined) {
       await likeInteract(like, postId, AuthUserId);
-      res.status(200).send("Has interactuado correctamente👍");
+      // res.status(200).send("Has interactuado correctamente👍");
     } else if (selectPost.interaction === like) {
       await dropInteraction(like, postId, AuthUserId);
-      res.status(200).send("Has borrado correctamente la interación👍");
+      // res.status(200).send("Has borrado correctamente la interación👍");
     } else {
       await modifyInteraction(like, postId, AuthUserId);
-      res.status(200).send("Has modificado la interación correctamente");
+      //res.status(200).send("Has modificado la interación correctamente");
     }
   } catch (error) {
     next(error);
+  } finally {
+    const interacts = await selectAllInteracts();
+    res.status(200).send(interacts);
   }
 };
 

@@ -49,6 +49,7 @@ const listInteractsByPostId = async (id) => {
 
   return resultado;
 };
+
 export {
   likeInteract,
   modifyInteraction,
