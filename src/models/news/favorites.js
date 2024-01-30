@@ -45,7 +45,15 @@ const selectFavoritesPosts = async (AuthUserId) => {
   const [resultado] = await pool.query("SELECT * FROM favorites where userId=?", [AuthUserId]);
 
   return resultado
-}
+  }
+// const selectFavoritesPostsById = async (AuthUserId) => {
+
+
+//   const [resultado] = await pool.query("SELECT p.*, c.comment,i.interaction FROM favorites f  INNER JOIN posts p ON  f.postId = p.Id LEFT JOIN comments c ON c.postId = p.id Left JOIN interacts i ON i.postId = p. id where f.userId=?; ", [AuthUserId]);
+
+//   return resultado
+// }
+
 
 
 export { selectFavoriteByPost, saveFavorite, dropfavorite, selectFavoritesPosts };

@@ -31,7 +31,17 @@ const selectFavorites = async (req, res, next) => {
     }
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+// const selectFavoritesById = async (req, res, next) => {
+//     try {
+//         const AuthUserId = req.auth.jwtPayLoad.id;
+//         const favoritos = await selectFavoritesPostsById(AuthUserId);
+//         res.send(favoritos)
 
+//     } catch (error) {
+//         next(error)
+//     }
+// };
 
 
 
