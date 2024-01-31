@@ -7,8 +7,9 @@ import {
   const lsPostByTitle = async (req, res, next) => {
     try {
       const title = req.params.title;
-  
+
       const post = await selectPostByTitle(title);
+
       if (!post) {
         generateError(
           "El post solicitado no existe, por favor compruebe su solicitud",
