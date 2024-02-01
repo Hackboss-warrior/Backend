@@ -1,4 +1,5 @@
 import {
+  getFavoriteByPost,
   listCommentByPostId,
   listInteractsByPostId,
   selectPostById,
@@ -17,12 +18,13 @@ const lsPostById = async (req, res, next) => {
         400
       );
     }
-    
+
     const comments = await listCommentByPostId(id);
 
     const likes = await listInteractsByPostId(id);
+    const favs = await getFavoriteByPost(id);
 
-    res.send([post, comments, likes]);
+    res.send([post, comments, likes, favs]);
   } catch (error) {
     next(error);
   }
