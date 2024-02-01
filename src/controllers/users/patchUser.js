@@ -1,7 +1,6 @@
 import { selectUserById, editUser } from "../../models/users/index.js";
 import { editUserValidation } from "../../utils/joi.js";
 import bcrypt from "bcrypt";
-import fs from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import sharp from "sharp";
@@ -52,7 +51,7 @@ const patchUser = async (req, res, next) => {
 
           sharp(archivoSubido.data)
             .resize(500, 500)
-            .toFile(`./uploads/${uniqueFilename}`, (err, info) => {
+            .toFile(`./uploads/${uniqueFilename}`, (err, ) => {
               if (err) {
                 generateError("Hubo un error con la subida de imagen", 500);
               }

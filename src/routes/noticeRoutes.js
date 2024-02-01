@@ -18,6 +18,7 @@ import {
   postContactForm,
   deletePostAdmin,
   deleteComment,
+  selectFavoritesByToken
 } from "../controllers/posts/index.js";
 
 import validateAuth from "../middlewares/validateAuth.js";
@@ -30,7 +31,8 @@ router.delete("/comments/:id", validateAuth, deleteComment);
 router.post("/posts", validateAuth, createPost);
 router.get("/post/:id", lsPostById);
 //--------------------------------------------
-router.get("/posts/:title", lsPostByTitle);
+router.get("/search", lsPostByTitle);
+router.get("/myfavorites", validateAuth, selectFavoritesByToken);
 //--------------------------------------------
 router.get("/posts", getAllPosts);
 router.post("/liked", validateAuth, interactPost);

@@ -1,9 +1,11 @@
+
 import {
   selectFavoriteByPost,
   saveFavorite,
   dropfavorite,
   selectFavoritesPosts,
   getFavorites,
+  selectFavoritesPostsById
 } from "../../models/news/index.js";
 
 const insertFavorite = async (req, res, next) => {
@@ -28,6 +30,7 @@ const insertFavorite = async (req, res, next) => {
 };
 
 const selectFavorites = async (req, res, next) => {
+
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
     const favoritos = await selectFavoritesPosts(AuthUserId);
@@ -35,18 +38,23 @@ const selectFavorites = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-// const selectFavoritesById = async (req, res, next) => {
-//     try {
-//         const AuthUserId = req.auth.jwtPayLoad.id;
-//         const favoritos = await selectFavoritesPostsById(AuthUserId);
-//         res.send(favoritos)
+/////////////////////////////////////////////////////////////////////////////////////////////
+const selectFavoritesByToken = async (req, res, next) => {
+    try {
+        const authUserId = req.auth.jwtPayLoad.id;
+        const postsFavorites = await selectFavoritesPostsById(authUserId);
+        console.log(postsFavorites, "FAVORITESpost");
+        res.send(
+            postsFavorites
+        );
+    } catch (error) {
+        next(error);
+    }
+};
 
-//     } catch (error) {
-//         next(error)
-//     }
-// };
 
-export { selectFavorites, insertFavorite };
+export { selectFavorites, insertFavorite,selectFavoritesByToken };
+

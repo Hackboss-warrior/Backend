@@ -9,7 +9,7 @@ import deleteComment from "./deleteComment.js";
 import patchPost from "./patchPost.js";
 import filterPost from "./filterPost.js";
 import commentPost from "./commentPost.js";
-import { selectFavorites, insertFavorite } from "./favorites.js";
+import { selectFavorites, insertFavorite,selectFavoritesByToken } from "./favorites.js";
 import interactComments from "./likeComments.js";
 import lsPostByTitle from "./SearchPost.js";
 import aboutCounting from "./aboutCount.js";
@@ -35,4 +35,5 @@ export {
   deletePostAdmin,
   answerPost,
   deleteComment,
+  selectFavoritesByToken
 };

@@ -29,6 +29,9 @@ import {
   selectFavoritesPosts,
   getFavorites,
   getFavoriteByPost,
+
+  selectFavoritesPostsById
+
 } from "./favorites.js";
 import {
   selectInteractsComment,
@@ -83,4 +86,6 @@ export {
   deleteCommentById,
   getFavorites,
   getFavoriteByPost,
+  selectFavoritesPostsById
+
 };
