@@ -4,8 +4,7 @@ import {
   saveFavorite,
   dropfavorite,
   selectFavoritesPosts,
-  getFavorites,
-  selectFavoritesPostsById
+  getFavorites
 } from "../../models/news/index.js";
 
 const insertFavorite = async (req, res, next) => {
@@ -41,20 +40,4 @@ const selectFavorites = async (req, res, next) => {
 
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-const selectFavoritesByToken = async (req, res, next) => {
-    try {
-        const authUserId = req.auth.jwtPayLoad.id;
-        const postsFavorites = await selectFavoritesPostsById(authUserId);
-        console.log(postsFavorites, "FAVORITESpost");
-        res.send(
-            postsFavorites
-        );
-    } catch (error) {
-        next(error);
-    }
-};
-
-
-export { selectFavorites, insertFavorite,selectFavoritesByToken };
-
+export { selectFavorites, insertFavorite}
