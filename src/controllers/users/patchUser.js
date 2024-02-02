@@ -80,8 +80,9 @@ const patchUser = async (req, res, next) => {
           DOB,
         });
 
-        res.status(200).send("Has modificado tu perfil");
+        res.status(200).send([user]);
       })
+      
       .catch((error) => {
         next(error);
       });
