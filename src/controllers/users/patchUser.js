@@ -5,14 +5,13 @@ import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import sharp from "sharp";
 import generateError from "../../utils/generateError.js";
-
 const patchUser = async (req, res, next) => {
 
   
 
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
-    const [user] = await selectUserById(AuthUserId);
+    let [user] = await selectUserById(AuthUserId);
     
     let {
       name = user.name,
@@ -79,6 +78,9 @@ const patchUser = async (req, res, next) => {
           password,
           DOB,
         });
+
+     [user] = await selectUserById(AuthUserId);
+    
 
         res.status(200).send([user]);
       })
