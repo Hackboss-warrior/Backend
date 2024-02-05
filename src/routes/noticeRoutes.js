@@ -32,7 +32,7 @@ router.post("/posts", validateAuth, createPost);
 router.get("/post/:id", lsPostById);
 //--------------------------------------------
 router.get("/search", lsPostByTitle);
-router.get("/myfavorites", validateAuth, selectFavoritesByToken);
+
 //--------------------------------------------
 router.get("/posts", getAllPosts);
 router.post("/liked", validateAuth, interactPost);
@@ -45,5 +45,5 @@ router.post("/answers", answerPost);
 router.post("/likeComments", validateAuth, interactComments);
 router.get("/about", aboutCounting);
 router.post("/contact", postContactForm);
-
+router.get("/myfavorites", validateAuth, selectFavoritesByToken);
 export default router;

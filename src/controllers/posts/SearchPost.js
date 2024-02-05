@@ -1,28 +1,50 @@
 import {
-    selectPostByTitle
-  } from "../../models/news/index.js";
-  import generateError from "../../utils/generateError.js";
-
-  
-  const lsPostByTitle = async (req, res, next) => {
-    try {
-
-      const title = req.params.title;
-
-      const post = await selectPostByTitle(title);
+  filterPostByTags,
+  getComments,
+  selectAllInteracts,
+  selectPostByTitle, selectPostByTitleTag
+} from "../../models/news/index.js";
+import generateError from "../../utils/generateError.js";
 
 
-      if (!post) {
-        generateError(
-          "El post solicitado no existe, por favor compruebe su solicitud",
-          400
-        );
-      }
-      res.send(post);/*comments*/
-    } catch (error) {
-      next(error);
+const lsPostByTitle = async (req, res, next) => {
+  try {
+
+    const { title, tag } = req.query;
+    let post
+
+    if (!title) {
+      post = await filterPostByTags(tag)
     }
-  };
-  
-  export default lsPostByTitle;
-  
+    if (!tag) {
+      post = await selectPostByTitle(title)
+    }
+    if (title && tag) {
+      post = await selectPostByTitleTag(title, tag);
+    }
+
+
+
+    if (!post) {
+      generateError(
+        "El post solicitado no existe, por favor compruebe su solicitud",
+        400
+      );
+    }
+
+
+    const likes = await selectAllInteracts();
+ 
+    const comments = await getComments();
+
+
+
+
+    res.send([post, comments, likes]);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+export default lsPostByTitle;

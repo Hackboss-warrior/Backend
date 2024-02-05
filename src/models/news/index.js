@@ -39,7 +39,7 @@ import {
   dropInteractionComment,
   modifyInteractionComment,
 } from "./likeComents.js";
-import selectPostByTitle from "./selectPostByTitle.js";
+import {selectPostByTitle,selectPostByTitleTag} from "./selectPostByTitle.js";
 import {
   getComments,
   getCommentsbyId,
@@ -86,6 +86,7 @@ export {
   deleteCommentById,
   getFavorites,
   getFavoriteByPost,
-  selectFavoritesPostsById
+  selectFavoritesPostsById,
+  selectPostByTitleTag
 
 };
