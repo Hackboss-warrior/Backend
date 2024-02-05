@@ -11,4 +11,16 @@ const filterPostByTags = async (tag) => {
 };
 
 
-export default filterPostByTags;
+const SearchPostByTags = async (tag) => {
+  const [resultado] = await pool.query(
+    "SELECT  p.*,u.nickName, u.avatar FROM  users u INNER JOIN posts p ON u.id = p.userId WHERE p.tag = ?",
+    [tag]
+  );
+
+  return resultado;
+};
+
+
+
+
+export  {filterPostByTags, SearchPostByTags};

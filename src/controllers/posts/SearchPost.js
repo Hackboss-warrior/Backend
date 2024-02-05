@@ -1,5 +1,5 @@
 import {
-  filterPostByTags,
+  SearchPostByTags,
   getComments,
   selectAllInteracts,
   selectPostByTitle, selectPostByTitleTag
@@ -13,10 +13,10 @@ const lsPostByTitle = async (req, res, next) => {
     const { title, tag } = req.query;
     let post
 
-    if (!title) {
-      post = await filterPostByTags(tag)
+    if (!title && tag) {
+      post = await SearchPostByTags(tag)
     }
-    if (!tag) {
+    if (!tag && title) {
       post = await selectPostByTitle(title)
     }
     if (title && tag) {

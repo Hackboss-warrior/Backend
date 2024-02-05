@@ -18,7 +18,7 @@ import {
   listInteractsByPostId,
 } from "./interactPost.js";
 import updatePost from "./updatePost.js";
-import filterPostByTags from "./filterPostByTags.js";
+import {filterPostByTags,SearchPostByTags }from "./filterPostByTags.js";
 import insertComment from "./insertComment.js";
 import listCommentByPostId from "./listCommentsByPostId.js";
 ///////////////////////////////////////
@@ -64,6 +64,7 @@ export {
   dropInteraction,
   updatePost,
   filterPostByTags,
+  SearchPostByTags,
   insertComment,
   listCommentByPostId,
   deleteCommentByPostId,

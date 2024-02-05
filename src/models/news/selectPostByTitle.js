@@ -4,34 +4,26 @@ let pool = await getPool();
 const selectPostByTitle = async (title) => {
 
 
-    const [postWithSametitle] = await pool.query(`SELECT users.nickName, users.avatar,users.id as identifierUser, posts.*, 
-    comments.comment, interacts.postId as interactionPostIdentifier, interacts.userId as interactsUserIdentifier , interacts.interaction 
-    FROM  users  
+    const [postWithSametitle] = await pool.query(`SELECT  p.*,u.nickName, u.avatar
+    FROM  users u 
     INNER JOIN 
-      posts ON users.id = posts.userId 
-    LEFT JOIN 
-        comments ON posts.id = comments.postId 
-    LEFT JOIN 
-        interacts ON posts.id = interacts.postId 
+      posts p ON u.id = p.userId 
+    
     WHERE  
-      posts.title LIKE ? ` , [`%${title}%`] );
+     p.title LIKE ? ` , [`%${title}%`] );
     return postWithSametitle;
 
 }
 const selectPostByTitleTag = async (title, tag) => {
 
 
-  const [postWithSametitle] = await pool.query(`SELECT users.nickName, users.avatar,users.id as identifierUser, posts.*, 
-  comments.comment, interacts.postId as interactionPostIdentifier, interacts.userId as interactsUserIdentifier , interacts.interaction 
-  FROM  users  
+  const [postWithSametitle] = await pool.query(`SELECT  p.*,u.nickName, u.avatar
+  FROM  users u 
   INNER JOIN 
-    posts ON users.id = posts.userId 
-  LEFT JOIN 
-      comments ON posts.id = comments.postId 
-  LEFT JOIN 
-      interacts ON posts.id = interacts.postId 
+    posts p ON u.id = p.userId 
+  
   WHERE  
-    posts.title LIKE ? AND  posts.tag = ?` , [`%${title}%`, tag] );
+   p.title LIKE ? AND  p.tag = ?` , [`%${title}%`, tag] );
   return postWithSametitle;
 
 }
