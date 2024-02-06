@@ -1,6 +1,7 @@
 import {
   SearchPostByTags,
   getComments,
+  getFavorites,
   selectAllInteracts,
   selectPostByTitle, selectPostByTitleTag
 } from "../../models/news/index.js";
@@ -37,10 +38,10 @@ const lsPostByTitle = async (req, res, next) => {
  
     const comments = await getComments();
 
+    const favs = await getFavorites();
 
 
-
-    res.send([post, comments, likes]);
+    res.send([post, comments, likes, favs]);
   } catch (error) {
     next(error);
   }
