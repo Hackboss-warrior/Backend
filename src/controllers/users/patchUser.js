@@ -7,12 +7,12 @@ import sharp from "sharp";
 import generateError from "../../utils/generateError.js";
 const patchUser = async (req, res, next) => {
 
-  
+
 
   try {
     const AuthUserId = req.auth.jwtPayLoad.id;
     let [user] = await selectUserById(AuthUserId);
-    
+
     let {
       name = user.name,
       firstName = user.firstName,
@@ -23,7 +23,7 @@ const patchUser = async (req, res, next) => {
       password: reqPassword,
       DOB = user.DOB,
     } = req.body;
-    
+
     if (req.files) {
       reqAvatar = req.files.avatar;
     }
@@ -33,7 +33,7 @@ const patchUser = async (req, res, next) => {
       : user.passwordHash;
     let avatar;
 
-    editUserValidation( name, firstName, BIO, nickName, password, email,  DOB )
+    editUserValidation(name, firstName, BIO, nickName, password, email, DOB)
 
     let processAvatar = async (reqAvatar) => {
       if (reqAvatar) {
@@ -50,7 +50,7 @@ const patchUser = async (req, res, next) => {
 
           sharp(archivoSubido.data)
             .resize(500, 500)
-            .toFile(`./uploads/${uniqueFilename}`, (err, ) => {
+            .toFile(`./uploads/${uniqueFilename}`, (err,) => {
               if (err) {
                 generateError("Hubo un error con la subida de imagen", 500);
               }
@@ -79,12 +79,14 @@ const patchUser = async (req, res, next) => {
           DOB,
         });
 
-     [user] = await selectUserById(AuthUserId);
-    
+        [user] = await selectUserById(AuthUserId);
+        setTimeout(() => {
+          res.status(200).send([user]);
+        }, 200);
 
-        res.status(200).send([user]);
+
       })
-      
+
       .catch((error) => {
         next(error);
       });
