@@ -1,13 +1,25 @@
 import getPool from "../../db/pool.js";
+
 let pool = await getPool();
 
-const selectPosts = async () => {
-  const [resultado] = await pool.query(
-    "SELECT users.nickName, users.avatar, posts.* FROM users INNER JOIN posts ON users.id = posts.userId"
-  );
+const selectPosts = async (title, tag) => {
+  const params = [];
 
-  /* "SELECT users.nickName, users.avatar, posts.*, interacts.postId, interacts.userId, interacts.interaction FROM users INNER JOIN posts ON users.id = posts.userId LEFT JOIN interacts ON posts.id = interacts.postId" */
+  let query = `
+    SELECT users.nickName, users.avatar, posts.* FROM users INNER JOIN posts ON users.id = posts.userId
+  `;
+  
+  if (title !== "") {
+    query += ` WHERE posts.title LIKE ?`;
+    params.push(`%${title}%`);
+  }
 
+  if (tag !== "") {
+    query += title !== "" ? ` AND posts.tag = ?` : ` WHERE posts.tag = ?`;
+    params.push(tag);
+  }
+
+  const [resultado] = await pool.query(query, params);
   return resultado;
 };
 
