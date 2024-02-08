@@ -35,7 +35,7 @@ const patchPost = async (req, res, next) => {
           });
         return uniqueFilename;
       } else {
-        return post.files; // Si no se proporciona un avatar, devuelve null
+        return post.files;
       }
     };
 
