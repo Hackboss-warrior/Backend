@@ -11,7 +11,7 @@
 			"name": "userRoutes",
 			"item": [
 				{
-					"name": "http://localhost:3001/register",
+					"name": "Registro",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -45,7 +45,7 @@
 								},
 								{
 									"key": "email",
-									"value": "omardiazglez@gmail.com",
+									"value": "omarprueba@gmail.com",
 									"type": "text"
 								},
 								{
@@ -75,7 +75,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/login",
+					"name": "Login",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -109,19 +109,19 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/user",
+					"name": "Editar el perfil de usuario",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjo0LCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MDczOTY0NjUsImV4cCI6MTcwNzgyODQ2NX0.32pP2TczVh9gOzLM8gCfdlq8lDCTLQosKvdPLy648ZU",
 									"type": "string"
 								}
 							]
 						},
-						"method": "POST",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "formdata",
@@ -132,9 +132,10 @@
 									"type": "text"
 								},
 								{
-									"key": "avatar",
-									"value": "",
-									"type": "text"
+									"key": "",
+									"type": "file",
+									"src": [],
+									"disabled": true
 								}
 							]
 						},
@@ -158,14 +159,14 @@
 			"name": "postsRoutes",
 			"item": [
 				{
-					"name": "http://localhost:3001/posts",
+					"name": "Publicar un nuevo post",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjo0LCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MDczOTY0NjUsImV4cCI6MTcwNzgyODQ2NX0.32pP2TczVh9gOzLM8gCfdlq8lDCTLQosKvdPLy648ZU",
 									"type": "string"
 								}
 							]
@@ -194,6 +195,11 @@
 									"key": "body",
 									"value": "Contenido del artículo de prueba 1",
 									"type": "text"
+								},
+								{
+									"key": "tag",
+									"value": "Política",
+									"type": "text"
 								}
 							]
 						},
@@ -212,7 +218,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/posts",
+					"name": "Visualizar todos los posts",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -231,12 +237,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/post/1",
+					"name": "Visualizar los datos de un post único",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/post/1",
+							"raw": "http://localhost:3001/post/31",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -244,21 +250,21 @@
 							"port": "3001",
 							"path": [
 								"post",
-								"1"
+								"31"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/post/1",
+					"name": "Editar una publicación",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzA3NDE0MTg4LCJleHAiOjE3MDc4NDYxODh9.HjhjXj2QDRTzRV1uK9JAvdrOHAjeg7mkHpUNYWQnPl8",
 									"type": "string"
 								}
 							]
@@ -270,13 +276,23 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Editando el título del artículo 1",
+									"value": "Probando a editar el título",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "Probando a cambiar el body",
+									"type": "text"
+								},
+								{
+									"key": "tag",
+									"value": "Política",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3001/post/1",
+							"raw": "http://localhost:3001/post/38",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -284,21 +300,21 @@
 							"port": "3001",
 							"path": [
 								"post",
-								"1"
+								"38"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/liked",
+					"name": "Votar una publicación",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjo0LCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MDczOTY0NjUsImV4cCI6MTcwNzgyODQ2NX0.32pP2TczVh9gOzLM8gCfdlq8lDCTLQosKvdPLy648ZU",
 									"type": "string"
 								}
 							]
@@ -307,7 +323,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"like\":1,\r\n\"postId\":2}",
+							"raw": "{\"like\":1,\r\n\"postId\":31}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -329,42 +345,62 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/filter",
+					"name": "Filtrado de noticias",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\"etiqueta\": [\"Política\", \"Ciencia\"]}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Mariano",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "tag",
+									"value": "Política",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:3001/filter",
+							"raw": "http://localhost:3001/posts?title=&tag=",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"filter"
+								"posts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": ""
+								},
+								{
+									"key": "tag",
+									"value": ""
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/favorite/1",
+					"name": "Almacenar un post en favoritos",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjo0LCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MDczOTY0NjUsImV4cCI6MTcwNzgyODQ2NX0.32pP2TczVh9gOzLM8gCfdlq8lDCTLQosKvdPLy648ZU",
 									"type": "string"
 								}
 							]
@@ -372,7 +408,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/favorite/1",
+							"raw": "http://localhost:3001/favorite/39",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -380,21 +416,21 @@
 							"port": "3001",
 							"path": [
 								"favorite",
-								"1"
+								"39"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/favorites",
+					"name": "Visualizar mis favoritos",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjo0LCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MDczOTY0NjUsImV4cCI6MTcwNzgyODQ2NX0.32pP2TczVh9gOzLM8gCfdlq8lDCTLQosKvdPLy648ZU",
 									"type": "string"
 								}
 							]
@@ -402,28 +438,28 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/favorites",
+							"raw": "http://localhost:3001/myfavorites",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"favorites"
+								"myfavorites"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/post/1",
+					"name": "Comentar una publicación",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjo0LCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MDczOTY0NjUsImV4cCI6MTcwNzgyODQ2NX0.32pP2TczVh9gOzLM8gCfdlq8lDCTLQosKvdPLy648ZU",
 									"type": "string"
 								}
 							]
@@ -435,18 +471,19 @@
 							"formdata": [
 								{
 									"key": "comment",
-									"value": "Comentario de prueba 1",
+									"value": "Este es otro comentario de prueba para ver como funcionan los comentarios",
 									"type": "text"
 								},
 								{
-									"key": "hierarchy",
-									"value": "1.1",
-									"type": "text"
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3001/post/1",
+							"raw": "http://localhost:3001/post/31",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -454,59 +491,21 @@
 							"port": "3001",
 							"path": [
 								"post",
-								"1"
+								"31"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3001/likeComments",
+					"name": "Eliminar una publicación",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"like\":1,\r\n\"commentId\": 1}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3001/likeComments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"likeComments"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3001/post/1",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjoxfSwiaWF0IjoxNzAyOTgxNDAyLCJleHAiOjE3MDM0MTM0MDJ9.jou6mL9OG3_-l8h99mBEBB1TObAbzrNh96gjyvu0JIA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlMb2FkIjp7ImlkIjo0LCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MDczOTY0NjUsImV4cCI6MTcwNzgyODQ2NX0.32pP2TczVh9gOzLM8gCfdlq8lDCTLQosKvdPLy648ZU",
 									"type": "string"
 								}
 							]
@@ -514,7 +513,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/post/1",
+							"raw": "http://localhost:3001/post/39",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -522,7 +521,7 @@
 							"port": "3001",
 							"path": [
 								"post",
-								"1"
+								"39"
 							]
 						}
 					},
