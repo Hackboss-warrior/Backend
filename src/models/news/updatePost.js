@@ -4,12 +4,13 @@ let pool = await getPool();
 
 
 
-const updatePost = async({ title, files, topic, body, id})=>{
+const updatePost = async({ title, topic, body, id})=>{
     
     const [{ resultado }] = await pool.query(
-        "UPDATE posts SET title = ?, files = ?, topic = ?, body = ? WHERE id = ?",
-        [title, files, topic, body, id]
+        "UPDATE posts SET title = ?, topic = ?, body = ? WHERE id = ?",
+        [title, topic, body, id]
     );
+    
     return resultado
    
 }
