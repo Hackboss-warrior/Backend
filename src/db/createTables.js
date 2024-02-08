@@ -73,30 +73,6 @@ async function createTables() {
                   FOREIGN KEY(postId) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE,
                   FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
                );`);
-
-    await pool.query(`
-              CREATE TABLE IF NOT EXISTS likeComments (
-                  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                  commentId INT NOT NULL,
-                  userId INT NOT NULL,
-                  interaction INT(2) NOT NULL,
-                  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                  modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                  FOREIGN KEY(commentId) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE,
-                  FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
-               );`);
-    await pool.query(`
-              CREATE TABLE IF NOT EXISTS answers (
-                id INT PRIMARY KEY,
-                commentId INT,
-                userId INT NOT NULL,
-                answerComment TEXT,
-                answerRef INT,
-                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (commentId) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE,
-                FOREIGN KEY (answerRef) REFERENCES answers(id) ON DELETE CASCADE ON UPDATE CASCADE,
-                FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
-              );`);
     await pool.query(`
               CREATE TABLE IF NOT EXISTS contactPoint (
                 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
